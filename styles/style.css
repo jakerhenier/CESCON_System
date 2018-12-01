@@ -1,0 +1,817 @@
+html {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 100%;
+    
+    height: fit-content;
+
+    color: #333333;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: rgb(199, 199, 199);
+    height: fit-content;
+    
+    display: grid;
+    align-content: center;
+
+    position: relative;
+}
+
+body.adding-pages { /* For pages that will add items on database*/
+    background: rgb(255, 255, 255);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h2, h3, h4 {
+    border-left: .1em solid rgb(25, 146, 62);
+    padding: .5rem 0 .5rem 1rem;
+    margin: 0;
+}
+
+h2 {
+    color: #555555;
+}
+
+a {
+    text-decoration: none;
+}
+
+div.content-container {
+    width: 900px;
+    position: relative;
+    margin: auto;
+    padding: 5rem 0 3rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+div.adding-fields {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    align-content: center;
+
+    margin: auto;
+    padding: 2rem;
+}
+
+div.floating-form {
+    width: 600px;
+    height: fit-content;
+    align-self: center;
+    position: relative;
+
+    margin: auto;
+    padding: 2rem;
+
+
+    border-radius: .15rem;
+    box-shadow: 0 0 .5rem .1rem rgba(0, 0, 0, .2);
+    background: #FFFFFF;
+}
+
+div.floating-form p {
+    margin-top: 2rem;
+    margin-bottom: .25rem;
+}
+
+div.content-container > a {
+    text-decoration: none;
+    color: #333333;
+}
+
+h2 {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+h2 > a {
+    float: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    font-size: 1rem;
+    font-weight: 400;
+
+    color: #FFFFFF;
+    padding: .5rem 1rem;
+    border-radius: 2rem;
+    background: rgb(25, 146, 62);
+}
+
+h2 img {
+    width: 1.5rem;
+    vertical-align: middle;
+    margin-right: .25rem;
+}
+
+div.list-item { /* For items on pages */
+    width: 100%;
+    padding: 1rem;
+    background: rgb(230, 230, 230);
+    box-shadow: 0 .1rem .2rem .1rem rgba(0, 0, 0, .1);
+
+    position: relative;
+
+    transition: all .07s linear;
+}
+
+div.list-item:hover {
+    transform: scale(1.01);
+    background: #FFFFFF;
+}
+
+div.list-item p > img {
+    width: 1.5rem;
+    margin-right: .25rem;
+    vertical-align: middle;
+}
+
+/************************************
+--------- TEXT FIELDS SKIN
+************************************/
+
+input[type=text],
+select,
+input[type=date],
+input[type=password] {
+    font-family: 'Segoe UI', sans-serif;
+    width: 100%;
+    padding: 0 .25rem .25rem;
+    line-height: 1.5rem;
+
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: .1rem solid #CCCCCC;
+
+    color: #666666;
+    background: none;
+}
+
+textarea {
+    font-family: 'Segoe UI', sans-serif;
+    width: 100%;
+
+    margin-top: .5rem;
+    padding: .5rem;
+
+    border-top: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    border-bottom: .1rem solid #CCCCCC;
+
+    border-radius: .2rem;
+    outline: none;
+    resize: none;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-bottom: .1rem solid rgb(25, 146, 62);
+}
+
+textarea:focus {
+    border-color: rgb(25, 146, 62);
+}
+
+button {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 2rem auto auto;
+    padding: 1rem 2rem;
+    width: 200px;
+    background: rgb(25, 146, 62);
+    color: #FFFFFF;
+    float: right;
+
+    border: 0;
+    border-radius: 2rem;
+
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/***************************************
+-----------TABLE PROPERTIES
+***************************************/
+
+table {
+    width: 100%;
+    background: rgb(230, 230, 230);
+    border: none;
+    border-radius: .2rem;
+    border-collapse: collapse;
+    box-shadow: 0 .2rem .3rem .1rem rgba(0, 0, 0, .05);
+}
+
+table tr:nth-child(odd) {
+    background: rgb(240, 240, 240);
+}
+
+table tr:hover {
+    background: rgba(25, 146, 62, .1);
+}
+   
+table tr td {
+    padding: 1rem;
+    border: none;
+}
+
+/* RESERVATION TABLE EXCLUSIVES */
+
+table#reservations tr td {
+    padding: .5rem 1rem;
+    border: none;
+}
+
+table#reservations tr td:first-child {
+    width: 80%;
+}
+
+table p {
+    margin: 0;
+}
+
+p#date-reserved {
+    font-size: .8rem;  
+}
+
+table#reservations a {
+    width: 100%;
+    padding: .5rem 2rem;
+    float: right;
+
+    border-radius: 2rem;
+
+    text-decoration: none;
+    text-align: center;
+    color: #FFFFFF;
+    background: rgb(25, 146, 62);
+    outline: none;
+
+    opacity: 0;
+    cursor: pointer;
+}
+
+table#reservations tr:hover td a {
+    opacity: 1;
+}
+
+div.confirm-dialog {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, .5);
+
+    display: none; /*set display as grid*/
+    align-content: center;
+
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+div.confirm-box {
+    width: 300px;
+    height: fit-content;
+    margin: auto;
+    padding: 1rem;
+
+    border-radius: .2rem;
+    background-color: rgb(230, 230, 230);
+}
+
+div.confirm-box > p {
+    margin-top: 0;
+}
+
+div.confirm-box > div {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.confirm-box div button {
+    font-family: 'Segoe UI', sans-serif;
+    width: 49%;
+    border: 1px solid rgb(25, 146, 62);
+    padding: .5rem 1rem;
+    margin: 0;
+
+    border-radius: 1rem;
+
+    outline: none;
+    cursor: pointer;
+}
+
+div.confirm-box div button:first-child {
+    background: rgb(25, 146, 62);
+    color: #FFFFFF;
+}
+
+div.confirm-box div button:last-child {
+    background: none;
+    color: #333333;
+}
+
+
+/* SUCCESS PROMPT */
+
+p#success {
+    text-align: center;
+    font-size: 1.25rem;
+    margin-top: 0;
+
+    display: none;
+}
+
+p#success > img {
+    width: 2rem;
+    margin-right: .5rem;
+    vertical-align: middle;
+}
+
+/***************************************
+-----------TOP BAR PROPERTIES
+***************************************/
+
+
+div.top-bar{
+    width: 100%;
+    position: fixed;
+    background: rgb(25, 146, 62);
+    color: #FFFFFF;
+
+    padding: .5rem 2rem;
+    z-index: 5;
+
+    box-shadow: 0 0 .3rem .1rem rgba(0, 0, 0, .2);
+}
+
+div.label-box {
+    position: absolute;
+    margin: auto;
+    width: fit-content;
+    margin-left: 2.5rem;
+    /*max-width: 5rem;*/
+}
+
+p.page-label {
+    vertical-align: middle;
+    margin: 0;
+
+    font-size: 1.3rem;
+}
+
+div.top-bar input {
+    display: none;
+}
+
+/* FOR USER ACC MENU */
+
+label.account-menu {
+    float: right;
+    margin-right: 0;
+}
+
+div.menu-button {
+    width: 10px;
+    height: 10px;
+    margin: 10px 0;
+    background: url("../images/arrow.png");
+    background-size: cover;
+
+    float: right;
+
+    transition: all .25s linear;
+}
+
+label.account-menu input:checked ~ div.menu-button {
+    transform: rotateX(180deg);
+}
+
+
+div.menu {
+    position: absolute;
+    display: grid;
+    flex-direction: column;
+    background: #EEEEEE;
+    border-radius: .2rem;
+
+    top: 3rem;
+    right: 2rem;
+
+    max-height: 0px;
+    overflow: hidden;
+
+    transition: all .4s ease-in-out;
+}
+
+label.account-menu input:checked + div.menu {
+    max-height: 300px;
+    padding: .25rem 0;
+    box-shadow: 0 0 .5rem .05rem rgba(0, 0, 0, .1);
+}
+
+div.menu a {
+    padding: .75rem 2.1rem;
+    text-decoration: none;
+    color: #333333;
+}
+
+div.menu a:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+p.username {
+    display: inline;
+    vertical-align: middle;
+    font-size: 1rem;
+    padding-right: .5rem;
+    padding-top: 1rem;
+}
+
+label.account-menu:hover p.username,
+label.account-menu input:checked ~ p.username {
+    text-decoration: underline;
+}
+
+/*--------------
+NAVIGATION MENU
+--------------*/
+
+/* hamburger icon look */
+
+div.hamburger-menu {
+    display: grid;
+    align-self: auto;
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-top: .15rem;
+    cursor: pointer;
+
+    background: url("../images/hamburger.png");
+    background-size: cover;
+
+    transition: all .1s .55s ease;
+}
+
+label.navigation-menu input:checked ~ div.hamburger-menu {
+    background: url("../images/close.png");
+    background-size: cover;
+}
+
+/* hamburger menu look */
+
+div.navigation-items {
+    background: rgb(25, 146, 62);
+    position: absolute;
+    border-radius: .2rem;
+    top: 3rem;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    max-height: 0;
+    overflow: hidden;
+    
+    z-index: 1;
+
+    transition: all .5s ease-in-out;
+}
+
+div.navigation-items a {
+    color: #FFFFFF;
+    padding: .75rem 5rem .75rem 2rem;
+}
+
+div.navigation-items a:hover {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+label.navigation-menu input:checked ~ div.navigation-items {
+    padding: .25rem 0;
+    max-height: 500px;
+    box-shadow: 0 .3rem 1rem .05rem rgba(0, 0, 0, .1);
+}
+
+/********************************
+----- LOGIN PAGE PROPERTIES
+********************************/
+
+div#login-form {
+    width: 500px;
+}
+
+div.floating-form img#logo {
+    width: 150px;
+    margin: 0 auto 1rem;
+}
+
+p.notif {
+    width: 100%;
+    margin-top: 1rem;
+    padding: .75rem;
+    background: rgba(255, 97, 97, 0.5);
+
+    display: block; /* display as block during invalid login */
+}
+
+div.floating-form p img {
+    width: 1.5rem;
+    vertical-align: middle;
+    margin-right: .5rem;
+}
+
+div.floating-form a {
+    position: absolute;
+    bottom: 2rem;
+    color: #666666;
+}
+
+div.floating-form a:hover {
+    color: rgb(25, 146, 62);
+}
+
+/***********************************
+--- EVENT SELECT PAGE PROPERTIES
+***********************************/
+
+p.event-title {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/***********************************
+ EVENT MANAGEMENT PAGE PROPERTIES
+***********************************/
+/*
+div.event-main {
+    width: 5rem;
+} */
+
+p#event-title {
+    font-size: 1.15rem;
+    margin: 0;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+p#event-date {
+    font-size: .9rem;
+    margin-bottom: 0;
+}
+
+/***********************************
+--- EVENT ADDING PAGE PROPERTIES
+***********************************/
+
+div.event-add {
+    width: 600px;
+    margin: auto;
+    height: fit-content;
+}
+
+/***********************************
+-----BRANCHES PAGE PROPERTIES
+***********************************/
+
+p#branch-name {
+    margin: 0;
+    font-size: 1.15rem;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+p#branch-location {
+    margin-bottom: 0;
+    font-size: .9rem;
+}
+
+
+/***********************************
+-----MEMBERS PAGE PROPERTIES
+***********************************/
+
+h2.church-affiliates {
+    margin-bottom: 3rem;
+}
+
+div.church-affiliates a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 1.5rem;
+
+    margin-bottom: 1rem;
+    padding: 1rem 5rem;
+    position: relative;
+
+    width: 100%;
+    background: rgb(230, 230, 230);
+    box-shadow: 0 .1rem .2rem .1rem rgba(0, 0, 0, .1);
+    transition: all .07s linear;
+}
+
+div.church-affiliates a:hover {
+    transform: scale(1.01);
+    background: #FFFFFF;
+}
+
+div.church-affiliates a img {
+    width: 5rem;
+    margin-right: 15rem;
+
+    position: relative;
+    left: 0;
+    vertical-align: middle;
+}
+
+/*************************************
+------- MEMBERS ADD PROPERTIES
+*************************************/
+
+div.info-fields {
+    width: 600px;
+    margin: auto;
+    padding: 2rem;
+
+    position: relative;
+
+    background: #FFFFFF;
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: .15rem;
+    box-shadow: 0 0 .5rem .1rem rgba(0, 0, 0, .2);
+}
+
+div.info-fields > h3 {
+    margin: 0;
+    border-left: 2px solid rgb(25, 146, 62);
+    padding: .5rem 1rem;
+}
+
+div.info-fields p {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+p#allergies {
+    margin-bottom: .5rem;
+}
+
+div.half-field-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+div.half-field {
+    display: inline-block;
+    justify-content: space-between;
+    width: 49%;
+}
+
+div.contact-no {
+    width: 40%;
+}
+
+div.floating-form span {
+    font-size: .85rem;
+}
+
+div.email {
+    width: 58%;
+}
+
+input[type=text],
+select,
+input[type=date] {
+    font-family: 'Segoe UI', sans-serif;
+    width: 100%;
+    padding: 0 .25rem .25rem;
+    line-height: 1.5rem;
+
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: .1rem solid #CCCCCC;
+
+    color: #666666;
+}
+
+select {
+    font-family: 'Segoe UI', sans-serif;
+    padding: .36rem;
+}
+
+select[name=sex] option {
+    border: 1px solid rgb(25, 146, 62);
+}
+
+div.info-fields span {
+    line-height: 1.4rem;
+    font-size: .8rem;
+    color: #999999;
+}
+
+input[name=contact-number] {
+    font-family: 'Segoe UI', sans-serif;
+    width: 85%;
+    float: right;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-bottom: .1rem solid rgb(25, 146, 62);
+}
+
+label {
+    margin-right: 2rem;
+    cursor: pointer;
+
+    font-size: .85rem;
+}
+
+div.info-fields label:nth-child(1) {
+    margin-left: 5rem;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+span.check {
+    width: 1rem;
+    height: 1rem;
+    top: -.1rem;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: .25rem;
+    border: .1rem solid rgb(25, 146, 62);
+}
+
+input[type=checkbox]:checked + span.check {
+    background-image: url("../images/success.png");
+    background-size: cover;
+}
+
+p#allergy-other {
+    font-size: .85rem;
+    margin: .5rem 0 0;
+}
+/*
+button[type=submit] {
+    position: relative;
+    float: right;
+    background: rgb(25, 146, 62);
+    padding: 1rem 5rem;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 2rem;
+    margin-top: 2rem;
+    color: #FFFFFF;
+    cursor: pointer;
+} */
+
+/*
+
+a#go-back {
+    position: absolute;
+    bottom: 2rem;
+
+    text-decoration: none;
+    color: #777777;
+}
+
+a#go-back:hover {
+    color: rgb(25, 146, 62);
+} */
