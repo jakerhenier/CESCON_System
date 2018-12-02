@@ -3,12 +3,12 @@
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 <html>
     <head>
-        <title>Church affiliates</title>
+        <title>List of staffs</title>
         <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
         <link rel = "shortcut icon" href = "../../images/logo.jpeg" type = "image/x-icon">
     </head>
     <body>
-        
+
         <div class="top-bar">
 
             <div class="label-box">
@@ -58,24 +58,17 @@
 
         </div>
 
-        <div class="content-container church-affiliates">
+        <div class="content-container">
 
-            <h2 class = "church-affiliates">Church affiliates</h2>
-
-            <a href="pastors-list.php">
-                <img src="../../images/pastor.png" alt="">
-                Pastors
-            </a>
-            <a href="staffs-list.php">
-                <img src="../../images/staff.png" alt="">
-                Staffs
-            </a>
-            <a href="members-list.php">
-                <img src="../../images/member.png" alt="">
-                Members
-            </a>
+            <h2>
+                Church staffs
+                <a href="../forms/event-add.php">
+                    <img src="../../images/add.png" alt="">
+                    Add a staff
+                </a>    
+            </h2>
 
         </div>
-
+        
     </body>
 </html>

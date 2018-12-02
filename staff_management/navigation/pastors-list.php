@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<meta lang = "utf-8">
+<meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 <html>
     <head>
-        <title>Church affiliates</title>
+        <title>Church pastors</title>
         <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel = "shortcut icon" href = "../../images/logo.jpeg" type = "image/x-icon">
+        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
         
         <div class="top-bar">
 
             <div class="label-box">
-                <p class = "page-label"></p>
+                <p class = "page-label">Branches</p>
             </div>
 
             <label class="account-menu">
@@ -20,12 +20,13 @@
                 <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
 
                 <div class="menu">
-                    <a href="">Menu </a>
+                    <a href="">Menu</a>
                     <a href="">Menu</a>
                     <a href="">Menu</a>
                 </div>
 
-                <div class="menu-button"></div>
+                <div class="menu-button">
+                </div>
                 
                 <p class="username"> <!--Name of user will be displayed here -->
                     Username
@@ -58,22 +59,15 @@
 
         </div>
 
-        <div class="content-container church-affiliates">
+        <div class="content-container">
 
-            <h2 class = "church-affiliates">Church affiliates</h2>
-
-            <a href="pastors-list.php">
-                <img src="../../images/pastor.png" alt="">
-                Pastors
-            </a>
-            <a href="staffs-list.php">
-                <img src="../../images/staff.png" alt="">
-                Staffs
-            </a>
-            <a href="members-list.php">
-                <img src="../../images/member.png" alt="">
-                Members
-            </a>
+            <h2>
+                Church pastors
+                <a href="../forms/event-add.php">
+                    <img src="../../images/add.png" alt="">
+                    Add a pastor
+                </a>    
+            </h2>
 
         </div>
 

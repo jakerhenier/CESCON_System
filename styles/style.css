@@ -32,10 +32,16 @@ h2, h3, h4 {
     border-left: .1em solid rgb(25, 146, 62);
     padding: .5rem 0 .5rem 1rem;
     margin: 0;
-}
+}   
 
 h2 {
     color: #555555;
+}
+
+h2 > img {
+    width: 2em;
+    margin-left: .5em;
+    vertical-align: middle;
 }
 
 a {
@@ -96,7 +102,7 @@ h2 {
 h2 > a {
     float: right;
     position: absolute;
-    bottom: 0;
+    bottom: .2rem;
     right: 0;
 
     font-size: 1rem;
@@ -108,7 +114,7 @@ h2 > a {
     background: rgb(25, 146, 62);
 }
 
-h2 img {
+h2 a img {
     width: 1.5rem;
     vertical-align: middle;
     margin-right: .25rem;
@@ -361,6 +367,12 @@ div.top-bar{
     box-shadow: 0 0 .3rem .1rem rgba(0, 0, 0, .2);
 }
 
+div.top-bar::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
 div.label-box {
     position: absolute;
     margin: auto;
@@ -373,6 +385,7 @@ p.page-label {
     vertical-align: middle;
     margin: 0;
 
+    line-height: 1.4rem;
     font-size: 1.3rem;
 }
 
@@ -390,7 +403,7 @@ label.account-menu {
 div.menu-button {
     width: 10px;
     height: 10px;
-    margin: 10px 0;
+    margin: 7px 0;
     background: url("../images/arrow.png");
     background-size: cover;
 
@@ -411,7 +424,7 @@ div.menu {
     background: #EEEEEE;
     border-radius: .2rem;
 
-    top: 3rem;
+    top: 2.7rem;
     right: 2rem;
 
     max-height: 0px;
@@ -461,7 +474,7 @@ div.hamburger-menu {
     float: left;
     width: 25px;
     height: 25px;
-    margin-top: .15rem;
+    margin-top: 0;
     cursor: pointer;
 
     background: url("../images/hamburger.png");
@@ -481,7 +494,7 @@ div.navigation-items {
     background: rgb(25, 146, 62);
     position: absolute;
     border-radius: .2rem;
-    top: 3rem;
+    top: 2.7rem;
     padding: 0;
 
     display: flex;
@@ -815,3 +828,51 @@ a#go-back {
 a#go-back:hover {
     color: rgb(25, 146, 62);
 } */
+
+/************************************
+------MEMBERS LIST PROPERTIES
+************************************/
+
+label.member-list {
+    margin-right: 0;
+    margin-bottom: .25rem;
+}
+
+label.member-list > div.list-item:hover {
+    transform: none;
+    background: rgb(230, 230, 230);
+}
+
+p.name {
+    margin: 0;
+    font-size: 1.25rem;
+
+    transition: all .15s .15s ease;
+}
+
+p.name > img {
+    width: 1.5rem;
+    float: right;
+    vertical-align: middle;
+
+    transition: all .15s .35s ease;
+}
+
+div.expanded-details {
+    max-height: 0;
+    overflow: hidden;
+
+    transition: all .5s ease-in-out;
+}
+
+label.member-list input:checked ~ p {
+    color: rgb(25, 146, 62);
+}
+
+label.member-list input:checked ~ p.name > img {
+    transform: rotate(180deg);
+}
+
+label.member-list input:checked ~ div.expanded-details {
+    max-height: 20rem;
+}
