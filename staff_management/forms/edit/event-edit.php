@@ -3,9 +3,9 @@
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 <html>
     <head>
-        <title>Add an event</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
+        <title>Edit event</title>
+        <link rel = "stylesheet" media = "all" href = "../../../styles/style.css">
+        <link rel="shortcut icon" href="../../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
         
@@ -13,7 +13,7 @@
 
             <div class = "floating-form">
 
-                <h3>Add event information</h3>
+                <h3>Edit event information</h3>
 
                 <form action="" method = "">
 
@@ -32,8 +32,8 @@
                     <p>Event details</p>
                     <textarea name="details" id="" cols="30" rows="10"></textarea>
 
-                    <button type="submit">Add event</button>
-                    <a href="../navigation/events-manage.php">Go back</a>
+                    <button type="submit">Save changes</button>
+                    <a href="../../navigation/events-manage.php">Go back</a>
 
                 </form>
 

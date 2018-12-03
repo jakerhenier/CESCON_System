@@ -12,7 +12,7 @@
         <div class="top-bar">
 
             <div class="label-box">
-                <p class = "page-label">Branches</p>
+                <p class = "page-label">Members</p>
             </div>
 
             <label class="account-menu">
@@ -83,6 +83,12 @@
                         <p>Allergies: <span id="allergies">none</span></p>
                         <p>Church address: <span id="church-address">Davao City</span></p>
                         <p>Pastor: <span id="pastor">Tom Jones</span></p><br/>
+
+                        <div class="options">
+                            <a href="../forms/edit/member-edit.php">Edit</a>
+                            <a href="">Delete</a>
+                        </div>
+
                         <p>Contact number: <span id="contact-no">+639123456789</span></p>
                         <p>Email: <span id="email">juandelacruz@gmail.com</span></p>
                     </div>
@@ -103,6 +109,12 @@
                         <p>Allergies: <span id="allergies">none</span></p>
                         <p>Church address: <span id="church-address">Davao City</span></p>
                         <p>Pastor: <span id="pastor">Tom Jones</span></p><br/>  
+                        
+                        <div class="options">
+                            <a href="../forms/edit/member-edit.php">Edit</a>
+                            <a href="">Delete</a>
+                        </div>
+
                         <p>Contact number: <span id="contact-no">+63987654321</span></p>
                         <p>Email: <span id="email">theimmortal@gmail.com</span></p>
                     </div>
