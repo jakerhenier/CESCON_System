@@ -52,7 +52,7 @@
                     <a href="event-select.php">Registrations</a>
                     <a href="event-select.php">Reservations</a>
                     <a href="branches.php">Branches</a>
-                    <a href="members.php">Members</a>
+                    <a href="affiliates.php">Affiliates</a>
                     
                 </div>
 

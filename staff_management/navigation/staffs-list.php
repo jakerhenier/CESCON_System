@@ -50,7 +50,7 @@
                     <a href="event-select.php">Registrations</a>
                     <a href="event-select.php">Reservations</a>
                     <a href="branches.php">Branches</a>
-                    <a href="members.php">Members</a>
+                    <a href="affiliates.php">Affiliates</a>
                     
                 </div>
 
@@ -62,11 +62,17 @@
 
             <h2>
                 Church staffs
-                <a href="../forms/event-add.php">
+                <a href="../forms/add/staff-add.php">
                     <img src="../../images/add.png" alt="">
-                    Add a staff
+                    Add a new staff
                 </a>    
             </h2>
+
+            <p class = "list-item">
+                <span class = "last-name">Salvador, </span>
+                <span class = "first-name">Antonio</span><br/>
+                <span class = "contact-number"><img src = "../../images/telephone.png">+639463742495</span>
+            </p>
 
         </div>
         

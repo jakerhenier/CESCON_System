@@ -51,7 +51,7 @@
                     <a href="event-select.php">Registrations</a>
                     <a href="event-select.php">Reservations</a>
                     <a href="branches.php">Branches</a>
-                    <a href="members.php">Members</a>
+                    <a href="affiliates.php">Affiliates</a>
                     
                 </div>
 
@@ -63,24 +63,40 @@
 
             <h2>
                 Branches
-                <a href="../forms/branch-add.php">
+                <a href="../forms/add/branch-add.php">
                     <img src="../../images/add.png" alt="">
-                    Add new branch
+                    Add a new branch
                 </a>    
             </h2>
 
-            <a href="">
+            <label class = "list-item">
                 <div class="list-item">
+                    <input type = "checkbox" name = "" id = "">
+                    <p class = "name">
+                        Branch name
+                        <img src = "../../images/state.png">
+                    </p>
                     
-                    <div class="branch-details">
-                        <p id ="branch-name">Branch name</p>
-                        <p id="branch-location">
-                            <img src="../../images/pin.png" alt="">
-                            Davao City
-                        </p>
+                    <div id = "branch-details">
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non faucibus lorem, nec ultrices felis. Quisque eu lectus interdum, scelerisque lacus eget, lacinia tortor. Integer posuere varius lectus eu tempor. Cras feugiat nisl ut risus pharetra, quis sodales neque cursus. Etiam ultrices turpis purus, nec faucibus massa convallis nec. Aliquam mattis, orci id rhoncus dictum, felis turpis molestie est, in sollicitudin ligula diam lacinia dolor. Proin egestas magna vitae turpis scelerisque faucibus. Nulla rutrum consequat arcu sit amet viverra. Aliquam magna justo, volutpat a malesuada in, auctor quis quam. Integer congue volutpat lectus at blandit. Aenean mattis dignissim consectetur. Praesent viverra diam turpis, ut accumsan velit viverra nec. Nunc hendrerit turpis vulputate finibus mollis. </p>
+                        <p>Praesent eros purus, laoreet imperdiet sem at, congue malesuada tortor. Fusce eget justo scelerisque, venenatis urna quis, dignissim urna. Mauris neque lorem, pharetra sed arcu ac, euismod iaculis sapien. Nunc id efficitur neque, at sagittis lectus. Fusce arcu ipsum, congue ac arcu a, imperdiet hendrerit nisl. Proin mattis pulvinar congue. Donec volutpat justo et tempor tristique. Pellentesque tristique consequat dui. Cras eget eleifend orci. Morbi ut porta mauris. Nunc lobortis gravida elit, ornare ullamcorper nisl tristique ac. Aenean posuere, lectus ut rutrum eleifend, lectus nisl porta quam, eget rutrum metus justo ac orci. Vestibulum convallis leo sem, et vulputate lectus imperdiet in.</p>
+                        <p>Nunc tempus volutpat tellus, eget lacinia erat maximus ut. Integer vulputate mi at ligula porta sodales. Praesent at eleifend velit. Sed ac tortor venenatis, volutpat dui quis, molestie felis. Mauris venenatis ultrices sapien sed bibendum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam fringilla diam at risus lobortis cursus. Nulla facilisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed commodo turpis sit amet quam vulputate viverra. Nullam non risus consequat, dictum augue in, auctor nunc. Vestibulum elit nulla, bibendum vel urna vitae, viverra finibus nisl. Vestibulum vitae dolor nec risus consequat pharetra non in dui. Proin et enim tellus.</p>
+
                     </div>
+
+                    <p id="branch-est">
+                        <img src="../../images/pin.png" alt="">
+                        September 1, 2000
+                    </p>
+
+                    <p id="branch-location">
+                        <img src="../../images/pin.png" alt="">
+                        Davao City
+                    </p>
+
                 </div>
-            </a>
+            </label>
 
         </div>
 

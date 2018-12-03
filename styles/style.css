@@ -20,10 +20,6 @@ body {
     position: relative;
 }
 
-body.adding-pages { /* For pages that will add items on database*/
-    background: rgb(255, 255, 255);
-}
-
 * {
     box-sizing: border-box;
 }
@@ -66,11 +62,11 @@ div.adding-fields {
     align-content: center;
 
     margin: auto;
-    padding: 2rem;
+    padding: 2rem 0;
 }
 
 div.floating-form {
-    width: 600px;
+    width: 550px;
     height: fit-content;
     align-self: center;
     position: relative;
@@ -84,7 +80,7 @@ div.floating-form {
     background: #FFFFFF;
 }
 
-div.floating-form p {
+div.floating-form form p {
     margin-top: 2rem;
     margin-bottom: .25rem;
 }
@@ -120,7 +116,7 @@ h2 a img {
     margin-right: .25rem;
 }
 
-div.list-item { /* For items on pages */
+div.list-item, p.list-item { /* For items on pages */
     width: 100%;
     padding: 1rem;
     background: rgb(230, 230, 230);
@@ -146,6 +142,11 @@ div.list-item p > img {
 --------- TEXT FIELDS SKIN
 ************************************/
 
+form {
+    width: 100%;
+    overflow: hidden;L
+}
+
 input[type=text],
 select,
 input[type=date],
@@ -154,6 +155,7 @@ input[type=password] {
     width: 100%;
     padding: 0 .25rem .25rem;
     line-height: 1.5rem;
+    outline: none;
 
     border-top: none;
     border-left: none;
@@ -181,6 +183,22 @@ textarea {
     resize: none;
 }
 
+div#contact-field {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+div#contact-field > input {
+    float: right;
+    width: 93%;
+}
+
+div#contact-field > span {
+    color: #555555;
+    line-height: 1.5rem;
+}
+
 input:focus,
 select:focus {
     outline: none;
@@ -205,6 +223,18 @@ button {
 
     cursor: pointer;
     text-transform: uppercase;
+}
+
+p#staff-username::before {
+    content: '';
+    display: block;
+
+    height: 1px;
+    width: 95%;
+    margin: 3rem auto;
+    border-radius: 2px;
+
+    background: rgb(25, 146, 62);
 }
 
 /***************************************
@@ -341,7 +371,7 @@ p#success {
     font-size: 1.25rem;
     margin-top: 0;
 
-    display: none;
+    display: block;
 }
 
 p#success > img {
@@ -533,22 +563,33 @@ div#login-form {
 
 div.floating-form img#logo {
     width: 150px;
+    display: grid;
+    align-self: center;
     margin: 0 auto 1rem;
 }
 
-p.notif {
+p.prompt {
     width: 100%;
     margin-top: 1rem;
+    margin-bottom: -1rem;
     padding: .75rem;
-    background: rgba(255, 97, 97, 0.5);
-
-    display: block; /* display as block during invalid login */
 }
 
-div.floating-form p img {
+p#error {
+    background: rgba(255, 97, 97, 0.5);
+    display: block;
+}
+
+p#reserve-success {
+    background: rgba(0, 166, 81, .5);
+    display: block;
+}
+
+div.floating-form p.prompt img {
+    float: left;
     width: 1.5rem;
-    vertical-align: middle;
-    margin-right: .5rem;
+    margin-top: .5rem;
+    margin-right: .75rem;
 }
 
 div.floating-form a {
@@ -622,6 +663,17 @@ p#branch-name {
 p#branch-location {
     margin-bottom: 0;
     font-size: .9rem;
+}
+
+p#branch-est {
+    float: right;
+    margin-right: 2.5rem;
+
+    transition: all .5s ease;
+}
+
+label.list-item input:checked ~ p#branch-est {
+    margin-right: .5rem;
 }
 
 
@@ -722,7 +774,7 @@ div.floating-form span {
 div.email {
     width: 58%;
 }
-
+/*
 input[type=text],
 select,
 input[type=date] {
@@ -737,7 +789,7 @@ input[type=date] {
     border-bottom: .1rem solid #CCCCCC;
 
     color: #666666;
-}
+} */
 
 select {
     font-family: 'Segoe UI', sans-serif;
@@ -762,7 +814,6 @@ input[name=contact-number] {
 
 input:focus,
 select:focus {
-    outline: none;
     border-bottom: .1rem solid rgb(25, 146, 62);
 }
 
@@ -801,6 +852,11 @@ p#allergy-other {
     font-size: .85rem;
     margin: .5rem 0 0;
 }
+
+form > span {
+    display: inline;
+}
+
 /*
 button[type=submit] {
     position: relative;
@@ -830,15 +886,31 @@ a#go-back:hover {
 } */
 
 /************************************
+------BRANCHES LIST PROPERTIES
+************************************/
+
+div#branch-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: all .5s ease;
+}
+
+label.list-item input:checked ~ div#branch-details {
+    margin: .5rem 0;
+    max-height: 15rem;
+    overflow-y: auto;
+}
+
+/************************************
 ------MEMBERS LIST PROPERTIES
 ************************************/
 
-label.member-list {
+label.list-item {
     margin-right: 0;
     margin-bottom: .25rem;
 }
 
-label.member-list > div.list-item:hover {
+label.list-item > div.list-item:hover {
     transform: none;
     background: rgb(230, 230, 230);
 }
@@ -854,25 +926,158 @@ p.name > img {
     width: 1.5rem;
     float: right;
     vertical-align: middle;
+    transform: rotate(-90deg);
 
-    transition: all .15s .35s ease;
+    transition: all .3s .2s ease;
 }
 
 div.expanded-details {
     max-height: 0;
     overflow: hidden;
 
-    transition: all .5s ease-in-out;
+    transition: all .5s ease;
 }
 
-label.member-list input:checked ~ p {
+label.list-item input:checked ~ p {
     color: rgb(25, 146, 62);
 }
 
-label.member-list input:checked ~ p.name > img {
+label.list-item input:checked ~ p.name > img {
     transform: rotate(180deg);
 }
 
-label.member-list input:checked ~ div.expanded-details {
+label.list-item input:checked ~ div.expanded-details {
     max-height: 20rem;
+}
+
+/************************************
+------STAFF LIST PROPERTIES
+************************************/
+
+p.list-item {
+    padding-top: .65rem;
+    padding-bottom: .65rem;
+}
+
+span.last-name {
+    font-weight: bold;
+}
+
+span.last-name,
+span.first-name {
+    font-size: 1.25rem;
+}
+
+span.contact-number::before {
+    content: '';
+    display:block;
+    height: .5rem;
+    width: 100%;
+}
+
+span.contact-number {
+    font-size: .9rem;
+}
+
+span.contact-number img {
+    width: 1.5rem;
+    vertical-align: middle;
+}
+
+
+/************************************
+------ USER FEED PROPERTIES
+************************************/
+
+h3#feed-header {
+    width: 100%;
+    border: 0;
+    padding: 1rem 5rem;
+    margin: 0;
+
+    background: #FFFFFF;
+    color: #555555;
+}
+
+h3#feed-header > img {
+    width: 3em;
+    margin-right: .5rem;
+    vertical-align: middle;
+}
+
+h3#feed-header > span {
+    float: right;
+    line-height: 2.5em;
+}
+
+div#feed-item {
+    height: 10rem;
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: .5rem;
+    box-shadow: none;
+}
+
+div.detail-slide {
+    width: 100%;
+    height: 50%;
+    padding: .5rem;
+    background: rgba(0, 0, 0, .3);
+    position: absolute;
+
+    bottom: -25%;
+
+    overflow: hidden;
+    transition: all .3s ease;
+}
+
+div#feed-item:hover {
+    transform: none;
+}
+
+div#feed-item:hover div.detail-slide {
+    bottom: 0;
+}
+
+div.detail-slide p {
+    margin: 0;
+    color: #FFFFFF;
+}
+
+p#title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+p#date,
+p#location {
+    font-size: .9rem;
+}
+
+p#date {
+    position: absolute;
+    bottom: .5rem;
+    left: .5rem;
+}
+
+p#location {
+    position: absolute;
+    bottom: .5rem;
+    right: .5rem;
+
+    max-width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/************************************
+------EVENT DETAILS PROPERTIES
+************************************/
+
+div.event-photo {
+    width: 100%;
+    height: 25rem;
+    background: #444444;
 }

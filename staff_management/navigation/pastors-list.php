@@ -12,7 +12,7 @@
         <div class="top-bar">
 
             <div class="label-box">
-                <p class = "page-label">Branches</p>
+                <p class = "page-label">Pastors</p>
             </div>
 
             <label class="account-menu">
@@ -51,7 +51,7 @@
                     <a href="event-select.php">Registrations</a>
                     <a href="event-select.php">Reservations</a>
                     <a href="branches.php">Branches</a>
-                    <a href="members.php">Members</a>
+                    <a href="affiliates.php">Affiliates</a>
                     
                 </div>
 
@@ -63,11 +63,17 @@
 
             <h2>
                 Church pastors
-                <a href="../forms/event-add.php">
+                <a href="../forms/add/pastor-add.php">
                     <img src="../../images/add.png" alt="">
                     Add a pastor
                 </a>    
             </h2>
+
+            <p class = "list-item">
+                <span class = "last-name">Isidro, </span>
+                <span class = "first-name">Solomon</span><br/>
+                <span class = "contact-number"><img src = "../../images/telephone.png">+639463742495</span>
+            </p>
 
         </div>
 

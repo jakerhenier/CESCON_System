@@ -27,6 +27,7 @@
                     <textarea name="" id="" cols="30" rows="10"></textarea>
 
                     <button type = "submit">Add</button>
+                    <a href = "../navigation/branches.php">Go back</a>
 
                 </form>
 

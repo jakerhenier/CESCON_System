@@ -12,6 +12,10 @@
         <div class="top-bar">
 
             <div class="label-box">
+                <p class = "page-label">Affiliates</p>
+            </div>
+
+            <div class="label-box">
                 <p class = "page-label"></p>
             </div>
 
@@ -50,7 +54,7 @@
                     <a href="event-select.php">Registrations</a>
                     <a href="event-select.php">Reservations</a>
                     <a href="branches.php">Branches</a>
-                    <a href="members.php">Members</a>
+                    <a href="affiliates.php">Affiliates</a>
                     
                 </div>
 

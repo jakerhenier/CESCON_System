@@ -4,22 +4,22 @@
 <html>
     <head>
         <title>CESCON - Event details</title>
-        <link rel="stylesheet" media = "all" href="../styles/event-expanded.css">
+        <link rel="stylesheet" media = "all" href="../styles/style.css">
         <link rel="shortcut icon" href="../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
         
-        <h2>
+        <h3 id = "feed-header">
             <img src="../images/logo.jpeg" alt="CESCON logo">
-            Christian Endeavor Society Convention
             <span>Event details</span>
-        </h2>
+            Christian Endeavor Society Convention
+        </h3>
 
-        <div class="event-details">
+        <div class="content-container">
 
             <div class="event-photo"></div>
             
-            <h2>Event title</h2>
+            <h3>Event title</h3>
             <p class = "detail-main"><img src="../images/pin.png" alt="">Davao City</p>
             <p class = "detail-main"><img src="../images/date.png" alt="">November 30, 2016</p>
             <p class = "detail-main"><img src="../images/ticket.png" alt="">₱85.00</p>

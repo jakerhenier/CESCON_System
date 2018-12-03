@@ -3,7 +3,7 @@
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 <html>
     <head>
-        <title>Add a registrant</title>
+        <title>Add a member</title>
         <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
         <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
     </head>
@@ -13,7 +13,7 @@
         
             <div class="floating-form">
 
-                <h3>Add registrant information</h3>
+                <h3>Add new member's information</h3>
 
                 <form action="">
 
@@ -89,7 +89,7 @@
 
                     <button type="submit">Register</button>
 
-                    <a id="go-back" href="../navigation/registrants.php">Go back</a>
+                    <a id="go-back" href="../navigation/members-list.php">Go back</a>
                     
                 </form>
 

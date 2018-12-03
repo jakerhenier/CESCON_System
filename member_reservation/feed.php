@@ -4,42 +4,24 @@
 <html>
     <head>
         <title>CESCON - Event feed</title>
-        <link rel="stylesheet" media = "all" href="../styles/member-feed.css">
+        <link rel="stylesheet" media = "all" href="../styles/style.css">
         <link rel="shortcut icon" href="../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
         
-        <h2>
+        <h3 id = "feed-header">
             <img src="../images/logo.jpeg" alt="CESCON logo">
-            Christian Endeavor Society Convention
             <span>Member feed</span>
-        </h2>
+            Christian Endeavor Society Convention
+        </h3>
 
-        <div class="event-grid">
+        <div class="content-container">
 
             <a href="event-detail.php">
 
-                <div class="event-item">
+                <div class="list-item" id = "feed-item">
 
-                    <div class="event-details">
-                        <p id = "title">Event titleuoiuryiouetyeuirtyoireuytoiuerytioueytouiyertiouyeotiuyeuwio</p>
-                        <p id="date">
-                            <img src="../images/date.png" alt="">
-                            November 10, 2018
-                        </p>
-                        <p id="location">
-                            <img src="../images/pin.png" alt="">
-                            Davao Cityrtwertretrewtwretrewtwret
-                        </p>
-                    </div>
-
-                </div>
-
-            </a>
-
-            <a href="">
-                <div class="event-item">
-                <div class="event-details">
+                    <div class="detail-slide">
                         <p id = "title">Event title</p>
                         <p id="date">
                             <img src="../images/date.png" alt="">
@@ -50,11 +32,16 @@
                             Davao City
                         </p>
                     </div>
+
                 </div>
+
             </a>
-            <a href="">
-                <div class="event-item">
-                <div class="event-details">
+
+            <a href="event-detail.php">
+
+                <div class="list-item" id = "feed-item">
+
+                    <div class="detail-slide">
                         <p id = "title">Event title</p>
                         <p id="date">
                             <img src="../images/date.png" alt="">
@@ -65,22 +52,49 @@
                             Davao City
                         </p>
                     </div>
+
                 </div>
+
             </a>
-            <a href="">
-                <div class="event-item"></div>
+
+            <a href="event-detail.php">
+
+                <div class="list-item" id = "feed-item">
+
+                    <div class="detail-slide">
+                        <p id = "title">Event title</p>
+                        <p id="date">
+                            <img src="../images/date.png" alt="">
+                            November 10, 2018
+                        </p>
+                        <p id="location">
+                            <img src="../images/pin.png" alt="">
+                            Davao City
+                        </p>
+                    </div>
+
+                </div>
+
             </a>
-            <a href="">
-                <div class="event-item"></div>
-            </a>
-            <a href="">
-                <div class="event-item"></div>
-            </a>
-            <a href="">
-                <div class="event-item"></div>
-            </a>
-            <a href="">
-                <div class="event-item"></div>
+
+            <a href="event-detail.php">
+
+                <div class="list-item" id = "feed-item">
+
+                    <div class="detail-slide">
+                        <p id = "title">Event title</p>
+                        <p id="date">
+                            <img src="../images/date.png" alt="">
+                            November 10, 2018
+                        </p>
+                        <p id="location">
+                            <img src="../images/pin.png" alt="">
+                            Davao City
+                        </p>
+                    </div>
+
+                </div>
+
             </a>
 
         </div>

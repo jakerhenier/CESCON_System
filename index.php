@@ -18,7 +18,7 @@
                 <h3>Account login</h3>
 
                 <!-- Displays when invalid credentials are entered -->
-                <p class = "notif error">
+                <p class = "prompt" id = "error">
                     <img src="images/error.png" alt="Error">
                     Invalid username or password.
                 </p>

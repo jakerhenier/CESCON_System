@@ -3,9 +3,9 @@
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 <html>
     <head>
-        <title>Reserve for event</title>
-        <link rel = "stylesheet" media = "all" href = "../styles/style.css">
-        <link rel="shortcut icon" href="../images/logo.jpeg" type="image/x-icon">
+        <title>Add a registrant</title>
+        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
+        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
 
@@ -13,12 +13,7 @@
 
             <div class = "floating-form">
 
-                <h3>Enter your information</h3>
-
-                <p class = "prompt" id = "reserve-success">
-                    <img src="../images/success.png" alt="Error">
-                    Reservation successful! Pay at the venue to complete registration.
-                </p>
+                <h3>Add event registrant's information</h3>
 
                 <form action = "">
 
@@ -29,7 +24,7 @@
                     <input type = "text" name ="last-name">
 
                     <button type = "submit">Add</button>
-                    <a href = "event-detail.php">Go back</a>
+                    <a href = "../navigation/registrants.php">Go back</a>
 
                 </form>
 

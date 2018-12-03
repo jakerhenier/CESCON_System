@@ -51,7 +51,7 @@
                     <a href="event-select.php">Registrations</a>
                     <a href="event-select.php">Reservations</a>
                     <a href="branches.php">Branches</a>
-                    <a href="members.php">Members</a>
+                    <a href="affiliates.php">Affiliates</a>
                     
                 </div>
 
@@ -63,13 +63,13 @@
             
             <h2>
                 Church members
-                <a href="../forms/event-add.php">
+                <a href="../forms/add/member-add.php">
                     <img src="../../images/add.png" alt="">
-                    Add new member
+                    Add a new member
                 </a>    
             </h2>
 
-            <label class="member-list">
+            <label class="list-item">
                 <div class="list-item">
                     <input type="checkbox" name="" id="">
                     <p class="name">
@@ -89,7 +89,7 @@
                 </div>
             </label>
 
-            <label class="member-list">
+            <label class="list-item">
                 <div class="list-item">
                     <input type="checkbox" name="" id="">
                     <p class="name">
