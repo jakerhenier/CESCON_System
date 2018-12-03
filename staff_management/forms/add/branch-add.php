@@ -20,12 +20,18 @@
                     <p>Branch name</p>
                     <input type="text" name="" id="">
 
-                    <p>Branch location</p>
-                    <input type="text" name="" id="">
-
                     <p>Date established</p>
                     <input type="date" name="" id="">
 
+                    <p>Branch location</p>
+                    <input type="text" name="" id="">
+
+                    <p>Branch district</p>
+                    <select name="" id="">
+                        <option value="">District 1</option>
+                        <option value="">District 2</option>
+                        <option value="">District 3</option>
+                    </select>
 
                     <p>Branch details</p>
                     <textarea name="" id="" cols="30" rows="10"></textarea>

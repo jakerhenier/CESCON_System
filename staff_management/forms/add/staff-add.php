@@ -29,6 +29,11 @@
                         <span>+63</span>
                     </div>
 
+                    <p>Branch</p>
+                    <select name="" id="">
+                        <option value="">Branch 1</option>
+                    </select>
+
                     <p id = "staff-username">Username</p>
                     <input type = "text" name = "username">
 
