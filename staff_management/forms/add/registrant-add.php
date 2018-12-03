@@ -4,7 +4,7 @@
 <html>
     <head>
         <title>Add a registrant</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
+        <link rel = "stylesheet" media = "all" href = "../../../styles/style.css">
         <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
