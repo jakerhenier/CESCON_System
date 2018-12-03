@@ -144,7 +144,7 @@ div.list-item p > img {
 
 form {
     width: 100%;
-    overflow: hidden;L
+    overflow: hidden;
 }
 
 input[type=text],
@@ -212,8 +212,7 @@ textarea:focus {
 button {
     font-family: 'Segoe UI', sans-serif;
     margin: 2rem auto auto;
-    padding: 1rem 2rem;
-    width: 200px;
+    padding: .75rem 2rem;
     background: rgb(25, 146, 62);
     color: #FFFFFF;
     float: right;
@@ -222,7 +221,8 @@ button {
     border-radius: 2rem;
 
     cursor: pointer;
-    text-transform: uppercase;
+    font-weight: 700;
+    text-transform: capitalize;
 }
 
 p#staff-username::before {
@@ -1076,8 +1076,48 @@ p#location {
 ------EVENT DETAILS PROPERTIES
 ************************************/
 
-div.event-photo {
-    width: 100%;
-    height: 25rem;
-    background: #444444;
+div#event-details {
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: .2rem;
+    box-shadow: 0 .1rem .1rem .05rem rgba(0, 0, 0, .1);
+    background: rgb(240, 240, 240);
+
+    position: relative;
+}
+
+div.content-container h1 {
+    margin-top: 0;
+    color: rgb(25, 146, 62);
+}
+
+p.detail-main {
+    margin: .5rem 0;
+}
+
+p.detail-main img {
+    width: 2rem;
+    margin-right: .5rem;
+    vertical-align: middle;
+}
+
+a#return-button {
+    position: absolute;
+
+    right: 2rem;
+    bottom: 2rem;
+}
+
+a#return-button:hover {
+    color: rgb(25, 146, 62);
+}
+
+a#reserve-button {
+    width: fit-content;
+    padding: .5rem 2rem;
+    margin-top: 1rem;
+
+    color: #FFFFFF;
+    background: rgb(25, 146, 62);
+    border-radius: 2rem;
 }

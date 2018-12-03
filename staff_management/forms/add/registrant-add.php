@@ -4,8 +4,8 @@
 <html>
     <head>
         <title>Add a registrant</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
+        <link rel = "stylesheet" media = "all" href = "../../../styles/style.css">
+        <link rel="shortcut icon" href="../../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
 
@@ -24,7 +24,7 @@
                     <input type = "text" name ="last-name">
 
                     <button type = "submit">Add</button>
-                    <a href = "../navigation/registrants.php">Go back</a>
+                    <a href = "../../navigation/registrants.php">Go back</a>
 
                 </form>
 

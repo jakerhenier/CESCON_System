@@ -15,11 +15,9 @@
             Christian Endeavor Society Convention
         </h3>
 
-        <div class="content-container">
+        <div class="content-container" id = "event-details">
 
-            <div class="event-photo"></div>
-            
-            <h3>Event title</h3>
+            <h1>Event title</h1>
             <p class = "detail-main"><img src="../images/pin.png" alt="">Davao City</p>
             <p class = "detail-main"><img src="../images/date.png" alt="">November 30, 2016</p>
             <p class = "detail-main"><img src="../images/ticket.png" alt="">₱85.00</p>

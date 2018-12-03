@@ -4,8 +4,8 @@
 <html>
     <head>
         <title>Add an event</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
+        <link rel = "stylesheet" media = "all" href = "../../../styles/style.css">
+        <link rel="shortcut icon" href="../../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
         
@@ -33,7 +33,7 @@
                     <textarea name="details" id="" cols="30" rows="10"></textarea>
 
                     <button type="submit">Add event</button>
-                    <a href="../navigation/events-manage.php">Go back</a>
+                    <a href="../../navigation/events-manage.php">Go back</a>
 
                 </form>
 

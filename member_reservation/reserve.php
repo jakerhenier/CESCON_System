@@ -28,7 +28,7 @@
                     <p>Last name</p>
                     <input type = "text" name ="last-name">
 
-                    <button type = "submit">Add</button>
+                    <button type = "submit">Reserve</button>
                     <a href = "event-detail.php">Go back</a>
 
                 </form>

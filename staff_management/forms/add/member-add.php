@@ -4,8 +4,8 @@
 <html>
     <head>
         <title>Add a member</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
+        <link rel = "stylesheet" media = "all" href = "../../../styles/style.css">
+        <link rel="shortcut icon" href="../../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
         
@@ -89,7 +89,7 @@
 
                     <button type="submit">Register</button>
 
-                    <a id="go-back" href="../navigation/members-list.php">Go back</a>
+                    <a id="go-back" href="../../navigation/members-list.php">Go back</a>
                     
                 </form>
 

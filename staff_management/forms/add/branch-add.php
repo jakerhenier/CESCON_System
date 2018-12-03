@@ -4,8 +4,8 @@
 <html>
     <head>
         <title>Add a a new branch</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
+        <link rel = "stylesheet" media = "all" href = "../../../styles/style.css">
+        <link rel="shortcut icon" href="../../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
         
@@ -23,11 +23,15 @@
                     <p>Branch location</p>
                     <input type="text" name="" id="">
 
+                    <p>Date established</p>
+                    <input type="date" name="" id="">
+
+
                     <p>Branch details</p>
                     <textarea name="" id="" cols="30" rows="10"></textarea>
 
                     <button type = "submit">Add</button>
-                    <a href = "../navigation/branches.php">Go back</a>
+                    <a href = "../../navigation/branches.php">Go back</a>
 
                 </form>
 

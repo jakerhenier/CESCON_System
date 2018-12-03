@@ -4,8 +4,8 @@
 <html>
     <head>
         <title>Add a pastor</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
+        <link rel = "stylesheet" media = "all" href = "../../../styles/style.css">
+        <link rel="shortcut icon" href="../../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
 
@@ -30,7 +30,7 @@
                     </div>
 
                     <button type = "submit">Add</button>
-                    <a href = "../navigation/pastors-list.php">Go back</a>
+                    <a href = "../../navigation/pastors-list.php">Go back</a>
 
                 </form>
 

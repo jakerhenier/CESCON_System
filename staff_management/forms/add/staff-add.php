@@ -4,8 +4,8 @@
 <html>
     <head>
         <title>Add a staff</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
+        <link rel = "stylesheet" media = "all" href = "../../../styles/style.css">
+        <link rel="shortcut icon" href="../../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
 
@@ -39,7 +39,7 @@
                     <input type = "password" name = "password-confirm">
 
                     <button type = "submit">Add</button>
-                    <a href = "../navigation/staffs-list.php">Go back</a>
+                    <a href = "../../navigation/staffs-list.php">Go back</a>
 
                 </form>
 
