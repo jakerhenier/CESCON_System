@@ -1,3 +1,20 @@
+<?php 
+session_start();
+require_once('../../includes/config/db.php');
+
+$staffData = '';
+
+if (!isset($_SESSION['staff_session'])) {
+    header('location: ../../index.php');
+}
+else {
+    $staffData = $_SESSION['staff_session'];
+}
+
+$query = "SELECT * FROM event WHERE branch_id = {$staffData[0]['branch_id']}";
+$result = $conn->query($query);
+
+?>
 <!DOCTYPE html>
 <meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -22,14 +39,14 @@
                 <div class="menu">
                     <a href="">Menu </a>
                     <a href="">Menu</a>
-                    <a href="">Menu</a>
+                    <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
                 <div class="menu-button">
                 </div>
                 
                 <p class="username"> <!--Name of user will be displayed here -->
-                    Username
+                    Hello, <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
                 </p>
                 
             </label>
@@ -69,7 +86,7 @@
                 </a>
             </h2>
 
-            <a href="">
+            <!-- <a href="">
                 <div class="list-item">
                     <p id="event-title">Title here</p>
 
@@ -83,7 +100,22 @@
                         November 1, 2018
                     </p>
                 </div>
-            </a>
+            </a> -->
+            <?php 
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo   '<a href="">
+                                <div class="list-item">
+                                    <p id="event-title">'.$row['title'].'</p>
+                                    <p id = "event-date">
+                                        <img src="../../images/date.png" alt="">
+                                        '.date('M j<\s\up>S</\s\up> Y', strtotime($row['date'])).'
+                                    </p>
+                                </div>
+                            </a>';
+                }
+            }
+            ?>
 
         </div>
 

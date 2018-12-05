@@ -1,3 +1,3 @@
 <?php 
-header('location: branches.php');
+header('location: events-manage.php.php');
 ?>

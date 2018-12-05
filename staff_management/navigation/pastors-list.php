@@ -1,3 +1,19 @@
+<?php 
+session_start();
+require_once('../../includes/config/db.php');
+
+$staffData = '';
+
+if (!isset($_SESSION['staff_session'])) {
+    header('location: ../../index.php');
+}
+else {
+    $staffData = $_SESSION['staff_session'];
+}
+
+$query = "SELECT * FROM pastor";
+$result = $conn->query($query);
+?>
 <!DOCTYPE html>
 <meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -22,14 +38,14 @@
                 <div class="menu">
                     <a href="">Menu</a>
                     <a href="">Menu</a>
-                    <a href="">Menu</a>
+                    <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
                 <div class="menu-button">
                 </div>
                 
                 <p class="username"> <!--Name of user will be displayed here -->
-                    Username
+                    Hello, <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
                 </p>
                 
             </label>
@@ -69,6 +85,17 @@
                 </a>    
             </h2>
 
+            <?php 
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo   '<p class = "list-item">
+                                <span class = "last-name">'.$row['last_name'].',</span>
+                                <span class = "first-name">'.$row['first_name'].'</span><br/>
+                                <span class = "contact-number"><img src = "../../images/telephone.png">'.$row['contact_number'].'</span>
+                            </p>';
+                }
+            }
+            ?>
             <div class = "list-item">
                 <span class = "last-name">Isidro, </span>
                 <span class = "first-name">Solomon</span><br/>
@@ -82,6 +109,5 @@
             </div>
 
         </div>
-
     </body>
 </html>

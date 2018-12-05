@@ -1,3 +1,3 @@
 <?php 
-header('location: navigation/branches.php');
+header('location: navigation/events-manage.php');
 ?>
