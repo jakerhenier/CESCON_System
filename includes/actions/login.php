@@ -2,6 +2,7 @@
 session_start();
 require_once('../config/db.php');
 require_once('../function/login_validation.php');
+require_once('../function/crypt.php');
 
 $staffData = array();
 
@@ -10,6 +11,8 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     if (validate_login($username, $password)) {
+        $password = encrypt_decrypt($_POST['password'], "encrypt");
+        
         $query = "SELECT * FROM staff WHERE username = ? AND password = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('ss', $username, $password);

@@ -15,24 +15,24 @@
 
                 <h3>Add event information</h3>
 
-                <form action="" method = "">
+                <form action="../../../includes/actions/event_add.php" method = "POST">
 
                     <p>Event title</p>
-                    <input type = "text" required autofocus>
+                    <input type = "text" name="title" required autofocus>
 
                     <p>Event location</p>
-                    <input type="text" name="location" id="" required>
+                    <input type="text" name="location" required>
                     
                     <p>Event date</p>
-                    <input type="date" name="date" id="" required>
+                    <input type="date" name="date" required>
 
                     <p>Event fee</p>
-                    <input type="text" name="fee" id="" required>
+                    <input type="number" name="rate" min=0 value=0 required>
 
                     <p>Event details</p>
-                    <textarea name="details" id="" cols="30" rows="10"></textarea>
+                    <textarea name="details" cols="30" rows="10"></textarea>
 
-                    <button type="submit">Add event</button>
+                    <button type="submit" name="submit" value="submit">Add event</button>
                     <a href="../../navigation/events-manage.php">Go back</a>
 
                 </form>
@@ -40,6 +40,5 @@
             </div>
 
         </div>
-
     </body>
 </html>

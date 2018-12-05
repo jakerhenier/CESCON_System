@@ -15,28 +15,46 @@
 
                 <h3>Add branch information</h3>
 
-                <form action="">
+                <form action="../../../includes/actions/branch_add.php" method="POST">
 
                     <p>Branch name</p>
-                    <input type="text" name="" id="">
+                    <input type="text" name="name" required>
 
                     <p>Date established</p>
-                    <input type="date" name="" id="">
+                    <input type="date" name="date_established" required>
 
                     <p>Branch location</p>
-                    <input type="text" name="" id="">
+                    <input type="text" name="address" required>
 
                     <p>Branch district</p>
-                    <select name="" id="">
-                        <option value="">District 1</option>
-                        <option value="">District 2</option>
-                        <option value="">District 3</option>
+                    <select name="district" required>
+                        <option value="" selected disabled>Select District</option>
+                        <option value="Agusan District">Agusan District</option>
+                        <option value="Bukidnon">Bukidnon</option>
+                        <option value="Cebu">Cebu</option>
+                        <option value="CENODA District">CENODA District</option>
+                        <option value="COMVAL District">COMVAL District</option>
+                        <option value="Cotabato 1 (North)">Cotabato 1 (North)</option>
+                        <option value="Cotabato 2">Cotabato 2</option>
+                        <option value="Davao City">Davao City</option>
+                        <option value="Davao Del Sur">Davao Del Sur</option>
+                        <option value="Emmanuel District">Emmanuel District</option>
+                        <option value="MANA District">MANA District</option>
+                        <option value="Maranatha District">Maranatha District</option>
+                        <option value="Monkayo District">Monkayo District</option>
+                        <option value="NEDA District">NEDA District</option>
+                        <option value="Samal (IGACOS) District">Samal (IGACOS) District</option>
+                        <option value="Sarangani District">Sarangani District</option>
+                        <option value="SOCSARGEN District">SOCSARGEN District</option>
+                        <option value="Valenzuela City">Valenzuela City</option>
+                        <option value="Zampen District">Zampen District</option>
+                        <option value="Bohol">Bohol</option>
                     </select>
 
                     <p>Branch details</p>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="details" cols="30" rows="10" required></textarea>
 
-                    <button type = "submit">Add</button>
+                    <button type = "submit" name="submit" value="submit">Add</button>
                     <a href = "../../navigation/branches.php">Go back</a>
 
                 </form>
