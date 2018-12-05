@@ -107,6 +107,12 @@ $result = $conn->query($query);
                     echo   '<a href="">
                                 <div class="list-item">
                                     <p id="event-title">'.$row['title'].'</p>
+
+                                    <div class="options">
+                                        <a href="../forms/edit/event-edit.php">Edit</a>
+                                        <a href="">Delete</a>
+                                    </div>
+
                                     <p id = "event-date">
                                         <img src="../../images/date.png" alt="">
                                         '.date('M j<\s\up>S</\s\up> Y', strtotime($row['date'])).'

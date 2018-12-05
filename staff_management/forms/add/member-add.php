@@ -72,12 +72,16 @@
 
                     <p id = "allergy-other">others:</p>
                     <input type="text" name="allergies" id="">
+                    
+                    <p>Church name</p>
+                    <input type="text" name="church-name" id="">
 
                     <p>Church address</p>
-                    <select name="churches" id="">
-                        <option value="">Church 1</option>
-                        <option value="">Church 2</option>
-                        <option value="">Church 3</option>
+                    <input type="text" name="church-address" id="">
+
+                    <p>Church district</p>
+                    <select name="church-district" id="">
+                        <option value="">District</option>
                     </select>
 
                     <p>Pastor</p>

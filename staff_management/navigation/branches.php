@@ -98,9 +98,14 @@ $result = $conn->query($query);
                                     </p>
                                     <div id = "branch-details">
                                         '.$row['description'].'
+
+                                        <div class="options">
+                                            <a href="../forms/edit/branch-edit.php">Edit</a>
+                                            <a href="">Delete</a>
+                                        </div>
                                     </div>
                                     <p id="branch-est">
-                                        <img src="../../images/pin.png" alt="">
+                                        
                                         '.date('M j<\s\up>S</\s\up> Y', strtotime($row['date_established'])).'
                                     </p>
                 
