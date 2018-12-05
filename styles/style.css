@@ -222,7 +222,6 @@ button {
 
     cursor: pointer;
     font-weight: 700;
-    text-transform: capitalize;
 }
 
 p#staff-username::before {
@@ -245,7 +244,6 @@ table {
     width: 100%;
     background: rgb(230, 230, 230);
     border: none;
-    border-radius: .2rem;
     border-collapse: collapse;
     box-shadow: 0 .2rem .3rem .1rem rgba(0, 0, 0, .05);
 }
@@ -483,13 +481,18 @@ p.username {
     display: inline;
     vertical-align: middle;
     font-size: 1rem;
-    padding-right: .5rem;
-    padding-top: 1rem;
+    margin-right: .5rem;
+    border-radius: 2rem;
+    padding: .15rem 0 .25rem .5rem;
+
+    transition: all .07s ease;
 }
 
 label.account-menu:hover p.username,
-label.account-menu input:checked ~ p.username {
-    text-decoration: underline;
+label.account-menu > input:checked ~ p.username {
+    color: rgb(25, 146, 62);
+    background: #FFFFFF;
+    padding-right: .5rem;
 }
 
 /*--------------
@@ -932,6 +935,7 @@ p.name > img {
 }
 
 div.expanded-details {
+    position: relative;
     max-height: 0;
     overflow: hidden;
 
@@ -947,7 +951,31 @@ label.list-item input:checked ~ p.name > img {
 }
 
 label.list-item input:checked ~ div.expanded-details {
-    max-height: 20rem;
+    max-height: 17rem;
+}
+
+div.options {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-height: 5rem;
+    overflow: hidden;
+}
+
+div.options a {
+    color: #777777;
+    margin-right: 10px;
+
+    font-weight: 600;
+}
+
+div.options a:hover {
+    color: rgb(25, 146, 62);
+}
+
+div#out-opt {
+    bottom: 1rem;
+    right: 1rem;
 }
 
 /************************************
@@ -955,6 +983,7 @@ label.list-item input:checked ~ div.expanded-details {
 ************************************/
 
 p.list-item {
+    position: relative;
     padding-top: .65rem;
     padding-bottom: .65rem;
 }
@@ -970,7 +999,7 @@ span.first-name {
 
 span.contact-number::before {
     content: '';
-    display:block;
+    display: block;
     height: .5rem;
     width: 100%;
 }

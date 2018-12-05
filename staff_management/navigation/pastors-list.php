@@ -96,6 +96,18 @@ $result = $conn->query($query);
                 }
             }
             ?>
+            <div class = "list-item">
+                <span class = "last-name">Isidro, </span>
+                <span class = "first-name">Solomon</span><br/>
+
+                <div class="options" id = "out-opt">
+                    <a href="../forms/edit/pastor-edit.php">Edit</a>
+                    <a href="">Delete</a>
+                </div>
+                
+                <span class = "contact-number"><img src = "../../images/telephone.png">+639463742495</span>
+            </div>
+
         </div>
     </body>
 </html>

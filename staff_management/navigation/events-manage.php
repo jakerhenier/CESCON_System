@@ -89,6 +89,12 @@ $result = $conn->query($query);
             <!-- <a href="">
                 <div class="list-item">
                     <p id="event-title">Title here</p>
+
+                    <div class="options">
+                        <a href="../forms/edit/member-edit.php">Edit</a>
+                        <a href="">Delete</a>
+                    </div>
+
                     <p id = "event-date">
                         <img src="../../images/date.png" alt="">
                         November 1, 2018

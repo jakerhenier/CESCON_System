@@ -110,6 +110,58 @@ $result = $conn->query($query);
                 }
             }
             ?>
+            <label class="list-item">
+                <div class="list-item">
+                    <input type="checkbox" name="" id="">
+                    <p class="name">
+                        Juan dela Cruz
+                        <img src="../../images/state.png" alt="">
+                    </p>
+
+                    <div class="expanded-details">
+                        <p>Sex: <span id="sex">Male</span></p>
+                        <p>Birthdate: <span id="birthdate">January 2, 1999</span></p>
+                        <p>Allergies: <span id="allergies">none</span></p>
+                        <p>Church address: <span id="church-address">Davao City</span></p>
+                        <p>Pastor: <span id="pastor">Tom Jones</span></p><br/>
+
+                        <div class="options">
+                            <a href="../forms/edit/member-edit.php">Edit</a>
+                            <a href="">Delete</a>
+                        </div>
+
+                        <p>Contact number: <span id="contact-no">+639123456789</span></p>
+                        <p>Email: <span id="email">juandelacruz@gmail.com</span></p>
+                    </div>
+                </div>
+            </label>
+
+            <label class="list-item">
+                <div class="list-item">
+                    <input type="checkbox" name="" id="">
+                    <p class="name">
+                        Cardo Dalisay
+                        <img src="../../images/state.png" alt="">
+                    </p>
+
+                    <div class="expanded-details">
+                        <p>Sex: <span id="sex">Male</span></p>
+                        <p>Birthdate: <span id="birthdate">January 2, 1999</span></p>
+                        <p>Allergies: <span id="allergies">none</span></p>
+                        <p>Church address: <span id="church-address">Davao City</span></p>
+                        <p>Pastor: <span id="pastor">Tom Jones</span></p><br/>  
+                        
+                        <div class="options">
+                            <a href="../forms/edit/member-edit.php">Edit</a>
+                            <a href="">Delete</a>
+                        </div>
+
+                        <p>Contact number: <span id="contact-no">+63987654321</span></p>
+                        <p>Email: <span id="email">theimmortal@gmail.com</span></p>
+                    </div>
+                </div>
+            </label>
+
         </div>
 
     </body>

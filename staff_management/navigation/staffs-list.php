@@ -12,7 +12,7 @@
         <div class="top-bar">
 
             <div class="label-box">
-                <p class = "page-label"></p>
+                <p class = "page-label">Staffs</p>
             </div>
 
             <label class="account-menu">
@@ -68,11 +68,17 @@
                 </a>    
             </h2>
 
-            <p class = "list-item">
+            <div class = "list-item">
                 <span class = "last-name">Salvador, </span>
                 <span class = "first-name">Antonio</span><br/>
+
+                <div class="options" id = "out-opt">
+                    <a href="../forms/edit/staff-edit.php">Edit</a>
+                    <a href="">Delete</a>
+                </div>
+
                 <span class = "contact-number"><img src = "../../images/telephone.png">+639463742495</span>
-            </p>
+            </div>
 
         </div>
         

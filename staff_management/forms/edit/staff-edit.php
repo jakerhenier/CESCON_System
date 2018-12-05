@@ -3,9 +3,9 @@
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 <html>
     <head>
-        <title>Add a staff</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
+        <title>Edit staff</title>
+        <link rel = "stylesheet" media = "all" href = "../../../styles/style.css">
+        <link rel="shortcut icon" href="../../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
 
@@ -13,7 +13,7 @@
 
             <div class = "floating-form">
 
-                <h3>Add new staff's information</h3>
+                <h3>Edit staff information</h3>
 
                 <form action = "">
 
@@ -38,8 +38,8 @@
                     <p>Confirm password</p>
                     <input type = "password" name = "password-confirm">
 
-                    <button type = "submit">Add</button>
-                    <a href = "../navigation/staffs-list.php">Go back</a>
+                    <button type = "submit">Save changes</button>
+                    <a href = "../../navigation/staffs-list.php">Go back</a>
 
                 </form>
 

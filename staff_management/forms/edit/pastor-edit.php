@@ -3,9 +3,9 @@
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 <html>
     <head>
-        <title>Add a pastor</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
+        <title>Edit pastor</title>
+        <link rel = "stylesheet" media = "all" href = "../../../styles/style.css">
+        <link rel="shortcut icon" href="../../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
 
@@ -13,7 +13,7 @@
 
             <div class = "floating-form">
 
-                <h3>Add new pastor's information</h3>
+                <h3>Edit pastor's information</h3>
 
                 <form action = "">
 
@@ -29,8 +29,8 @@
                         <span>+63</span>
                     </div>
 
-                    <button type = "submit">Add</button>
-                    <a href = "../navigation/pastors-list.php">Go back</a>
+                    <button type = "submit">Save changes</button>
+                    <a href = "../../navigation/pastors-list.php">Go back</a>
 
                 </form>
 
