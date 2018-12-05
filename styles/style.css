@@ -42,6 +42,7 @@ h2 > img {
 
 a {
     text-decoration: none;
+    color: #333333;
 }
 
 div.content-container {
@@ -486,10 +487,10 @@ p.username {
     border-radius: 2rem;
     padding: .15rem 0 .25rem .5rem;
 
-    transition: all .07s ease;
+    transition: all .1  s ease;
 }
 
-label.account-menu:hover p.username,
+/*label.account-menu:hover p.username,*/
 label.account-menu > input:checked ~ p.username {
     color: rgb(25, 146, 62);
     background: #FFFFFF;
@@ -672,12 +673,14 @@ p#branch-location {
 p#branch-est {
     float: right;
     margin-right: 2.5rem;
+    margin-bottom: 0;
 
     transition: all .5s ease;
 }
 
 label.list-item input:checked ~ p#branch-est {
     margin-right: .5rem;
+    margin-top: .25rem;
 }
 
 
@@ -897,6 +900,7 @@ div#branch-details {
     max-height: 0;
     overflow: hidden;
     transition: all .5s ease;
+    position: relative;
 }
 
 label.list-item input:checked ~ div#branch-details {
