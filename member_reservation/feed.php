@@ -21,7 +21,7 @@ $result = $conn->query($query);
             Christian Endeavor Society Convention
         </h3>
 
-        <div class="content-container">
+        <div class="content-container" id = "member-feed">
 
             
 
@@ -31,25 +31,25 @@ $result = $conn->query($query);
                     echo   '<a href="event-detail.php?view='.$row['event_id'].'">
 
                                 <div class="list-item" id = "feed-item">
-                
-                                    <div class="detail-slide">
-                                        <p id = "title">'.$row['title'].'</p>
-                                        <p id="date">
-                                            <img src="../images/date.png" alt="">
-                                            '.date('M j<\s\up>S</\s\up> Y', strtotime($row['date'])).'
-                                        </p>
-                                        <p id="location">
-                                            <img src="../images/pin.png" alt="">
-                                            Davao City
-                                        </p>
-                                    </div>
-                
+
+                                    <h2 id = "title">'.$row['title'].'</h2>
+
+                                    <p id="date">
+                                        <img src="../images/date.png" alt="">
+                                        '.date('M j<\s\up>S</\s\up> Y', strtotime($row['date'])).'
+                                    </p>
+                                    <p id="location">
+                                        <img src="../images/pin.png" alt="">
+                                        '.$row['location'].'
+                                    </p>
+
                                 </div>
                 
                             </a>';
                 }
             }
             ?>
+
         </div>
 
     </body>

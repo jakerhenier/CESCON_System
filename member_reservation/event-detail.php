@@ -48,17 +48,22 @@ else {
             Christian Endeavor Society Convention
         </h3>
 
-        <div class="content-container" id = "event-details">
+        <div class="content-container">
+            <div class= "event-details">
 
-            <h1><?php echo $title; ?></h1>
-            <p class = "detail-main"><img src="../images/pin.png" alt=""><?php echo $location; ?></p>
-            <p class = "detail-main"><img src="../images/date.png" alt=""><?php echo $date; ?></p>
-            <p class = "detail-main"><img src="../images/ticket.png" alt="">₱<?php echo $rate; ?></p>
+                <h1><?php echo $title; ?></h1>
+                <p class = "detail-main"><img src="../images/pin.png" alt=""><?php echo $location; ?></p>
+                <p class = "detail-main"><img src="../images/date.png" alt=""><?php echo $date; ?></p>
+                <p class = "detail-main"><img src="../images/ticket.png" alt="">₱<?php echo $rate; ?></p>
 
-            <p><?php echo $details; ?></p>
+                <p><?php echo $details; ?></p>
 
-            <a id = "return-button" href="feed.php">Return to feed</a>
-            <a id="reserve-button" href="reserve.php?event_id=<?php echo $event_id; ?>">Reserve for this event</a>
+                <div class="event-buttons">
+                    <a id = "return-button" href="feed.php">Return to feed</a>
+                    <a id="reserve-button" href="reserve.php?event_id=<?php echo $event_id; ?>">Reserve for this event</a>
+                </div>
+
+            </div>
 
         </div>
 

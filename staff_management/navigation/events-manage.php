@@ -33,7 +33,7 @@ $result = $conn->query($query);
     <head>
         <title>Event managment</title>
         <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../images/logo.jpeg" type="image/x-icon">
+        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
     </head>
     <body>
         
@@ -119,9 +119,9 @@ $result = $conn->query($query);
                                 <div class="list-item">
                                     <p id="event-title">'.$row['title'].'</p>
 
-                                    <div class="options">
+                                    <div class= "options" id="event-option">
                                         <a href="../forms/edit/event-edit.php?edit='.$row['event_id'].'">Edit</a>
-                                        <a href="events-manage.php?delete='.$row['event_id'].'">Delete</a>
+                                        <a href="events-manage.php?delete='.$row['event_id'].'"">Delete</a>
                                     </div>
 
                                     <p id = "event-date">
