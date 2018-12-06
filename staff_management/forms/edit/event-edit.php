@@ -60,7 +60,7 @@ if (isset($_GET['edit'])) {
                     <input type="number" name="rate" min=0 value="<?php echo $rate ?>" required>
 
                     <p>Event details</p>
-                    <textarea name="details" cols="30" rows="10"><?php echo $title ?></textarea>
+                    <textarea name="details" cols="30" rows="10"><?php echo $details ?></textarea>
 
                     <button type="submit" name="submit" value="<?php echo $event_id ?>">Save Changes</button>
                     <a href="../../navigation/events-manage.php">Go back</a>
