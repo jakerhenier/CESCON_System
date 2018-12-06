@@ -11,6 +11,17 @@ else {
     $staffData = $_SESSION['staff_session'];
 }
 
+if (isset($_GET['delete'])) {
+    $pastor_number = $_GET['delete'];
+
+    $query = "DELETE FROM pastor WHERE pastor_number = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $pastor_number);
+    if ($stmt->execute()) {
+        header('location: pastors-list.php');
+    }
+}
+
 $query = "SELECT * FROM pastor";
 $result = $conn->query($query);
 ?>
@@ -88,26 +99,19 @@ $result = $conn->query($query);
             <?php 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo   '<p class = "list-item">
+                    echo   '<div class = "list-item">
                                 <span class = "last-name">'.$row['last_name'].',</span>
                                 <span class = "first-name">'.$row['first_name'].'</span><br/>
-                                <span class = "contact-number"><img src = "../../images/telephone.png">'.$row['contact_number'].'</span>
-                            </p>';
+                                <div class="options" id = "out-opt">
+                                    <a href="../forms/edit/pastor-edit.php?edit='.$row['pastor_number'].'">Edit</a>
+                                    <a href="pastors-list.php?delete='.$row['pastor_number'].'">Delete</a>
+                                </div>
+                                <span class = "contact-number"><img src = "../../images/telephone.png">+63'.$row['contact_number'].'</span>
+                            </div>';
                 }
             }
             ?>
-            <div class = "list-item">
-                <span class = "last-name">Isidro, </span>
-                <span class = "first-name">Solomon</span><br/>
-
-                <div class="options" id = "out-opt">
-                    <a href="../forms/edit/pastor-edit.php">Edit</a>
-                    <a href="">Delete</a>
-                </div>
-                
-                <span class = "contact-number"><img src = "../../images/telephone.png">+639463742495</span>
-            </div>
-
+            
         </div>
     </body>
 </html>

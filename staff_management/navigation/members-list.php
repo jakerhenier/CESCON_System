@@ -11,7 +11,18 @@ else {
     $staffData = $_SESSION['staff_session'];
 }
 
-$query = "SELECT * FROM member INNER JOIN pastor ON member.pastor_id = pastor.pastor_number";
+if (isset($_GET['delete'])) {
+    $member_id = $_GET['delete'];
+
+    $query = "DELETE FROM member WHERE member_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $member_id);
+    if ($stmt->execute()) {
+        header('location: members-list.php');
+    }
+}
+
+$query = "SELECT * FROM members_view";
 $result = $conn->query($query);
 ?>
 <!DOCTYPE html>
@@ -92,16 +103,24 @@ $result = $conn->query($query);
                                 <div class="list-item">
                                     <input type="checkbox" name="" id="">
                                     <p class="name">
-                                        '.$row['first_name'].' '.$row['last_name'].'
+                                        '.$row['member_name'].'
                                         <img src="../../images/state.png" alt="">
                                     </p>
                 
                                     <div class="expanded-details">
                                         <p>Sex: <span id="sex">'.$row['sex'].'</span></p>
-                                        <p>Birthdate: <span id="birthdate">'.date('M j<\s\up>S</\s\up> Y', strtotime($row['DOB'])).'</span></p>
+                                        <p>Birthdate: <span id="birthdate">'.date('M j<\s\up>S</\s\up> Y', strtotime($row['dob'])).'</span></p>
                                         <p>Allergies: <span id="allergies">'.$row['allergies'].'</span></p>
-                                        <p>Church address: <span id="church-address">Davao City</span></p>
-                                        <p>Pastor: <span id="pastor">'.$row['first_name'].' '.$row['last_name'].'</span></p><br/>
+                                        <p>Church name: <span id="church-address">'.$row['church_name'].'</span></p>
+                                        <p>Church address: <span id="church-address">'.$row['church_address'].'</span></p>
+                                        <p>Church district: <span id="church-address">'.$row['church_district'].'</span></p>
+                                        <p>Pastor: <span id="pastor">'.$row['pastor_name'].'</span></p><br/>
+
+                                        <div class="options">
+                                            <a href="../forms/edit/member-edit.php?edit='.$row['member_id'].'">Edit</a>
+                                            <a href="members-list.php?delete='.$row['member_id'].'">Delete</a>
+                                        </div>
+
                                         <p>Contact number: <span id="contact-no">'.$row['contact_number'].'</span></p>
                                         <p>Email: <span id="email">'.$row['email'].'</span></p>
                                     </div>
@@ -110,58 +129,6 @@ $result = $conn->query($query);
                 }
             }
             ?>
-            <label class="list-item">
-                <div class="list-item">
-                    <input type="checkbox" name="" id="">
-                    <p class="name">
-                        Juan dela Cruz
-                        <img src="../../images/state.png" alt="">
-                    </p>
-
-                    <div class="expanded-details">
-                        <p>Sex: <span id="sex">Male</span></p>
-                        <p>Birthdate: <span id="birthdate">January 2, 1999</span></p>
-                        <p>Allergies: <span id="allergies">none</span></p>
-                        <p>Church address: <span id="church-address">Davao City</span></p>
-                        <p>Pastor: <span id="pastor">Tom Jones</span></p><br/>
-
-                        <div class="options">
-                            <a href="../forms/edit/member-edit.php">Edit</a>
-                            <a href="">Delete</a>
-                        </div>
-
-                        <p>Contact number: <span id="contact-no">+639123456789</span></p>
-                        <p>Email: <span id="email">juandelacruz@gmail.com</span></p>
-                    </div>
-                </div>
-            </label>
-
-            <label class="list-item">
-                <div class="list-item">
-                    <input type="checkbox" name="" id="">
-                    <p class="name">
-                        Cardo Dalisay
-                        <img src="../../images/state.png" alt="">
-                    </p>
-
-                    <div class="expanded-details">
-                        <p>Sex: <span id="sex">Male</span></p>
-                        <p>Birthdate: <span id="birthdate">January 2, 1999</span></p>
-                        <p>Allergies: <span id="allergies">none</span></p>
-                        <p>Church address: <span id="church-address">Davao City</span></p>
-                        <p>Pastor: <span id="pastor">Tom Jones</span></p><br/>  
-                        
-                        <div class="options">
-                            <a href="../forms/edit/member-edit.php">Edit</a>
-                            <a href="">Delete</a>
-                        </div>
-
-                        <p>Contact number: <span id="contact-no">+63987654321</span></p>
-                        <p>Email: <span id="email">theimmortal@gmail.com</span></p>
-                    </div>
-                </div>
-            </label>
-
         </div>
 
     </body>

@@ -1,3 +1,19 @@
+<?php 
+session_start();
+
+$staffData = array();
+
+if (!isset($_SESSION['staff_session'])) {
+    header('location: ../../index.php');
+}
+else {
+    $staffData = $_SESSION['staff_session'];
+}
+
+if ($staffData[0]['access_level'] == 0) {
+    header('location: ../../index.php');
+}
+?>
 <!DOCTYPE html>
 <meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -15,35 +31,62 @@
 
                 <h3>Add new staff's information</h3>
 
-                <form action = "">
+                <form action = "../../../includes/actions/staff_add.php" method="POST">
 
                     <p>First name</p>
-                    <input type = "text" name = "first-name">
+                    <input type = "text" name = "first_name" required>
 
                     <p>Last name</p>
-                    <input type = "text" name = "last-name">
+                    <input type = "text" name = "last_name" required>
 
                     <p>Contact number</p>
                     <div id = "contact-field">
-                        <input type = "text" name = "contact-no">
+                        <input type = "number" min=0 name = "contact_number" required>
                         <span>+63</span>
                     </div>
 
                     <p>Branch</p>
-                    <select name="" id="">
-                        <option value="">Branch 1</option>
+                    <select name="branch_id" required>
+                    <option value="" selected disabled>Select District</option>
+                        <option value="Agusan District">Agusan District</option>
+                        <option value="Bukidnon">Bukidnon</option>
+                        <option value="Cebu">Cebu</option>
+                        <option value="CENODA District">CENODA District</option>
+                        <option value="COMVAL District">COMVAL District</option>
+                        <option value="Cotabato 1 (North)">Cotabato 1 (North)</option>
+                        <option value="Cotabato 2">Cotabato 2</option>
+                        <option value="Davao City">Davao City</option>
+                        <option value="Davao Del Sur">Davao Del Sur</option>
+                        <option value="Emmanuel District">Emmanuel District</option>
+                        <option value="MANA District">MANA District</option>
+                        <option value="Maranatha District">Maranatha District</option>
+                        <option value="Monkayo District">Monkayo District</option>
+                        <option value="NEDA District">NEDA District</option>
+                        <option value="Samal (IGACOS) District">Samal (IGACOS) District</option>
+                        <option value="Sarangani District">Sarangani District</option>
+                        <option value="SOCSARGEN District">SOCSARGEN District</option>
+                        <option value="Valenzuela City">Valenzuela City</option>
+                        <option value="Zampen District">Zampen District</option>
+                        <option value="Bohol">Bohol</option>
                     </select>
 
                     <p id = "staff-username">Username</p>
-                    <input type = "text" name = "username">
+                    <input type = "text" name = "username" required>
 
                     <p>Password</p>
-                    <input type = "password" name = "password">
+                    <input type = "password" name = "password" required>
 
-                    <p>Confirm password</p>
-                    <input type = "password" name = "password-confirm">
+                    <p>Access Level</p>
+                    <select name="access_level" required>
+                    <option value="" selected disabled>Select Level</option>
+                        <option value="0">Normal User</option>
+                        <option value="1">Administrator</option>
+                    </select>
 
-                    <button type = "submit">Add</button>
+                    <!-- <p>Confirm password</p>
+                    <input type = "password" name = "password-confirm"> -->
+
+                    <button type = "submit" name="submit" value="submit">Add</button>
                     <a href = "../../navigation/staffs-list.php">Go back</a>
 
                 </form>

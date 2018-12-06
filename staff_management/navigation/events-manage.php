@@ -11,6 +11,17 @@ else {
     $staffData = $_SESSION['staff_session'];
 }
 
+if (isset($_GET['delete'])) {
+    $event_id = $_GET['delete'];
+
+    $query = "DELETE FROM event WHERE event_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $event_id);
+    if ($stmt->execute()) {
+        header('location: events-manage.php');
+    }
+}
+
 $query = "SELECT * FROM event WHERE branch_id = {$staffData[0]['branch_id']}";
 $result = $conn->query($query);
 
@@ -108,9 +119,9 @@ $result = $conn->query($query);
                                 <div class="list-item">
                                     <p id="event-title">'.$row['title'].'</p>
 
-                                    <div class="options" id="event-option">
-                                        <a href="../forms/edit/event-edit.php">Edit</a>
-                                        <a href="">Delete</a>
+                                    <div class= "options" id="event-option">
+                                        <a href="../forms/edit/event-edit.php?edit='.$row['event_id'].'">Edit</a>
+                                        <a href="events-manage.php?delete='.$row['event_id'].'"">Delete</a>
                                     </div>
 
                                     <p id = "event-date">

@@ -1,3 +1,47 @@
+<?php 
+session_start();
+require_once('../../includes/config/db.php');
+
+function getAccessLevel($access_level) {
+    $keypair = array(
+        "0" => "Normal User",
+        "1" => "Administrator"
+    );
+
+    return $keypair[$access_level];
+}
+
+$staffData = array();
+
+if (!isset($_SESSION['staff_session'])) {
+    header('location: ../../index.php');
+}
+else {
+    $staffData = $_SESSION['staff_session'];
+}
+
+if ($staffData[0]['access_level'] == 0) {
+    header('location: ../../index.php');
+}
+
+if (isset($_GET['delete'])) {
+    $staff_number = $_GET['delete'];
+
+    if ($staffData[0]['access_level'] == 0) {
+        header('location: ../../index.php');
+    }   
+
+    $query = "DELETE FROM staff WHERE staff_number = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $staff_number);
+    if ($stmt->execute()) {
+        header('location: staffs-list.php');
+    }
+}
+
+$query = "SELECT * FROM staff WHERE staff_number != {$staffData[0]['staff_number']}";
+$result = $conn->query($query);
+?>
 <!DOCTYPE html>
 <meta lang = "utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -22,13 +66,13 @@
                 <div class="menu">
                     <a href="">Menu </a>
                     <a href="">Menu</a>
-                    <a href="">Menu</a>
+                    <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
                 <div class="menu-button"></div>
                 
                 <p class="username"> <!--Name of user will be displayed here -->
-                    Username
+                    Hello, <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
                 </p>
                 
             </label>
@@ -68,7 +112,7 @@
                 </a>    
             </h2>
 
-            <div class = "list-item">
+            <!-- <div class = "list-item">
                 <span class = "last-name">Salvador, </span>
                 <span class = "first-name">Antonio</span><br/>
 
@@ -78,7 +122,24 @@
                 </div>
 
                 <span class = "contact-number"><img src = "../../images/telephone.png">+639463742495</span>
-            </div>
+            </div> -->
+
+            <?php 
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo   '<div class = "list-item">
+                                <span class = "last-name">'.$row['last_name'].',</span>
+                                <span class = "first-name">'.$row['first_name'].'</span><br/>
+                                <div class="options" id = "out-opt">
+                                    <a href="../forms/edit/staff-edit.php?edit='.$row['staff_number'].'">Edit</a>
+                                    <a href="staffs-list.php?delete='.$row['staff_number'].'">Delete</a>
+                                </div>
+                                <span class = "contact-number"><img src = "../../images/telephone.png">+63'.$row['contact_number'].'</span>
+                                <span class = "contact-number">Access Level: '.getAccessLevel($row['access_level']).'</span>
+                            </div>';
+                }
+            }
+            ?>
 
         </div>
         

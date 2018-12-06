@@ -151,6 +151,8 @@ form {
 input[type=text],
 select,
 input[type=date],
+input[type=email],
+input[type=number],
 input[type=password] {
     font-family: 'Segoe UI', sans-serif;
     width: 100%;
@@ -967,7 +969,7 @@ label.list-item input:checked ~ p.name > img {
 }
 
 label.list-item input:checked ~ div.expanded-details {
-    max-height: 17rem;
+    max-height: 20rem;
 }
 
 div.options {
