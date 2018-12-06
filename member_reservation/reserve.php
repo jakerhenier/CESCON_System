@@ -9,9 +9,15 @@
     </head>
     <body>
 
+        <h3 id = "feed-header">
+            <img src="../images/logo.jpeg" alt="CESCON logo">
+            <span>Event reservation</span>
+            Christian Endeavor Society Convention
+        </h3>
+
         <div class = "adding-fields">
 
-            <div class = "floating-form">
+            <div class = "floating-form" id="member-reserve">
 
                 <h3>Enter your information</h3>
 

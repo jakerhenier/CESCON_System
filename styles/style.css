@@ -1046,8 +1046,12 @@ h3#feed-header {
     padding: 1rem 5rem;
     margin: 0;
 
-    background: #FFFFFF;
-    color: #555555;
+    position: fixed;
+    z-index: 99;
+
+    background: rgb(25, 146, 62);
+    box-shadow: 0 .1rem .1rem .05rem rgba(0, 0, 0, .1); 
+    color: white;
 }
 
 h3#feed-header > img {
@@ -1061,61 +1065,71 @@ h3#feed-header > span {
     line-height: 2.5em;
 }
 
+div#member-feed {
+    padding-top: 7rem;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+div#member-feed > a {
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 1rem;
+}
+
 div#feed-item {
-    height: 10rem;
-    padding: 0;
+    width: 440px;
+    height: 300px;
+    padding: 1rem;
     overflow: hidden;
     margin-bottom: .5rem;
-    box-shadow: none;
+    outline: none;
+
+    background: rgb(252, 252, 252);
+    box-shadow: 0 .1rem .1rem .05rem rgba(0, 0, 0, .1);
 }
 
-div.detail-slide {
-    width: 100%;
-    height: 50%;
-    padding: .5rem;
-    background: rgba(0, 0, 0, .3);
-    position: absolute;
-
-    bottom: -25%;
-
-    overflow: hidden;
-    transition: all .3s ease;
-}
 
 div#feed-item:hover {
     transform: none;
 }
 
-div#feed-item:hover div.detail-slide {
-    bottom: 0;
-}
-
-div.detail-slide p {
+h2#title {
     margin: 0;
-    color: #FFFFFF;
-}
+    line-height: 1.75rem;
 
-p#title {
+    border: none;
+    padding: 0;
+    color: rgb(25, 146, 62);
+
+    max-height: 7rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-line;
 }
 
 p#date,
 p#location {
     font-size: .9rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 p#date {
     position: absolute;
-    bottom: .5rem;
-    left: .5rem;
+    bottom: 2.5rem;
+    left: 1rem;
 }
 
 p#location {
     position: absolute;
-    bottom: .5rem;
-    right: .5rem;
+    bottom: 0;
+    left: 1rem;
 
     max-width: 50%;
     overflow: hidden;
@@ -1127,7 +1141,7 @@ p#location {
 ------EVENT DETAILS PROPERTIES
 ************************************/
 
-div#event-details {
+div.event-details {
     padding: 2rem;
     margin: 2rem auto;
     border-radius: .2rem;
@@ -1143,13 +1157,18 @@ div.content-container h1 {
 }
 
 p.detail-main {
-    margin: .5rem 0;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
 p.detail-main img {
     width: 2rem;
     margin-right: .5rem;
     vertical-align: middle;
+}
+
+div.event-buttons {
+    margin-top: 3rem;
 }
 
 a#return-button {
@@ -1164,11 +1183,18 @@ a#return-button:hover {
 }
 
 a#reserve-button {
-    width: fit-content;
-    padding: .5rem 2rem;
-    margin-top: 1rem;
+    padding: .5rem 1.75rem;
+    margin-top: 2rem;
 
     color: #FFFFFF;
     background: rgb(25, 146, 62);
     border-radius: 2rem;
+}
+
+/************************************
+----MEMBER RESERVATION PROPERTIES
+************************************/
+
+div#member-reserve {
+    margin-top: 7rem;
 }

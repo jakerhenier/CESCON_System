@@ -15,83 +15,60 @@
             Christian Endeavor Society Convention
         </h3>
 
-        <div class="content-container">
+        <div class="content-container" id = "member-feed">
 
             <a href="event-detail.php">
 
                 <div class="list-item" id = "feed-item">
 
-                    <div class="detail-slide">
-                        <p id = "title">Event title</p>
-                        <p id="date">
-                            <img src="../images/date.png" alt="">
-                            November 10, 2018
-                        </p>
-                        <p id="location">
-                            <img src="../images/pin.png" alt="">
-                            Davao City
-                        </p>
-                    </div>
+                    <h2 id = "title">National Youth Camp 2018</h2>
+
+                    <p id="date">
+                        <img src="../images/date.png" alt="">
+                        Dec 4<sup>th</sup>, 2018
+                    </p>
+                    <p id="location">
+                        <img src="../images/pin.png" alt="">
+                        Davao City
+                    </p>
 
                 </div>
 
             </a>
 
-            <a href="event-detail.php">
+            <a href="">
 
                 <div class="list-item" id = "feed-item">
 
-                    <div class="detail-slide">
-                        <p id = "title">Event title</p>
-                        <p id="date">
-                            <img src="../images/date.png" alt="">
-                            November 10, 2018
-                        </p>
-                        <p id="location">
-                            <img src="../images/pin.png" alt="">
-                            Davao City
-                        </p>
-                    </div>
+                    <h2 id = "title">Event name</h2>
+
+                    <p id="date">
+                        <img src="../images/date.png" alt="">
+                        Dec 7<sup>th</sup>, 2018
+                    </p>
+                    <p id="location">
+                        <img src="../images/pin.png" alt="">
+                        Davao City
+                    </p>
 
                 </div>
 
             </a>
 
-            <a href="event-detail.php">
+            <a href="">
 
                 <div class="list-item" id = "feed-item">
 
-                    <div class="detail-slide">
-                        <p id = "title">Event title</p>
-                        <p id="date">
-                            <img src="../images/date.png" alt="">
-                            November 10, 2018
-                        </p>
-                        <p id="location">
-                            <img src="../images/pin.png" alt="">
-                            Davao City
-                        </p>
-                    </div>
+                    <h2 id = "title">Event name</h2>
 
-                </div>
-
-            </a>
-
-            <a href="event-detail.php">
-
-                <div class="list-item" id = "feed-item">
-
-                    <div class="detail-slide">
-                        <p id = "title">Event title</p>
-                        <p id="date">
-                            <img src="../images/date.png" alt="">
-                            November 10, 2018
-                        </p>
-                        <p id="location">
-                            <img src="../images/pin.png" alt="">
-                            Davao City
-                        </p>
-                    </div>
+                    <p id="date">
+                        <img src="../images/date.png" alt="">
+                        Dec 24<sup>th</sup>, 2018
+                    </p>
+                    <p id="location">
+                        <img src="../images/pin.png" alt="">
+                        Davao City
+                    </p>
 
                 </div>
 
