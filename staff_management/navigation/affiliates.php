@@ -1,3 +1,15 @@
+<?php 
+session_start();
+
+$staffData = '';
+
+if (!isset($_SESSION['staff_session'])) {
+    header('location: ../../index.php');
+}
+else {
+    $staffData = $_SESSION['staff_session'];
+}
+?>
 <!DOCTYPE html>
 <meta lang = "utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -26,13 +38,13 @@
                 <div class="menu">
                     <a href="">Menu </a>
                     <a href="">Menu</a>
-                    <a href="">Menu</a>
+                    <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
                 <div class="menu-button"></div>
                 
                 <p class="username"> <!--Name of user will be displayed here -->
-                    Username
+                    Hello, <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
                 </p>
                 
             </label>
@@ -70,10 +82,14 @@
                 <img src="../../images/pastor.png" alt="">
                 Pastors
             </a>
+            <?php 
+            if ($staffData[0]["access_level"] == 1) {
+            ?>
             <a href="staffs-list.php">
                 <img src="../../images/staff.png" alt="">
                 Staffs
             </a>
+            <?php } ?>
             <a href="members-list.php">
                 <img src="../../images/member.png" alt="">
                 Members

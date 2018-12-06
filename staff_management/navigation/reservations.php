@@ -1,3 +1,16 @@
+<?php
+session_start();
+require_once('../../includes/config/db.php');
+
+$staffData = '';
+
+if (!isset($_SESSION['staff_session'])) {
+    header('location: ../../index.php');
+}
+else {
+    $staffData = $_SESSION['staff_session'];
+}
+?>
 <!DOCTYPE html>
 <meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">

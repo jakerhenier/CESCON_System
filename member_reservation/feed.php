@@ -1,3 +1,9 @@
+<?php 
+require_once('../includes/config/db.php');
+
+$query = "SELECT * FROM event";
+$result = $conn->query($query);
+?>
 <!DOCTYPE html>
 <meta lang = "utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -17,62 +23,32 @@
 
         <div class="content-container" id = "member-feed">
 
-            <a href="event-detail.php">
+            
 
-                <div class="list-item" id = "feed-item">
+            <?php 
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo   '<a href="event-detail.php?view='.$row['event_id'].'">
 
-                    <h2 id = "title">National Youth Camp 2018</h2>
+                                <div class="list-item" id = "feed-item">
 
-                    <p id="date">
-                        <img src="../images/date.png" alt="">
-                        Dec 4<sup>th</sup>, 2018
-                    </p>
-                    <p id="location">
-                        <img src="../images/pin.png" alt="">
-                        Davao City
-                    </p>
+                                    <h2 id = "title">'.$row['title'].'</h2>
 
-                </div>
+                                    <p id="date">
+                                        <img src="../images/date.png" alt="">
+                                        '.date('M j<\s\up>S</\s\up> Y', strtotime($row['date'])).'
+                                    </p>
+                                    <p id="location">
+                                        <img src="../images/pin.png" alt="">
+                                        '.$row['location'].'
+                                    </p>
 
-            </a>
-
-            <a href="">
-
-                <div class="list-item" id = "feed-item">
-
-                    <h2 id = "title">Event name</h2>
-
-                    <p id="date">
-                        <img src="../images/date.png" alt="">
-                        Dec 7<sup>th</sup>, 2018
-                    </p>
-                    <p id="location">
-                        <img src="../images/pin.png" alt="">
-                        Davao City
-                    </p>
-
-                </div>
-
-            </a>
-
-            <a href="">
-
-                <div class="list-item" id = "feed-item">
-
-                    <h2 id = "title">Event name</h2>
-
-                    <p id="date">
-                        <img src="../images/date.png" alt="">
-                        Dec 24<sup>th</sup>, 2018
-                    </p>
-                    <p id="location">
-                        <img src="../images/pin.png" alt="">
-                        Davao City
-                    </p>
-
-                </div>
-
-            </a>
+                                </div>
+                
+                            </a>';
+                }
+            }
+            ?>
 
         </div>
 

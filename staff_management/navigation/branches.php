@@ -11,6 +11,17 @@ else {
     $staffData = $_SESSION['staff_session'];
 }
 
+if (isset($_GET['delete'])) {
+    $branch_id = $_GET['delete'];
+
+    $query = "DELETE FROM branch WHERE branch_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $branch_id);
+    if ($stmt->execute()) {
+        header('location: branches.php');
+    }
+}
+
 $query = "SELECT * FROM branch";
 $result = $conn->query($query);
 ?>
@@ -100,8 +111,8 @@ $result = $conn->query($query);
                                         '.$row['description'].'
 
                                         <div class="options">
-                                            <a href="../forms/edit/branch-edit.php">Edit</a>
-                                            <a href="">Delete</a>
+                                            <a href="../forms/edit/branch-edit.php?edit='.$row['branch_id'].'">Edit</a>
+                                            <a href="branches.php?delete='.$row['branch_id'].'">Delete</a>
                                         </div>
                                     </div>
                                     <p id="branch-est">

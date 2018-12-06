@@ -15,21 +15,21 @@
 
                 <h3>Add new pastor's information</h3>
 
-                <form action = "">
+                <form action = "../../../includes/actions/pastor_add.php" method="POST">
 
                     <p>First name</p>
-                    <input type = "text" name = "first-name">
+                    <input type = "text" name = "first_name">
 
                     <p>Last name</p>
-                    <input type = "text" name = "last-name">
+                    <input type = "text" name = "last_name">
 
                     <p>Contact number</p>
                     <div id = "contact-field">
-                        <input type = "text" name = "contact-no">
+                        <input type = "number" min=0 name = "contact_number">
                         <span>+63</span>
                     </div>
 
-                    <button type = "submit">Add</button>
+                    <button type = "submit" name="submit" value="submit">Add</button>
                     <a href = "../../navigation/pastors-list.php">Go back</a>
 
                 </form>
