@@ -1,3 +1,9 @@
+<?php 
+require_once('../includes/config/db.php');
+
+$query = "SELECT * FROM event";
+$result = $conn->query($query);
+?>
 <!DOCTYPE html>
 <meta lang = "utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -17,86 +23,33 @@
 
         <div class="content-container">
 
-            <a href="event-detail.php">
+            
 
-                <div class="list-item" id = "feed-item">
+            <?php 
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo   '<a href="event-detail.php?view='.$row['event_id'].'">
 
-                    <div class="detail-slide">
-                        <p id = "title">Event title</p>
-                        <p id="date">
-                            <img src="../images/date.png" alt="">
-                            November 10, 2018
-                        </p>
-                        <p id="location">
-                            <img src="../images/pin.png" alt="">
-                            Davao City
-                        </p>
-                    </div>
-
-                </div>
-
-            </a>
-
-            <a href="event-detail.php">
-
-                <div class="list-item" id = "feed-item">
-
-                    <div class="detail-slide">
-                        <p id = "title">Event title</p>
-                        <p id="date">
-                            <img src="../images/date.png" alt="">
-                            November 10, 2018
-                        </p>
-                        <p id="location">
-                            <img src="../images/pin.png" alt="">
-                            Davao City
-                        </p>
-                    </div>
-
-                </div>
-
-            </a>
-
-            <a href="event-detail.php">
-
-                <div class="list-item" id = "feed-item">
-
-                    <div class="detail-slide">
-                        <p id = "title">Event title</p>
-                        <p id="date">
-                            <img src="../images/date.png" alt="">
-                            November 10, 2018
-                        </p>
-                        <p id="location">
-                            <img src="../images/pin.png" alt="">
-                            Davao City
-                        </p>
-                    </div>
-
-                </div>
-
-            </a>
-
-            <a href="event-detail.php">
-
-                <div class="list-item" id = "feed-item">
-
-                    <div class="detail-slide">
-                        <p id = "title">Event title</p>
-                        <p id="date">
-                            <img src="../images/date.png" alt="">
-                            November 10, 2018
-                        </p>
-                        <p id="location">
-                            <img src="../images/pin.png" alt="">
-                            Davao City
-                        </p>
-                    </div>
-
-                </div>
-
-            </a>
-
+                                <div class="list-item" id = "feed-item">
+                
+                                    <div class="detail-slide">
+                                        <p id = "title">'.$row['title'].'</p>
+                                        <p id="date">
+                                            <img src="../images/date.png" alt="">
+                                            '.date('M j<\s\up>S</\s\up> Y', strtotime($row['date'])).'
+                                        </p>
+                                        <p id="location">
+                                            <img src="../images/pin.png" alt="">
+                                            Davao City
+                                        </p>
+                                    </div>
+                
+                                </div>
+                
+                            </a>';
+                }
+            }
+            ?>
         </div>
 
     </body>

@@ -1,3 +1,10 @@
+<?php 
+require_once('../includes/config/db.php');
+
+if (!isset($_GET['event_id'])) {
+    header('location: feed.php');
+}
+?>
 <!DOCTYPE html>
 <meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -15,10 +22,10 @@
 
                 <h3>Enter your information</h3>
 
-                <p class = "prompt" id = "reserve-success">
+                <!-- <p class = "prompt" id = "reserve-success">
                     <img src="../images/success.png" alt="Error">
                     Reservation successful! Pay at the venue to complete registration.
-                </p>
+                </p> -->
 
                 <form action = "">
 

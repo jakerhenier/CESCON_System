@@ -151,6 +151,7 @@ form {
 input[type=text],
 select,
 input[type=date],
+input[type=email],
 input[type=number],
 input[type=password] {
     font-family: 'Segoe UI', sans-serif;

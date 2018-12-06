@@ -1,3 +1,10 @@
+<?php 
+require_once('../../../includes/config/db.php');
+
+$query = "SELECT * FROM pastor";
+$result = $conn->query($query);
+
+?>
 <!DOCTYPE html>
 <meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -15,7 +22,7 @@
 
                 <h3>Add new member's information</h3>
 
-                <form action="">
+                <form action="../../../includes/actions/member_add.php" method="POST">
 
                     <p>First name</p>
                     <input type="text" name = "first_name" required autofocus>
@@ -27,7 +34,7 @@
 
                         <div class="half-field">
                             <p>Sex</p>
-                            <select name="sex" id="">
+                            <select name="sex" id="" required>
                                 <option value="" selected disabled>Select...</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -42,17 +49,17 @@
                         <div class="half-field contact-no">
                             <p>Contact number</p>
                             <span>+63</span>
-                            <input type="text" name = "contact_number">
+                            <input type="number" name = "contact_number">
                         </div>
 
                         <div class="half-field email">
                             <p>Email</p>
-                            <input type="text" name="email" id="">
+                            <input type="email" name="email" id="">
                         </div>
 
                     </div>
 
-                    <p id = "allergies">Allergies</p>
+                    <p id = "allergies">Allergies (Please skip this portion if you have none)</p>
                     <label for="chicken">
                         <input type="checkbox" id="chicken">Chicken
                         <span class="check"></span>
@@ -69,27 +76,50 @@
                         <input type="checkbox" id="fish">Fish
                         <span class="check"></span>
                     </label>
-
-                    <!-- <p id = "allergy-other">others:</p>
-                    <input type="text" name="allergies" id="">
                     
                     <p>Church name</p>
-                    <input type="text" name="church-name" id="">
+                    <input type="text" name="church_name" id="">
 
                     <p>Church address</p>
-                    <input type="text" name="church-address" id="">
+                    <input type="text" name="church_address" id="">
 
                     <p>Church district</p>
-                    <select name="church-district" id="">
-                        <option value="">District</option>
+                    <select name="church_district" id="">
+                        <option value="" selected disabled>Select District</option>
+                        <option value="Agusan District">Agusan District</option>
+                        <option value="Bukidnon">Bukidnon</option>
+                        <option value="Cebu">Cebu</option>
+                        <option value="CENODA District">CENODA District</option>
+                        <option value="COMVAL District">COMVAL District</option>
+                        <option value="Cotabato 1 (North)">Cotabato 1 (North)</option>
+                        <option value="Cotabato 2">Cotabato 2</option>
+                        <option value="Davao City">Davao City</option>
+                        <option value="Davao Del Sur">Davao Del Sur</option>
+                        <option value="Emmanuel District">Emmanuel District</option>
+                        <option value="MANA District">MANA District</option>
+                        <option value="Maranatha District">Maranatha District</option>
+                        <option value="Monkayo District">Monkayo District</option>
+                        <option value="NEDA District">NEDA District</option>
+                        <option value="Samal (IGACOS) District">Samal (IGACOS) District</option>
+                        <option value="Sarangani District">Sarangani District</option>
+                        <option value="SOCSARGEN District">SOCSARGEN District</option>
+                        <option value="Valenzuela City">Valenzuela City</option>
+                        <option value="Zampen District">Zampen District</option>
+                        <option value="Bohol">Bohol</option>
                     </select>
 
                     <p>Pastor</p>
-                    <select name="churches" id="">
-                        <option value="">Pastor 1</option>
-                        <option value="">Pastor 2</option>
-                        <option value="">Pastor 3</option>
-                    </select> -->
+                    <select name="pastor_id" id="" required>
+                        <option value="" selected disabled>Select Pastor</option>
+                        <?php 
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo '<option value="'.$row['pastor_number'].'">'.$row['first_name'].' '.$row['last_name'].'</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+
                     <input type="text" name="allergies" id="allergy" hidden>
 
                     <button type="submit" name="submit" value="submit">Register</button>
