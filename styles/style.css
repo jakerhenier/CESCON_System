@@ -370,7 +370,7 @@ p#success {
     font-size: 1.25rem;
     margin-top: 0;
 
-    display: block;
+    display: none;
 }
 
 p#success > img {
@@ -1000,7 +1000,7 @@ div#out-opt {
 }
 
 /************************************
-------STAFF LIST PROPERTIES
+------ STAFF LIST PROPERTIES
 ************************************/
 
 p.list-item {
@@ -1142,6 +1142,7 @@ p#location {
 ************************************/
 
 div.event-details {
+    width: inherit;
     padding: 2rem;
     margin: 2rem auto;
     border-radius: .2rem;

@@ -2,17 +2,19 @@
 <meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 <html>
+
     <head>
-        <title>Registrant list</title>
+        <title>Manage registrations</title>
         <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
+        <link rel = "shortcut icon" href = "../../images/logo.jpeg" type = "image/x-icon">
     </head>
+
     <body>
-        
+
         <div class="top-bar">
 
             <div class="label-box">
-                <p class = "page-label">Registrations</p>
+                <p class = "page-label"></p>
             </div>
 
             <label class="account-menu">
@@ -25,8 +27,7 @@
                     <a href="">Menu</a>
                 </div>
 
-                <div class="menu-button">
-                </div>
+                <div class="menu-button"></div>
                 
                 <p class="username"> <!--Name of user will be displayed here -->
                     Username
@@ -61,39 +62,17 @@
 
         <div class="content-container">
 
-            <h2>
-                Event registrants
-                <a href="../forms/add/registrant-add.php">
-                    <img src="../../images/add.png" alt="">
-                    Add a registrant
-                </a>
-            </h2>
+            <h2>Available events (Reg)</h2>
 
-            <p id = "success"><img src="../../images/check_circled.png" alt="">Successfully added!</p>
-
-            <table>
-
-                <tr><td>Registrant 1</td></tr>
-                <tr><td>Registrant 2</td></tr>
-                <tr><td>Registrant 3</td></tr>
-                <tr><td>Registrant 4</td></tr>
-
-                <tr><td>Registrant 1</td></tr>
-                <tr><td>Registrant 2</td></tr>
-                <tr><td>Registrant 3</td></tr>
-                <tr><td>Registrant 4</td></tr>
-                <tr><td>Registrant 1</td></tr>
-                <tr><td>Registrant 2</td></tr>
-                <tr><td>Registrant 3</td></tr>
-                <tr><td>Registrant 4</td></tr>
-                <tr><td>Registrant 1</td></tr>
-                <tr><td>Registrant 2</td></tr>
-                <tr><td>Registrant 3</td></tr>
-                <tr><td>Registrant 4</td></tr>
-
-            </table>
+            <a href="registrants.php">
+                <div class = "list-item">
+                    <p class="event-title">Title here</p>
+                </div>
+            </a>
+            
 
         </div>
-
+        
     </body>
+
 </html>
