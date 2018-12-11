@@ -47,8 +47,6 @@ $result = $conn->query($query);
                 <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
 
                 <div class="menu">
-                    <a href="">Menu</a>
-                    <a href="">Menu</a>
                     <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
@@ -95,6 +93,18 @@ $result = $conn->query($query);
                     Add a pastor
                 </a>    
             </h2>
+
+            <div class="search-bar">
+            
+                <form action="">
+
+                    <input type="text" name="" id="">
+                    <button type="submit">Search</button>
+                    <span>Search...</span>
+
+                </form>    
+
+            </div>
 
             <?php 
             if ($result->num_rows > 0) {

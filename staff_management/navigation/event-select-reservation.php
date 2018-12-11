@@ -22,9 +22,7 @@
                 <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
 
                 <div class="menu">
-                    <a href="">Menu </a>
-                    <a href="">Menu</a>
-                    <a href="">Menu</a>
+                    <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
                 <div class="menu-button"></div>

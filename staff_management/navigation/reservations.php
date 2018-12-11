@@ -33,9 +33,7 @@ else {
                 <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
 
                 <div class="menu">
-                    <a href="">Menu </a>
-                    <a href="">Menu</a>
-                    <a href="">Menu</a>
+                    <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
                 <div class="menu-button">
@@ -65,6 +63,7 @@ else {
                     <a href="event-select-reservation.php">Reservations</a>
                     <a href="branches.php">Branches</a>
                     <a href="affiliates.php">Affiliates</a>
+                    <a href="audit.php">Audit</a>
                     
                 </div>
 
