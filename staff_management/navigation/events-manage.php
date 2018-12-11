@@ -12,13 +12,22 @@ else {
 }
 
 if (isset($_GET['delete'])) {
-    $event_id = $_GET['delete'];
+    $event_id = $conn->real_escape_string($_GET['delete']);
 
     $query = "DELETE FROM event WHERE event_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $event_id);
     if ($stmt->execute()) {
-        header('location: events-manage.php');
+        $up_query = "UPDATE event_delete_logs SET deleted_by_user = {$staffData[0]['staff_number']} WHERE event_id = {$event_id}";
+        if ($conn->query($up_query)) {
+            header('location: events-manage.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
+    }
+    else {
+        echo $stmt->error;
     }
 }
 
@@ -97,21 +106,6 @@ $result = $conn->query($query);
                 </a>
             </h2>
 
-            <!-- <a href="">
-                <div class="list-item">
-                    <p id="event-title">Title here</p>
-
-                    <div class="options">
-                        <a href="../forms/edit/member-edit.php">Edit</a>
-                        <a href="">Delete</a>
-                    </div>
-
-                    <p id = "event-date">
-                        <img src="../../images/date.png" alt="">
-                        November 1, 2018
-                    </p>
-                </div>
-            </a> -->
             <?php 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {

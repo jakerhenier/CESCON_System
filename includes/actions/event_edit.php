@@ -20,7 +20,13 @@ if (isset($_POST['submit'])) {
     $stmt = $conn->prepare($query);
     $stmt->bind_param('ssssiii', $title, $location, $date, $details, $rate, $branch_id, $event_id);
     if ($stmt->execute()) {
-        header('location: ../../staff_management/navigation/events-manage.php');
+        $up_query = "UPDATE event_edit_logs SET edited_by_user = {$staffData[0]['staff_number']} WHERE event_id = {$event_id}";
+        if ($conn->query($up_query)) {
+            header('location: ../../staff_management/navigation/events-manage.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
     }
     else {
         echo $stmt->error;

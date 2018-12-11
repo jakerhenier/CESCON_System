@@ -12,13 +12,22 @@ else {
 }
 
 if (isset($_GET['delete'])) {
-    $branch_id = $_GET['delete'];
+    $branch_id = $conn->real_escape_string($_GET['delete']);
 
     $query = "DELETE FROM branch WHERE branch_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $branch_id);
     if ($stmt->execute()) {
-        header('location: branches.php');
+        $up_query = "UPDATE branch_delete_logs SET deleted_by_user = {$staffData[0]['staff_number']} WHERE branch_id = {$branch_id}";
+        if ($conn->query($up_query)) {
+            header('location: branches.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
+    }
+    else {
+        echo $stmt->error;
     }
 }
 

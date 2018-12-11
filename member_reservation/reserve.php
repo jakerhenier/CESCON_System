@@ -1,8 +1,14 @@
 <?php 
+session_start();
 require_once('../includes/config/db.php');
+
+$event_id = '';
 
 if (!isset($_GET['event_id'])) {
     header('location: feed.php');
+}
+else {
+    $event_id = $_GET['event_id'];
 }
 ?>
 <!DOCTYPE html>
@@ -32,16 +38,25 @@ if (!isset($_GET['event_id'])) {
                     <img src="../images/success.png" alt="Error">
                     Reservation successful! Pay at the venue to complete registration.
                 </p> -->
+                <?php 
+                if (isset($_SESSION['reserve_msg'])) {
+                    echo   '<p class = "prompt" id = "reserve-success">
+                                <img src="../images/success.png" alt="success">
+                                '.$_SESSION['reserve_msg'].'
+                            </p>';
+                    unset($_SESSION['reserve_msg']);
+                }
+                ?>
 
-                <form action = "">
+                <form action = "../includes/actions/reserve_add.php" method="POST">
 
                     <p>First name</p>
-                    <input type = "text" name = "first-name">
+                    <input type = "text" name = "first_name">
 
                     <p>Last name</p>
-                    <input type = "text" name ="last-name">
+                    <input type = "text" name ="last_name">
 
-                    <button type = "submit">Reserve</button>
+                    <button type = "submit" name="submit" value="<?php echo $event_id ?>">Reserve</button>
                     <a href = "event-detail.php">Go back</a>
 
                 </form>
