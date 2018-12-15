@@ -14,17 +14,20 @@ if (isset($_GET['event_id']) && isset($_GET['reservation_id'])) {
     $staff_number = $conn->real_escape_string($staffData[0]['staff_number']);
 
     // 1st step: GET first name and last name from reservation table
-    $query_1 = "SELECT first_name, last_name FROM reservation WHERE reservation_id = {$reservation_id}";
+    $query_1 = "SELECT * FROM reservation WHERE reservation_id = {$reservation_id}";
     $result_1 = $conn->query($query_1);
     if ($result_1->num_rows > 0) {
+        $row = $result_1->fetch_assoc();
+
+        $last_name = $row['last_name'];
+        $first_name = $row['first_name'];
+        $pastor_number = $row['pastor_number'];
+        $contact_number = $row['contact_number'];
+        $email = $row['email'];
+
         // 2nd step: INSERT event_id, reservation_id and staff_number to registration table
-        $query_2 = "INSERT INTO registration VALUES ($reservation_id, $event_id, $staff_number, $reservation_id)";
+        $query_2 = "INSERT INTO registration VALUES ({$reservation_id}, {$event_id}, '{$last_name}', '{$first_name}', {$staff_number})";
         if ($conn->query($query_2)) {
-            $row_1 = $result_1->fetch_assoc();
-
-            $first_name = $row_1['first_name'];
-            $last_name = $row_1['last_name'];
-
             // Update the status from reserved to registered in reservation table
             $up_query = "UPDATE reservation SET status = 'Registered' WHERE event_id = {$event_id} AND reservation_id = {$reservation_id}";
             if ($conn->query($up_query)) {
@@ -38,9 +41,9 @@ if (isset($_GET['event_id']) && isset($_GET['reservation_id'])) {
                 }
                 else {
                     // 4th step 2A: INSERT names to member table
-                    $query_4 = "INSERT INTO member (last_name, first_name) VALUES (?, ?)";
+                    $query_4 = "INSERT INTO member (last_name, first_name, contact_number, email, pastor_number) VALUES (?, ?, ?, ?, ?)";
                     $stmt = $conn->prepare($query_4);
-                    $stmt->bind_param('ss', $last_name, $first_name);
+                    $stmt->bind_param('ssssi', $last_name, $first_name, $contact_number, $email, $pastor_number);
                     if ($stmt->execute()) {
                         header('location: ../../staff_management/navigation/reservations.php?event_id='.$event_id);
                     }

@@ -1,14 +1,15 @@
 <?php 
 require_once('../../../includes/config/db.php');
 
-$branch_id = '';
-$name = '';
-$description = '';
-$address = '';
-$district = '';
-$date_established = '';
 
 if (isset($_GET['edit'])) {
+    $branch_id = '';
+    $name = '';
+    $description = '';
+    $address = '';
+    $district = '';
+    $date_established = '';
+
     $branch_id = $_GET['edit'];
 
     $query = "SELECT * FROM branch WHERE branch_id = ?";
@@ -26,6 +27,42 @@ if (isset($_GET['edit'])) {
             $date_established = date('Y-m-d', strtotime($row['date_established']));
         }
     }
+
+    function filter($array) {
+        global $district;
+
+        if ($array != $district) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    $array = array(
+        "Agusan District",
+        "Bukidnon",
+        "Cebu",
+        "CENODA District",
+        "COMVAL District",
+        "Cotabato 1 (North)",
+        "Cotabato 2",
+        "Davao City",
+        "Davao Del Sur",
+        "Emmanuel District",
+        "Maranatha District",
+        "Monkayo District",
+        "NEDA District",
+        "Samal (IGACOS) District",
+        "Sarangani District",
+        "SOCSARGEN District",
+        "Valenzuela City",
+        "Zampen District",
+        "Bohol",
+    );
+
+    $newArr = array_filter($array, "filter");
+    
 }
 
 ?>
@@ -59,27 +96,12 @@ if (isset($_GET['edit'])) {
 
                     <p>Branch district</p>
                     <select name="district" required>
-                        <option value="" selected disabled>Select District</option>
-                        <option value="Agusan District">Agusan District</option>
-                        <option value="Bukidnon">Bukidnon</option>
-                        <option value="Cebu">Cebu</option>
-                        <option value="CENODA District">CENODA District</option>
-                        <option value="COMVAL District">COMVAL District</option>
-                        <option value="Cotabato 1 (North)">Cotabato 1 (North)</option>
-                        <option value="Cotabato 2">Cotabato 2</option>
-                        <option value="Davao City">Davao City</option>
-                        <option value="Davao Del Sur">Davao Del Sur</option>
-                        <option value="Emmanuel District">Emmanuel District</option>
-                        <option value="MANA District">MANA District</option>
-                        <option value="Maranatha District">Maranatha District</option>
-                        <option value="Monkayo District">Monkayo District</option>
-                        <option value="NEDA District">NEDA District</option>
-                        <option value="Samal (IGACOS) District">Samal (IGACOS) District</option>
-                        <option value="Sarangani District">Sarangani District</option>
-                        <option value="SOCSARGEN District">SOCSARGEN District</option>
-                        <option value="Valenzuela City">Valenzuela City</option>
-                        <option value="Zampen District">Zampen District</option>
-                        <option value="Bohol">Bohol</option>
+                        <option value="<?php echo $district ?>" selected><?php echo $district ?></option>
+                        <?php 
+                        foreach ($newArr as $list) {
+                            echo '<option value="'.$list.'">'.$list.'</option>';
+                        }
+                        ?>
                     </select>
 
                     <p>Branch details</p>

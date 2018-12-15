@@ -10,6 +10,16 @@ if (!isset($_SESSION['staff_session'])) {
 else {
     $staffData = $_SESSION['staff_session'];
 }
+
+if (isset($_GET['event_id'])) {
+    $event_id = $conn->real_escape_string($_GET['event_id']);
+
+    $query = "SELECT * FROM registration WHERE event_id = {$event_id}";
+    $result = $conn->query($query);
+}
+else {
+    header('location: events-manage.php');
+}
 ?>
 <!DOCTYPE html>
 <meta lang="utf-8">
@@ -75,33 +85,23 @@ else {
 
             <h2>
                 Event registrants
-                <a href="../forms/add/registrant-add.php">
+                <!-- <a href="../forms/add/registrant-add.php">
                     <img src="../../images/add.png" alt="">
                     Add a registrant
-                </a>
+                </a> -->
             </h2>
 
-            <p id = "success"><img src="../../images/check_circled.png" alt="">Successfully added!</p>
+            <!-- <p id = "success"><img src="../../images/check_circled.png" alt="">Successfully added!</p> -->
 
             <table>
 
-                <tr><td>Registrant 1</td></tr>
-                <tr><td>Registrant 2</td></tr>
-                <tr><td>Registrant 3</td></tr>
-                <tr><td>Registrant 4</td></tr>
-
-                <tr><td>Registrant 1</td></tr>
-                <tr><td>Registrant 2</td></tr>
-                <tr><td>Registrant 3</td></tr>
-                <tr><td>Registrant 4</td></tr>
-                <tr><td>Registrant 1</td></tr>
-                <tr><td>Registrant 2</td></tr>
-                <tr><td>Registrant 3</td></tr>
-                <tr><td>Registrant 4</td></tr>
-                <tr><td>Registrant 1</td></tr>
-                <tr><td>Registrant 2</td></tr>
-                <tr><td>Registrant 3</td></tr>
-                <tr><td>Registrant 4</td></tr>
+                <?php 
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tr><td>'.$row['last_name'].', '.$row['first_name'].'</td></tr>';
+                    }
+                }
+                ?>
 
             </table>
 

@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     $branch_id = getBranchId($church_district);
     $pastor_id = $_POST['pastor_id']; 
 
-    $query = "UPDATE member SET last_name = ? , first_name = ?, DOB = ?, sex = ?, contact_number = ?, email = ?, allergies = ?, church_name = ?, church_address = ?, church_district = ?, branch_id = ?, pastor_id = ? WHERE member_id = ?";
+    $query = "UPDATE member SET last_name = ? , first_name = ?, DOB = ?, sex = ?, contact_number = ?, email = ?, allergies = ?, church_name = ?, church_address = ?, church_district = ?, branch_id = ?, pastor_number = ? WHERE member_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('ssssssssssiii', $last_name, $first_name, $dob, $sex, $contact_number, $email, $allergies, $church_name, $church_address, $church_district, $branch_id, $pastor_id, $member_id);
     if ($stmt->execute()) {

@@ -50,7 +50,7 @@ else {
                 </div>
                 
                 <p class="username"> <!--Name of user will be displayed here -->
-                    Username
+                    Hello, <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
                 </p>
                 
             </label>

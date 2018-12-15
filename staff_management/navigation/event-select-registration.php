@@ -67,7 +67,6 @@ $result = $conn->query($query);
                     <a href="event-select-reservation.php">Reservations</a>
                     <a href="branches.php">Branches</a>
                     <a href="affiliates.php">Affiliates</a>
-                    <a href="audit.php">Audit</a>
                     
                 </div>
 
@@ -79,11 +78,10 @@ $result = $conn->query($query);
 
             <h2>Available events (Reg)</h2>
 
-            
             <?php 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo   '<a href="reservations.php?event_id='.$row['event_id'].'">
+                    echo   '<a href="registrants.php?event_id='.$row['event_id'].'">
                                 <div class = "list-item">
                                     <p class="event-title">'.$row['title'].'</p>
                                 </div>

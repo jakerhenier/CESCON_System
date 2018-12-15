@@ -55,6 +55,10 @@ if (isset($_POST['submit'])) {
             echo $conn->error . '<br>' . $up_query;
         }
     }
+    else {
+        $_SESSION['branch_error'] = "Branch modification failed: Must remove first all events, staffs, and members that affect this branch's data.";
+        header('location: ../../staff_management/navigation/branches.php');
+    }
 }
 else {
     header('location: ../../staff_management/forms/edit/branch-edit.php');

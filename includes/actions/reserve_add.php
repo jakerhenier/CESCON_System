@@ -6,6 +6,9 @@ if(isset($_POST['submit'])) {
     $event_id = $_POST['submit'];
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
+    $contact_number = $_POST['contact_number'];
+    $email = $_POST['email'];
+    $pastor_number = $_POST['pastor_number'];
 
     $validate_query = "SELECT * FROM reservation WHERE first_name = ? AND last_name = ? AND event_id = ?";
     $val_stmt = $conn->prepare($validate_query);
@@ -13,9 +16,9 @@ if(isset($_POST['submit'])) {
     $val_stmt->execute();
     $validate_result = $val_stmt->get_result();
     if (!($validate_result->num_rows > 0)) {
-        $query = "INSERT INTO reservation (first_name, last_name, event_id) VALUES (?, ?, ?)";
+        $query = "INSERT INTO reservation (first_name, last_name, contact_number, email, pastor_number, event_id) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('ssi', $first_name, $last_name, $event_id);
+        $stmt->bind_param('sssssi', $first_name, $last_name, $contact_number, $email, $pastor_number, $event_id);
         if ($stmt->execute()) {
             $_SESSION['reserve_msg'] = "Reservation successful.";
             header("location: ../../member_reservation/reserve.php?event_id={$event_id}");
