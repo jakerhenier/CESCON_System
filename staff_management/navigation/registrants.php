@@ -33,16 +33,14 @@ else {
                 <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
 
                 <div class="menu">
-                    <a href="">Menu </a>
-                    <a href="">Menu</a>
-                    <a href="">Menu</a>
+                    <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
                 <div class="menu-button">
                 </div>
                 
                 <p class="username"> <!--Name of user will be displayed here -->
-                    Hello, <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
+                    Username
                 </p>
                 
             </label>
@@ -61,10 +59,11 @@ else {
                 <div class = "navigation-items">
                     
                     <a href="events-manage.php">Events</a>
-                    <a href="event-select.php">Registrations</a>
-                    <a href="event-select.php">Reservations</a>
+                    <a href="event-select-registration.php">Registrations</a>
+                    <a href="event-select-reservation.php">Reservations</a>
                     <a href="branches.php">Branches</a>
                     <a href="affiliates.php">Affiliates</a>
+                    <a href="audit.php">Audit</a>
                     
                 </div>
 

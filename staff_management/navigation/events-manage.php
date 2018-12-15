@@ -57,8 +57,6 @@ $result = $conn->query($query);
                 <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
 
                 <div class="menu">
-                    <a href="">Menu </a>
-                    <a href="">Menu</a>
                     <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
@@ -85,10 +83,11 @@ $result = $conn->query($query);
                 <div class = "navigation-items">
                     
                     <a href="events-manage.php">Events</a>
-                    <a href="event-select.php">Registrations</a>
-                    <a href="event-select.php">Reservations</a>
+                    <a href="event-select-registration.php">Registrations</a>
+                    <a href="event-select-reservation.php">Reservations</a>
                     <a href="branches.php">Branches</a>
                     <a href="affiliates.php">Affiliates</a>
+                    <a href="audit.php">Audit</a>
                     
                 </div>
 
@@ -106,6 +105,33 @@ $result = $conn->query($query);
                 </a>
             </h2>
 
+            <div class="search-bar">
+            
+                <form action="">
+
+                    <input type="text" name="" id="">
+                    <button type="submit">Search</button>
+                    <span>Search...</span>
+
+                </form>    
+
+            </div>
+
+            <!-- <a href="">
+                <div class="list-item">
+                    <p id="event-title">Title here</p>
+
+                    <div class="options">
+                        <a href="../forms/edit/member-edit.php">Edit</a>
+                        <a href="">Delete</a>
+                    </div>
+
+                    <p id = "event-date">
+                        <img src="../../images/date.png" alt="">
+                        November 1, 2018
+                    </p>
+                </div>
+            </a> -->
             <?php 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {

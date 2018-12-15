@@ -47,8 +47,6 @@ $result = $conn->query($query);
                 <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
 
                 <div class="menu">
-                    <a href="">Menu</a>
-                    <a href="">Menu</a>
                     <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
@@ -75,10 +73,11 @@ $result = $conn->query($query);
                 <div class = "navigation-items">
                     
                     <a href="events-manage.php">Events</a>
-                    <a href="event-select.php">Registrations</a>
-                    <a href="event-select.php">Reservations</a>
+                    <a href="event-select-registration.php">Registrations</a>
+                    <a href="event-select-reservation.php">Reservations</a>
                     <a href="branches.php">Branches</a>
                     <a href="affiliates.php">Affiliates</a>
+                    <a href="audit.php">Audit</a>
                     
                 </div>
 
@@ -95,6 +94,18 @@ $result = $conn->query($query);
                     Add a new member
                 </a>    
             </h2>
+
+            <div class="search-bar">
+            
+                <form action="">
+
+                    <input type="text" name="" id="">
+                    <button type="submit">Search</button>
+                    <span>Search...</span>
+
+                </form>    
+
+            </div>
 
             <?php 
             if ($result->num_rows > 0) {

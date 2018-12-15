@@ -1,31 +1,17 @@
-<?php 
-session_start();
-
-$staffData = '';
-
-if (!isset($_SESSION['staff_session'])) {
-    header('location: ../../index.php');
-}
-else {
-    $staffData = $_SESSION['staff_session'];
-}
-?>
 <!DOCTYPE html>
-<meta lang = "utf-8">
+<meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 <html>
+
     <head>
-        <title>Church affiliates</title>
+        <title>Manage registrations</title>
         <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
         <link rel = "shortcut icon" href = "../../images/logo.jpeg" type = "image/x-icon">
     </head>
-    <body>
-        
-        <div class="top-bar">
 
-            <div class="label-box">
-                <p class = "page-label">Affiliates</p>
-            </div>
+    <body>
+
+        <div class="top-bar">
 
             <div class="label-box">
                 <p class = "page-label"></p>
@@ -42,7 +28,7 @@ else {
                 <div class="menu-button"></div>
                 
                 <p class="username"> <!--Name of user will be displayed here -->
-                    Hello, <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
+                    Username
                 </p>
                 
             </label>
@@ -65,7 +51,6 @@ else {
                     <a href="event-select-reservation.php">Reservations</a>
                     <a href="branches.php">Branches</a>
                     <a href="affiliates.php">Affiliates</a>
-                    <a href="audit.php">Audit</a>
                     
                 </div>
 
@@ -73,28 +58,19 @@ else {
 
         </div>
 
-        <div class="content-container church-affiliates">
+        <div class="content-container">
 
-            <h2 class = "church-affiliates">Church affiliates</h2>
+            <h2>Available events (Res)</h2>
 
-            <a href="pastors-list.php">
-                <img src="../../images/pastor.png" alt="">
-                Pastors
+            <a href="registrants.php">
+                <div class = "list-item">
+                    <p class="event-title">Title here</p>
+                </div>
             </a>
-            <?php 
-            if ($staffData[0]["access_level"] == 1) {
-            ?>
-            <a href="staffs-list.php">
-                <img src="../../images/staff.png" alt="">
-                Staffs
-            </a>
-            <?php } ?>
-            <a href="members-list.php">
-                <img src="../../images/member.png" alt="">
-                Members
-            </a>
+            
 
         </div>
-
+        
     </body>
+
 </html>

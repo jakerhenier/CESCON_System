@@ -89,6 +89,7 @@ $result = $conn->query($query);
                     <a href="event-select.php">Reservations</a>
                     <a href="branches.php">Branches</a>
                     <a href="affiliates.php">Affiliates</a>
+                    <a href="audit.php">Audit</a>
                     
                 </div>
 
@@ -111,6 +112,18 @@ $result = $conn->query($query);
                     Add a new branch
                 </a>    
             </h2>
+
+            <div class="search-bar">
+            
+                <form action="">
+
+                    <input type="text" name="" id="">
+                    <button type="submit">Search</button>
+                    <span>Search...</span>
+
+                </form>    
+
+            </div>
 
             <?php 
             if ($result->num_rows > 0) {
