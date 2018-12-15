@@ -18,7 +18,16 @@ if (isset($_GET['delete'])) {
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $pastor_number);
     if ($stmt->execute()) {
-        header('location: pastors-list.php');
+        $up_query = "UPDATE pastor_delete_logs SET deleted_by_user = {$staffData[0]['staff_number']} WHERE pastor_number = {$pastor_number}";
+        if ($conn->query($up_query)) {
+            header('location: pastors-list.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
+    }
+    else {
+        $_SESSION['pastor_error'] = "Pastor removal failed: Must remove first all members that affect this pastor's data.";
     }
 }
 
@@ -87,6 +96,13 @@ $result = $conn->query($query);
         </div>
 
         <div class="content-container">
+
+            <?php 
+            if (isset($_SESSION['pastor_error'])) {
+                echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['pastor_error'] . '</span>';
+                unset($_SESSION['pastor_error']);
+            }
+            ?>
 
             <h2>
                 Church pastors

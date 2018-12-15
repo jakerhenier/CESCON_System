@@ -27,7 +27,7 @@ if (isset($_GET['delete'])) {
         }
     }
     else {
-        echo $stmt->error;
+        $_SESSION['branch_error'] = "Branch removal failed: Must remove first all events, staffs, and members that affect this branch's data.";
     }
 }
 
@@ -76,10 +76,10 @@ $result = $conn->query($query);
                 <input type="checkbox" name="" id="">
 
                 <div class = "hamburger-menu">
-                    <!--
-                    <div class="hamburger-lines"></div>
-                    <div class="hamburger-lines"></div>
-                    <div class="hamburger-lines"></div> -->
+                        
+                        <!-- <div class="hamburger-lines"></div>
+                        <div class="hamburger-lines"></div>
+                        <div class="hamburger-lines"></div> -->
                 </div>
                 
                 <div class = "navigation-items">
@@ -97,6 +97,12 @@ $result = $conn->query($query);
         </div>
 
         <div class="content-container">
+            <?php 
+            if (isset($_SESSION['branch_error'])) {
+                echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['branch_error'] . '</span>';
+                unset($_SESSION['branch_error']);
+            }
+            ?>
 
             <h2>
                 Branches
