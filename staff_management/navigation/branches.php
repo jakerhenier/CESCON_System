@@ -12,13 +12,22 @@ else {
 }
 
 if (isset($_GET['delete'])) {
-    $branch_id = $_GET['delete'];
+    $branch_id = $conn->real_escape_string($_GET['delete']);
 
     $query = "DELETE FROM branch WHERE branch_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $branch_id);
     if ($stmt->execute()) {
-        header('location: branches.php');
+        $up_query = "UPDATE branch_delete_logs SET deleted_by_user = {$staffData[0]['staff_number']} WHERE branch_id = {$branch_id}";
+        if ($conn->query($up_query)) {
+            header('location: branches.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
+    }
+    else {
+        $_SESSION['branch_error'] = "Branch removal failed: Must remove first all events, staffs, and members that affect this branch's data.";
     }
 }
 
@@ -67,10 +76,10 @@ $result = $conn->query($query);
                 <input type="checkbox" name="" id="">
 
                 <div class = "hamburger-menu">
-                    <!--
-                    <div class="hamburger-lines"></div>
-                    <div class="hamburger-lines"></div>
-                    <div class="hamburger-lines"></div> -->
+                        
+                        <!-- <div class="hamburger-lines"></div>
+                        <div class="hamburger-lines"></div>
+                        <div class="hamburger-lines"></div> -->
                 </div>
                 
                 <div class = "navigation-items">
@@ -89,6 +98,12 @@ $result = $conn->query($query);
         </div>
 
         <div class="content-container">
+            <?php 
+            if (isset($_SESSION['branch_error'])) {
+                echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['branch_error'] . '</span>';
+                unset($_SESSION['branch_error']);
+            }
+            ?>
 
             <h2>
                 Branches

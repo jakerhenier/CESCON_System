@@ -6,11 +6,12 @@ $first_name = '';
 $last_name = '';
 $dob = '01-01-1970';
 $sex = '';
+$district = '';
 $contact_number = '';
 $email = '';
 $church_name = '';
 $church_address = '';
-$church_district = '';
+$district = '';
 
 if (isset($_GET['edit'])) {
     $member_id = $_GET['edit'];
@@ -32,12 +33,47 @@ if (isset($_GET['edit'])) {
             $allergies = $row['allergies'];
             $church_name = $row['church_name'];
             $church_address = $row['church_address'];
-            $church_district = $row['church_district'];
+            $district = $row['church_district'];
         }
     }
 
+    function filter($array) {
+        global $district;
+
+        if ($array != $district) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    $array = array(
+        "Agusan District",
+        "Bukidnon",
+        "Cebu",
+        "CENODA District",
+        "COMVAL District",
+        "Cotabato 1 (North)",
+        "Cotabato 2",
+        "Davao City",
+        "Davao Del Sur",
+        "Emmanuel District",
+        "Maranatha District",
+        "Monkayo District",
+        "NEDA District",
+        "Samal (IGACOS) District",
+        "Sarangani District",
+        "SOCSARGEN District",
+        "Valenzuela City",
+        "Zampen District",
+        "Bohol",
+    );
+
+    $newArr = array_filter($array, "filter");
+
     $pastor_query = "SELECT * FROM pastor";
-    $result = $conn->query($pastor_query);
+    $result = $conn->query($pastor_query);  
 }
 ?>
 <!DOCTYPE html>
@@ -120,8 +156,13 @@ if (isset($_GET['edit'])) {
 
                     <p>Church district</p>
                     <select name="church_district" id="" required>
-                        <option value="" selected disabled>Select District</option>
-                        <option value="Agusan District">Agusan District</option>
+                        <option value="<?php echo $district ?>" selected><?php echo $district ?></option>
+                        <?php 
+                        foreach ($newArr as $list) {
+                            echo '<option value="'.$list.'">'.$list.'</option>';
+                        }
+                        ?>
+                        <!-- <option value="Agusan District">Agusan District</option>
                         <option value="Bukidnon">Bukidnon</option>
                         <option value="Cebu">Cebu</option>
                         <option value="CENODA District">CENODA District</option>
@@ -140,7 +181,7 @@ if (isset($_GET['edit'])) {
                         <option value="SOCSARGEN District">SOCSARGEN District</option>
                         <option value="Valenzuela City">Valenzuela City</option>
                         <option value="Zampen District">Zampen District</option>
-                        <option value="Bohol">Bohol</option>
+                        <option value="Bohol">Bohol</option> -->
                     </select>
 
                     <p>Pastor</p>

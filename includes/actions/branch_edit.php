@@ -1,5 +1,11 @@
 <?php 
+session_start();
 require_once('../config/db.php');
+
+$staffData = array();
+if (isset($_SESSION['staff_session'])) {
+    $staffData = $_SESSION['staff_session'];
+}
 
 function getBranchId($district) {
     $keypair = array(
@@ -41,6 +47,16 @@ if (isset($_POST['submit'])) {
     $stmt = $conn->prepare($query);
     $stmt->bind_param('sssssii', $name, $details, $address, $district, $date_established, $newbranch_id, $branch_id);
     if ($stmt->execute()) {
+        $up_query = "UPDATE branch_edit_logs SET edited_by_user = {$staffData[0]['staff_number']} WHERE branch_id = {$branch_id}";
+        if ($conn->query($up_query)) {
+            header('location: ../../staff_management/navigation/branches.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
+    }
+    else {
+        $_SESSION['branch_error'] = "Branch modification failed: Must remove first all events, staffs, and members that affect this branch's data.";
         header('location: ../../staff_management/navigation/branches.php');
     }
 }

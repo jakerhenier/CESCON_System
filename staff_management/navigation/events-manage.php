@@ -12,13 +12,22 @@ else {
 }
 
 if (isset($_GET['delete'])) {
-    $event_id = $_GET['delete'];
+    $event_id = $conn->real_escape_string($_GET['delete']);
 
     $query = "DELETE FROM event WHERE event_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $event_id);
     if ($stmt->execute()) {
-        header('location: events-manage.php');
+        $up_query = "UPDATE event_delete_logs SET deleted_by_user = {$staffData[0]['staff_number']} WHERE event_id = {$event_id}";
+        if ($conn->query($up_query)) {
+            header('location: events-manage.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
+    }
+    else {
+        $_SESSION['event_error'] = "Event removal failed: Must remove first all properties that affect this event's data.";
     }
 }
 
@@ -88,6 +97,13 @@ $result = $conn->query($query);
 
         <div class="content-container">
 
+            <?php 
+            if (isset($_SESSION['event_error'])) {
+                echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['event_error'] . '</span>';
+                unset($_SESSION['event_error']);
+            }
+            ?>
+
             <h2>
                 Events
                 <a href="../forms/add/event-add.php">
@@ -96,7 +112,7 @@ $result = $conn->query($query);
                 </a>
             </h2>
 
-            <div class="search-bar">
+            <!-- <div class="search-bar">
             
                 <form action="">
 
@@ -106,7 +122,7 @@ $result = $conn->query($query);
 
                 </form>    
 
-            </div>
+            </div> -->
 
             <!-- <a href="">
                 <div class="list-item">

@@ -1,8 +1,17 @@
 <?php 
+session_start();
 require_once('../includes/config/db.php');
+
+$event_id = '';
 
 if (!isset($_GET['event_id'])) {
     header('location: feed.php');
+}
+else {
+    $event_id = $_GET['event_id'];
+
+    $query = "SELECT * FROM pastor";
+    $result = $conn->query($query);
 }
 ?>
 <!DOCTYPE html>
@@ -32,16 +41,43 @@ if (!isset($_GET['event_id'])) {
                     <img src="../images/success.png" alt="Error">
                     Reservation successful! Pay at the venue to complete registration.
                 </p> -->
+                <?php 
+                if (isset($_SESSION['reserve_msg'])) {
+                    echo   '<p class = "prompt" id = "reserve-success">
+                                <img src="../images/success.png" alt="success">
+                                '.$_SESSION['reserve_msg'].'
+                            </p>';
+                    unset($_SESSION['reserve_msg']);
+                }
+                ?>
 
-                <form action = "">
+                <form action = "../includes/actions/reserve_add.php" method="POST">
 
                     <p>First name</p>
-                    <input type = "text" name = "first-name">
+                    <input type = "text" name = "first_name" required>
 
                     <p>Last name</p>
-                    <input type = "text" name ="last-name">
+                    <input type = "text" name ="last_name" required>
 
-                    <button type = "submit">Reserve</button>
+                    <p>Contact number</p>
+                    <input type = "number" min=0 name ="contact_number" placeholder="(Optional)">
+
+                    <p>Email</p>
+                    <input type = "email" name ="email" placeholder="(Optional)">
+
+                    <p>Pastor</p>
+                    <select name="pastor_number" required>
+                        <option value="" selected disabled>Select Pastor</option>
+                        <?php 
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo '<option value="'.$row['pastor_number'].'">'.$row['first_name'].' '.$row['last_name'].'</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+
+                    <button type = "submit" name="submit" value="<?php echo $event_id ?>">Reserve</button>
                     <a href = "event-detail.php">Go back</a>
 
                 </form>

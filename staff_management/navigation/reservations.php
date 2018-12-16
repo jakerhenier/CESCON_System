@@ -10,6 +10,16 @@ if (!isset($_SESSION['staff_session'])) {
 else {
     $staffData = $_SESSION['staff_session'];
 }
+
+if (isset($_GET['event_id'])) {
+    $event_id = $conn->real_escape_string($_GET['event_id']);
+
+    $query = "SELECT * FROM reservation WHERE event_id = {$event_id} AND status = 'Reserved'";
+    $result = $conn->query($query);
+}
+else {
+    header('location: events-manage.php');
+}
 ?>
 <!DOCTYPE html>
 <meta lang="utf-8">
@@ -40,7 +50,7 @@ else {
                 </div>
                 
                 <p class="username"> <!--Name of user will be displayed here -->
-                    Username
+                    Hello, <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
                 </p>
                 
             </label>
@@ -76,43 +86,23 @@ else {
             <h2>Pending registrations</h2>
 
             <table id = "reservations">
+                <?php 
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tr>
 
-                <tr>
-
-                    <td>
-                        <p>Registrant 1</p>
-                        <p id = "date-reserved">reserved since <b>August 3, 2018</b></p>
-                    </td>
-                    <td>
-                        <a href="">Confirm</a>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>
-                        <p>Registrant 2</p>
-                        <p id = "date-reserved">reserved since <b>August 3, 2018</b></p>
-                    </td>
-                    <td>
-                        <a href="">Confirm</a>
-                    </td>
-
-                </tr>
-
-                <tr>
-
-                    <td>
-                        <p>Registrant 3</p>
-                        <p id = "date-reserved">reserved since <b>August 3, 2018</b></p>
-                    </td>
-                    <td>
-                        <a href="">Confirm</a>
-                    </td>
-
-                </tr>
-
+                                <td>
+                                    <p>'.$row['first_name'].' '.$row['last_name'].'</p>
+                                    <p id = "date-reserved">reserved since <b>'.date('M j<\s\up>S</\s\up> Y', strtotime($row['date_reserved'])).'</b></p>
+                                </td>
+                                <td>
+                                    <a href="../../includes/actions/reservation_confirm.php?event_id='.$event_id.'&reservation_id='.$row['reservation_id'].'">Confirm</a>
+                                </td>
+            
+                            </tr>';
+                    }
+                }
+                ?>
             </table>
 
         </div>

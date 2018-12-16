@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require_once('../../includes/config/db.php');
 
 $staffData = '';
 
@@ -9,6 +10,9 @@ if (!isset($_SESSION['staff_session'])) {
 else {
     $staffData = $_SESSION['staff_session'];
 }
+
+$query = "SELECT * FROM event";
+$result = $conn->query($query);
 ?>
 <!DOCTYPE html>
 <meta lang="utf-8">
@@ -63,7 +67,6 @@ else {
                     <a href="event-select-reservation.php">Reservations</a>
                     <a href="branches.php">Branches</a>
                     <a href="affiliates.php">Affiliates</a>
-                    <a href="audit.php">Audit</a>
                     
                 </div>
 
@@ -75,11 +78,17 @@ else {
 
             <h2>Available events (Reg)</h2>
 
-            <a href="registrants.php">
-                <div class = "list-item">
-                    <p class="event-title">Title here</p>
-                </div>
-            </a>
+            <?php 
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo   '<a href="registrants.php?event_id='.$row['event_id'].'">
+                                <div class = "list-item">
+                                    <p class="event-title">'.$row['title'].'</p>
+                                </div>
+                            </a>';
+                }
+            }
+            ?>
             
 
         </div>

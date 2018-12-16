@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
     $branch_id = getBranchId($church_district);
     $pastor_id = $_POST['pastor_id']; 
 
-    $query = "INSERT INTO member (last_name, first_name, DOB, sex, contact_number, email, allergies, church_name, church_address, church_district, branch_id, pastor_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO member (last_name, first_name, DOB, sex, contact_number, email, allergies, church_name, church_address, church_district, branch_id, pastor_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('ssssssssssii', $last_name, $first_name, $dob, $sex, $contact_number, $email, $allergies, $church_name, $church_address, $church_district, $branch_id, $pastor_id);
     if ($stmt->execute()) {
