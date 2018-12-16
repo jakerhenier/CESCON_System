@@ -1,3 +1,30 @@
+<?php 
+session_start();
+require_once('../../includes/config/db.php');
+
+$staffData = '';
+$total_earnings = '';
+
+if (!isset($_SESSION['staff_session'])) {
+    header('location: ../../index.php');
+}
+else {
+    $staffData = $_SESSION['staff_session'];
+}
+
+$query = "SELECT * FROM audit";
+$result = $conn->query($query);
+
+// query to get total amount
+
+$query0 = "SELECT sum(event_earning) as total_earnings FROM audit";
+$result0 = $conn->query($query0);
+if ($result0->num_rows > 0) {
+    while ($row = $result0->fetch_assoc()) {
+        $total_earnings = $row['total_earnings'];
+    }
+}
+?>
 <!DOCTYPE html>
 <meta lang = "utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -30,7 +57,7 @@
             <div class="menu-button"></div>
             
             <p class="username"> <!--Name of user will be displayed here -->
-                Username
+                Hello, <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
             </p>
             
         </label>
@@ -66,41 +93,47 @@
         <h2 class="audit">Transaction list</h2>
 
         <h3 class = "audit">
-            Total amount:
-            <span>₱8755.00</span>
+            Total earnings:
+            <span>₱ <?php echo $total_earnings ?>.00</span>
         </h3>
 
-        <label class="list-item">
+        <?php 
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo   '<label class="list-item">
 
-            <div class="list-item">
-
-                <input type="checkbox" name="" id="">
-
-                <p class="name">
-                    Event name
-                    <img src="../../images/state.png" alt="">
-                </p>
-
-                <div class="expanded-details" id = "audit">
-
-                    <p>
-                        Event registration fee
-                        <span>₱85.00</span>
-                    </p>
-                    <p>
-                        Number of registrants
-                        <span>103</span>
-                    </p>
-                    <p><b>
-                        Total amount
-                        <span>₱8755.00</span>
-                    </b></p>
-
-                </div>
-
-            </div>
-
-        </label>
+                            <div class="list-item">
+                
+                                <input type="checkbox" name="" id="">
+                
+                                <p class="name">
+                                    '.$row['event_name'].'
+                                    <img src="../../images/state.png" alt="">
+                                </p>
+                
+                                <div class="expanded-details" id = "audit">
+                
+                                    <p>
+                                        Event registration fee
+                                        <span>'.$row['event_fee'].'</span>
+                                    </p>
+                                    <p>
+                                        Number of registrants
+                                        <span>'.$row['event_registrants_count'].'</span>
+                                    </p>
+                                    <p><b>
+                                        Event earnings
+                                        <span>₱ '.$row['event_earning'].'.00</span>
+                                    </b></p>
+                
+                                </div>
+                
+                            </div>
+                
+                        </label>';
+            }
+        }
+        ?>
 
     </div>
 
