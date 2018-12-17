@@ -12,13 +12,16 @@ else {
     $staffData = $_SESSION['staff_session'];
 }
 
-$query = "SELECT * FROM audit";
+$query = "CALL getAudit";
 $result = $conn->query($query);
+
+$conn->next_result(); // To close previous connection held by stored procedure.
 
 // query to get total amount
 
-$query0 = "SELECT sum(event_earning) as total_earnings FROM audit";
+$query0 = "CALL getTotalEarned";
 $result0 = $conn->query($query0);
+var_dump($result0);
 if ($result0->num_rows > 0) {
     while ($row = $result0->fetch_assoc()) {
         $total_earnings = $row['total_earnings'];
