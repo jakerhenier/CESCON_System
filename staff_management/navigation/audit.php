@@ -81,7 +81,7 @@ if ($result0->num_rows > 0) {
                 <a href="events-manage.php">Events</a>
                 <a href="event-select-registration.php">Registrations</a>
                 <a href="event-select-reservation.php">Reservations</a>
-                <a href="branches.php">Branches</a>
+                <a href="branches.php">Branches</a> 
                 <a href="affiliates.php">Affiliates</a>
                 <a href="audit.php">Audit</a>
                 

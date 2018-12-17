@@ -1,5 +1,11 @@
 <?php 
+session_start();
 require_once('../config/db.php');
+
+$staffData = array();
+if (isset($_SESSION['staff_session'])) {
+    $staffData = $_SESSION['staff_session'];
+}
 
 function getBranchId($district) {
     $keypair = array(
@@ -47,7 +53,13 @@ if (isset($_POST['submit'])) {
     $stmt = $conn->prepare($query);
     $stmt->bind_param('ssssssssssiii', $last_name, $first_name, $dob, $sex, $contact_number, $email, $allergies, $church_name, $church_address, $church_district, $branch_id, $pastor_id, $member_id);
     if ($stmt->execute()) {
-        header('location: ../../staff_management/navigation/members-list.php');
+        $up_query = "UPDATE member_edit_logs SET edited_by_user = {$staffData[0]['staff_number']} WHERE member_id = {$member_id}";
+        if ($conn->query($up_query)) {
+            header('location: ../../staff_management/navigation/members-list.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
     }
     else {
         echo $stmt->error;
