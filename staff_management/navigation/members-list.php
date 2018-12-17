@@ -18,7 +18,13 @@ if (isset($_GET['delete'])) {
     $stmt = $conn->prepare($query);
     $stmt->bind_param('i', $member_id);
     if ($stmt->execute()) {
-        header('location: members-list.php');
+        $up_query = "UPDATE member_delete_logs SET deleted_by_user = {$staffData[0]['staff_number']} WHERE member_id = {$member_id}";
+        if ($conn->query($up_query)) {
+            header('location: members-list.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
     }
 }
 

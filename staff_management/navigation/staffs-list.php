@@ -37,6 +37,9 @@ if (isset($_GET['delete'])) {
     if ($stmt->execute()) {
         header('location: staffs-list.php');
     }
+    else {
+        $_SESSION['staff_error'] = "Staff removal failed: Must remove first all elements that affect this staff's data.";
+    }
 }
 
 $query = "SELECT * FROM staff WHERE staff_number != {$staffData[0]['staff_number']}";
@@ -102,6 +105,13 @@ $result = $conn->query($query);
         </div>
 
         <div class="content-container">
+
+            <?php 
+            if (isset($_SESSION['staff_error'])) {
+                echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['staff_error'] . '</span>';
+                unset($_SESSION['staff_error']);
+            }
+            ?>
 
             <h2>
                 Church staffs
