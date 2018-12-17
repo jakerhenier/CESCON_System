@@ -43,6 +43,10 @@ if (isset($_POST['submit'])) {
     if ($stmt->execute()) {
         header('location: ../../staff_management/navigation/branches.php');
     }
+    else {
+        $_SESSION['branch_error'] = "Branch addition failed: Current branch is existing.";
+        header('location: ../../staff_management/navigation/branches.php');
+    }
 }
 else {
     header('location: ../../staff_management/forms/add/branch-add.php');
