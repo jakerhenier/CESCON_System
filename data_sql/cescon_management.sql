@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2018 at 03:46 AM
+-- Generation Time: Dec 17, 2018 at 06:12 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -364,7 +364,7 @@ CREATE TABLE `pastor` (
 --
 
 INSERT INTO `pastor` (`pastor_number`, `last_name`, `first_name`, `contact_number`) VALUES
-(1, 'Not listed', '', ''),
+(1, 'Not listed', '', '0000000000'),
 (6, 'Penano', 'Daniel', '9667591163');
 
 --
@@ -414,6 +414,13 @@ CREATE TABLE `pastor_edit_logs` (
   `edit_by_user` int(11) DEFAULT NULL,
   `date_edited` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pastor_edit_logs`
+--
+
+INSERT INTO `pastor_edit_logs` (`pastor_number`, `old_last_name`, `old_first_name`, `old_contact_number`, `edit_by_user`, `date_edited`) VALUES
+(1, 'Not listed', '', '', NULL, '2018-12-17 05:09:36');
 
 -- --------------------------------------------------------
 
@@ -693,7 +700,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staff_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `staff_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
