@@ -57,8 +57,6 @@ $result = $conn->query($query);
                 <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
 
                 <div class="menu">
-                    <a href="">Menu</a>
-                    <a href="">Menu</a>
                     <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
@@ -113,7 +111,7 @@ $result = $conn->query($query);
                 </a>    
             </h2>
 
-            <div class="search-bar">
+            <!--<div class="search-bar">
             
                 <form action="">
 
@@ -123,7 +121,7 @@ $result = $conn->query($query);
 
                 </form>    
 
-            </div>
+            </div> -->
 
             <?php 
             if ($result->num_rows > 0) {

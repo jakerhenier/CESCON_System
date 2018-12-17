@@ -110,7 +110,7 @@ $result = $conn->query($query);
                 </a>    
             </h2>
 
-            <div class="search-bar">
+            <!--<div class="search-bar">
             
                 <form action="">
 
@@ -120,7 +120,7 @@ $result = $conn->query($query);
 
                 </form>    
 
-            </div>
+            </div>-->
 
             <?php 
             if ($result->num_rows > 0) {

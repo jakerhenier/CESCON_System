@@ -111,7 +111,7 @@ $result = $conn->query($query);
                 </a>    
             </h2>
 
-            <div class="search-bar">
+            <!--<div class="search-bar">
             
                 <form action="">
 
@@ -121,7 +121,7 @@ $result = $conn->query($query);
 
                 </form>    
 
-            </div>
+            </div>-->
 
             <!-- <div class = "list-item">
                 <span class = "last-name">Salvador, </span>

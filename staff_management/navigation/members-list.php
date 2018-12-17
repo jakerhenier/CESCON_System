@@ -95,7 +95,7 @@ $result = $conn->query($query);
                 </a>    
             </h2>
 
-            <div class="search-bar">
+            <!--<div class="search-bar">
             
                 <form action="">
 
@@ -105,7 +105,7 @@ $result = $conn->query($query);
 
                 </form>    
 
-            </div>
+            </div>-->
 
             <?php 
             if ($result->num_rows > 0) {
@@ -129,7 +129,7 @@ $result = $conn->query($query);
 
                                         <div class="options">
                                             <a href="../forms/edit/member-edit.php?edit='.$row['member_id'].'">Edit</a>
-                                            <a href="members-list.php?delete='.$row['member_id'].'">Delete</a>
+                                            <a id = delButton" href = "members-list.php?delete='.$row['member_id'].'">Delete</a>
                                         </div>
 
                                         <p>Contact number: <span id="contact-no">'.$row['contact_number'].'</span></p>
