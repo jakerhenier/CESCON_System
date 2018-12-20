@@ -650,7 +650,6 @@ p#reserve-success {
 div.floating-form p.prompt img {
     float: left;
     width: 1.5rem;
-    margin-top: .5rem;
     margin-right: .75rem;
 }
 
