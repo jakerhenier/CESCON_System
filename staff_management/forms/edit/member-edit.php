@@ -37,10 +37,21 @@ if (isset($_GET['edit'])) {
         }
     }
 
-    function filter($array) {
+    function filterDistrict($array) {
         global $district;
 
         if ($array != $district) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function filterSex($array1) {
+        global $sex;
+
+        if ($array1 != $sex) {
             return true;
         }
         else {
@@ -70,7 +81,13 @@ if (isset($_GET['edit'])) {
         "Bohol",
     );
 
-    $newArr = array_filter($array, "filter");
+    $array1 = array(
+        "Male",
+        "Female"
+    );
+
+    $newArr = array_filter($array, "filterDistrict");
+    $newArr1 = array_filter($array1, "filterSex");
 
     $pastor_query = "SELECT * FROM pastor";
     $result = $conn->query($pastor_query);  
@@ -105,10 +122,13 @@ if (isset($_GET['edit'])) {
 
                         <div class="half-field">
                             <p>Sex</p>
-                            <select name="sex" id="" required>
-                                <option value="" selected disabled>Select...</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                            <select name="sex" required>
+                                <option value="<?php echo $sex; ?>" selected disabled><?php echo $sex; ?></option>
+                                <?php 
+                                foreach ($newArr1 as $list) {
+                                    echo '<option value="'.$list.'">'.$list.'</option>';
+                                }
+                                ?>
                             </select>
                         </div>
 
@@ -185,7 +205,7 @@ if (isset($_GET['edit'])) {
                     </select>
 
                     <p>Pastor</p>
-                    <select name="pastor_id" id="" required>
+                    <select name="pastor_id" required>
                         <option value="" selected disabled>Select Pastor</option>
                         <?php 
                         if ($result->num_rows > 0) {
