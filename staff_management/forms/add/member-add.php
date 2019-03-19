@@ -22,6 +22,17 @@ $result = $conn->query($query);
 
                 <h3>Add new member's information</h3>
 
+                <?php 
+                    if (isset($_SESSION['reg_msg'])) {
+                        foreach($_SESSION['reg_msg'] as $errors) {
+                            echo   '<div>
+                                        <p>'. $errors .'</p>
+                                    </div>';
+                        }
+                        unset($_SESSION['reg_msg']);
+                    }
+                ?>
+
                 <form action="../../../includes/actions/member_add.php" method="POST">
 
                     <p>First name</p>

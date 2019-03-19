@@ -1,6 +1,7 @@
 <?php 
 require_once('../config/db.php');
 require_once('../function/crypt.php');
+require_once('../function/staff_validation.php');
 
 function getBranchId($district) {
     $keypair = array(
@@ -38,11 +39,13 @@ if (isset($_POST['submit'])) {
     $password = encrypt_decrypt($_POST['password'], "encrypt");
     $access_level = $_POST['access_level'];
 
-    $query = "INSERT INTO staff (last_name, first_name, contact_number, username, password, access_level, branch_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('sssssii', $last_name, $first_name, $contact_number, $username, $password, $access_level, $branch_id);
-    if ($stmt->execute()) {
-        header('location: ../../staff_management/navigation/staffs-list.php');
+    if(validate_number($contact_number)) {
+        $query = "INSERT INTO staff (last_name, first_name, contact_number, username, password, access_level, branch_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('sssssii', $last_name, $first_name, $contact_number, $username, $password, $access_level, $branch_id);
+        if ($stmt->execute()) {
+            header('location: ../../staff_management/navigation/staffs-list.php');
+        }
     }
 }
 else {

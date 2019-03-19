@@ -1,5 +1,6 @@
 <?php 
 require_once('../config/db.php');
+require_once('../function/member_validation.php');
 
 function getBranchId($district) {
     $keypair = array(
@@ -42,14 +43,16 @@ if (isset($_POST['submit'])) {
     $branch_id = getBranchId($church_district);
     $pastor_id = $_POST['pastor_id']; 
 
-    $query = "INSERT INTO member (last_name, first_name, DOB, sex, contact_number, email, allergies, church_name, church_address, church_district, branch_id, pastor_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('ssssssssssii', $last_name, $first_name, $dob, $sex, $contact_number, $email, $allergies, $church_name, $church_address, $church_district, $branch_id, $pastor_id);
-    if ($stmt->execute()) {
-        header('location: ../../staff_management/navigation/members-list.php');
-    }
-    else {
-        echo $stmt->error;
+    if (validate_credentials($contact_number, $email)) {
+        $query = "INSERT INTO member (last_name, first_name, DOB, sex, contact_number, email, allergies, church_name, church_address, church_district, branch_id, pastor_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('ssssssssssii', $last_name, $first_name, $dob, $sex, $contact_number, $email, $allergies, $church_name, $church_address, $church_district, $branch_id, $pastor_id);
+        if ($stmt->execute()) {
+            header('location: ../../staff_management/navigation/members-list.php');
+        }
+        else {
+            echo $stmt->error;
+        }   
     }
 }
 else {
