@@ -2,8 +2,16 @@
 session_start();
 require_once('../../includes/config/db.php');
 
-$staffData = '';
-$total_earnings = '';
+function getAccessLevel($access_level) {
+    $keypair = array(
+        "0" => "Normal User",
+        "1" => "Administrator"
+    );
+
+    return $keypair[$access_level];
+}
+
+$staffData = array();
 
 if (!isset($_SESSION['staff_session'])) {
     header('location: ../../index.php');
@@ -12,21 +20,30 @@ else {
     $staffData = $_SESSION['staff_session'];
 }
 
-$query = "CALL getAudit";
-$result = $conn->query($query);
+if ($staffData[0]['access_level'] == 0) {
+    header('location: ../../index.php');
+}
 
-$conn->next_result(); // To close previous connection held by stored procedure.
+if (isset($_GET['delete'])) {
+    $staff_number = $_GET['delete'];
 
-// query to get total amount
+    if ($staffData[0]['access_level'] == 0) {
+        header('location: ../../index.php');
+    }   
 
-$query0 = "CALL getTotalEarned";
-$result0 = $conn->query($query0);
-var_dump($result0);
-if ($result0->num_rows > 0) {
-    while ($row = $result0->fetch_assoc()) {
-        $total_earnings = $row['total_earnings'];
+    $query = "DELETE FROM staff WHERE staff_number = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $staff_number);
+    if ($stmt->execute()) {
+        header('location: staffs-list.php');
+    }
+    else {
+        $_SESSION['staff_error'] = "Staff removal failed: Must remove first all elements that affect this staff's data.";
     }
 }
+
+$query = "SELECT * FROM staff WHERE staff_number != {$staffData[0]['staff_number']}";
+$result = $conn->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +52,7 @@ if ($result0->num_rows > 0) {
 <html>
 
     <head>
-        <title>Audit</title>
+        <title>Staffs</title>
 
         <link rel="stylesheet" type = "text/css" media = "all" href="../../styles/style.css">
         <link rel="shortcut icon" href="../../images/logo_clear.png" type="image/x-icon">
@@ -54,7 +71,7 @@ if ($result0->num_rows > 0) {
                 <div class="menu-button" id ="menu-button">
                     <img src="../../images/menu.png" alt="" id="menu-icon" onclick="expandMenu()">
                 </div>
-                <p class="page-label">Audit</p>
+                <p class="page-label">Staffs</p>
             </div>
         </div>
 
@@ -64,9 +81,7 @@ if ($result0->num_rows > 0) {
                     logout
                 </div>
             </a>
-            <p id = "username">
-                <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
-            </p>
+            <p id = "username"><?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?></p>
         </div>
 
         <div class="top-menu-list">
@@ -146,7 +161,7 @@ if ($result0->num_rows > 0) {
                 <div class="menu-list">
 
                     <a href="audit.php" class="menu-link" id="menu-link">
-                        <div class="link-box event-menu-item" id = "active-item">
+                        <div class="link-box event-menu-item">
                             <img src="../../images/audit.png" alt="" id="item-icon">
                             <p>Audit</p>
                         </div>
@@ -176,7 +191,7 @@ if ($result0->num_rows > 0) {
                     </a>
 
                     <a href="staffs.php" class="menu-link" id="menu-link">
-                        <div class="link-box affiliate-item">
+                        <div class="link-box affiliate-item aff-active" id = "active-item">
                             <img src="../../images/staff.png" alt="" id="item-icon">
                             <p>Staffs</p>
                         </div>
@@ -201,9 +216,7 @@ if ($result0->num_rows > 0) {
                 </div>
 
                 <div class="bottom-items">
-                    <p id = "username-area">
-                        <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
-                    </p>
+                    <p id = "username-area"><?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?></p>
 
                     <button id="input-toggle">
                         <img id = "action-icon" src="../../images/dark_outline.png" alt="" onclick="darkMode()">
@@ -223,76 +236,66 @@ if ($result0->num_rows > 0) {
 
                 <div class="detail-box">
 
-                    <!-- <div class="toolbar">
+                    <div class="toolbar">
 
-                        <a href="" id = "add-button">
-                            <div class="link-box-add">
+                        <a href="../forms/add/staff-add.php" id = "add-button">
+                            <div class="link-box-add aff-add-bt">
                                 <img src="../../images/add.png" alt="" class="tool-icon" id="add-icon">
                                 <span>ADD NEW</span>
                             </div>
                         </a>
 
-                        <div class="searchbar">
+                        <div class="searchbar aff-search">
                             <input type="text" name="" id="search" placeholder = "Search">
                             <button id = "search-bt" type="submit">
                                 <img src="../../images/search.png" alt="" class="tool-icon">
                             </button>
                         </div>
 
-                    </div> -->
+                    </div>
 
                     <div class="item-list">
 
-                        <div id="audit-summary">
-
-                            <div id="summary-item">
-                                <p>Total earnings:</p>
-                                <span id="total">₱ <?php echo $total_earnings ?>.00</span>
-                            </div>
-
-                        </div>
+                        <?php 
+                        if (isset($_SESSION['staff_error'])) {
+                            echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['staff_error'] . '</span>';
+                            unset($_SESSION['staff_error']);
+                        }
+                        ?>
 
                         <!-- <div class="list-item">
                             <div id="member-placeholder">
-                                <span id="event-total">10000</span>
-                                <p id="event-name">Event name</p>
+                                <a id = "edit-button" href="../forms/edit/staff-edit.php">
+                                    <img src="../../images/edit.png" alt="" class="edit-icon">
+                                </a>
+                                <p>Staff name</p>
                             </div>
-
-                            <div id="member-details">
-                                <div class="audit-spec" id="spec-item">
-                                    <img src="../../images/fee.png" id="spec-img" alt="">
-                                    <p id="spec-detail">90.00</p>
-                                </div>
-                                <div class="audit-spec reg-count" id="spec-item">
-                                    <img src="../../images/registrant.png" id="spec-img" alt="">
-                                    <p id="spec-detail">12</p>
-                                </div>
+                            <span id="access-lvl">Administrator</span>
+                            <div id="spec-item">
+                                <img src="../../images/staffcontact.png" id="spec-img" alt="">
+                                <p id="spec-detail">Contact number</p>
                             </div>
                         </div> -->
 
                         <?php 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo   '<div class="list-item">
-                                                <div id="member-placeholder">
-                                                    <span id="event-total">'.$row['event_earning'].'</span>
-                                                    <p id="event-name">'.$row['event_name'].'</p>
-                                                </div>
-                    
-                                                <div id="member-details">
-                                                    <div class="audit-spec" id="spec-item">
-                                                        <img src="../../images/fee.png" id="spec-img" alt="">
-                                                        <p id="spec-detail">'.$row['event_fee'].'</p>
-                                                    </div>
-                                                    <div class="audit-spec reg-count" id="spec-item">
-                                                        <img src="../../images/registrant.png" id="spec-img" alt="">
-                                                        <p id="spec-detail">'.$row['event_registrants_count'].'</p>
-                                                    </div>
-                                                </div>
-                                            </div>';
-                                }
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo   '<div class="list-item">
+                                            <div id="member-placeholder">
+                                                <a id = "edit-button" href="../forms/edit/staff-edit.php?edit='.$row['staff_number'].'">
+                                                    <img src="../../images/edit.png" alt="" class="edit-icon">
+                                                </a>
+                                                <p>'.$row['first_name'].' '.$row['last_name'].'</p>
+                                            </div>
+                                            <span id="access-lvl">'.getAccessLevel($row['access_level']).'</span>
+                                            <div id="spec-item">
+                                                <img src="../../images/staffcontact.png" id="spec-img" alt="">
+                                                <p id="spec-detail">'.$row['contact_number'].'</p>
+                                            </div>
+                                        </div>';
                             }
-                            ?>
+                        }
+                        ?>
 
                     </div>
 

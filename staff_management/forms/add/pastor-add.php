@@ -18,10 +18,10 @@
                 <form action = "../../../includes/actions/pastor_add.php" method="POST">
 
                     <p>First name</p>
-                    <input type = "text" name = "first_name">
+                    <input type = "text" name = "first_name" required autofocus>
 
                     <p>Last name</p>
-                    <input type = "text" name = "last_name">
+                    <input type = "text" name = "last_name" required>
 
                     <p>Contact number</p>
                     <div id = "contact-field">

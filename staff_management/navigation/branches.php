@@ -36,127 +36,272 @@ $result = $conn->query($query);
 ?>
 
 <!DOCTYPE html>
-<meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-<html>
-    <head>
-        <title>Branch management</title>
-        <link rel = "stylesheet" media = "all" href = "../../styles/style.css">
-        <link rel="shortcut icon" href="../../images/logo.jpeg" type="image/x-icon">
-    </head>
-    <body>
-        
-        <div class="top-bar">
 
-            <div class="label-box">
-                <p class = "page-label">Branches</p>
+<html>
+
+    <head>
+        <title>Branches</title>
+
+        <link rel="stylesheet" type = "text/css" media = "all" href="../../styles/style.css">
+        <link rel="shortcut icon" href="../../images/logo_clear.png" type="image/x-icon">
+    </head>
+
+    <body>
+    
+    <div class="top-menu" id="top-menu">
+
+        <div class="top-init" id="top-init">
+            <div class="icon-box">
+                <img src="../../images/logo_clear.png" alt="" id="top-logo">
             </div>
 
-            <label class="account-menu">
-
-                <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
-
-                <div class="menu">
-                    <a href="../../includes/actions/logout.php">Logout</a>
+            <div class="context-box">
+                <div class="menu-button" id ="menu-button">
+                    <img src="../../images/menu.png" alt="" id="menu-icon" onclick="expandMenu()">
                 </div>
-
-                <div class="menu-button">
-                </div>
-                
-                <p class="username"> <!--Name of user will be displayed here -->
-                    Hello, <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
-                </p>
-                
-            </label>
-
-            <label class = "navigation-menu">
-
-                <input type="checkbox" name="" id="">
-
-                <div class = "hamburger-menu">
-                        
-                        <!-- <div class="hamburger-lines"></div>
-                        <div class="hamburger-lines"></div>
-                        <div class="hamburger-lines"></div> -->
-                </div>
-                
-                <div class = "navigation-items">
-                    
-                    <a href="events-manage.php">Events</a>
-                    <a href="event-select.php">Registrations</a>
-                    <a href="event-select.php">Reservations</a>
-                    <a href="branches.php">Branches</a>
-                    <a href="affiliates.php">Affiliates</a>
-                    <a href="audit.php">Audit</a>
-                    
-                </div>
-
-            </label>
-
+                <p class="page-label">Branches</p>
+            </div>
         </div>
 
-        <div class="content-container">
-            <?php 
-            if (isset($_SESSION['branch_error'])) {
-                echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['branch_error'] . '</span>';
-                unset($_SESSION['branch_error']);
-            }
-            ?>
+        <div class="top-actions" id = "mobile-bottom">
+            <a href="../../includes/actions/logout.php" class="logout-button">
+                <div class="logout-button-box">
+                    logout
+                </div>
+            </a>
+            <p id = "username"><?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?></p>
+        </div>
 
-            <h2>
-                Branches
-                <a href="../forms/add/branch-add.php">
-                    <img src="../../images/add.png" alt="">
-                    Add a new branch
-                </a>    
-            </h2>
-
-            <!--<div class="search-bar">
+        <div class="top-menu-list">
             
-                <form action="">
+            <div class="menu-category">
+                <a href="audit.php" class="top-menu-item">
+                    <div class="top-link-box">
+                        <p>Audit</p>
+                        <img src="../../images/audit.png" alt="" id="item-icon">
+                    </div>
+                </a>
 
-                    <input type="text" name="" id="">
-                    <button type="submit">Search</button>
-                    <span>Search...</span>
+                <a href="events.php" class="top-menu-item">
+                    <div class="top-link-box">
+                        <p>Events</p>
+                        <img src="../../images/events.png" alt="" id="item-icon">
+                    </div>
+                </a>
 
-                </form>    
+                <a href="reservations.php" class="top-menu-item">
+                    <div class="top-link-box">
+                        <p>Reservations</p>
+                        <img src="../../images/registrants.png" alt="" id="item-icon">
+                    </div>
+                </a>
+            </div>
 
-            </div> -->
+            <div class="break"></div>
 
-            <?php 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo   '<label class="list-item">
-                                <div class="list-item">
-                                    <input type = "checkbox" name = "" id = "">
-                                    <p class = "name">
-                                        '.$row['name'].'
-                                        <img src = "../../images/state.png">
-                                    </p>
-                                    <div id = "branch-details">
-                                        '.$row['description'].'
+            <div class="menu-category">
+                <a href="members.php" class="top-menu-item">
+                    <div class="top-link-box">
+                        <p>Members</p>
+                        <img src="../../images/member.png" alt="" id="item-icon">
+                    </div>
+                </a>
 
-                                        <div class="options">
-                                            <a href="../forms/edit/branch-edit.php?edit='.$row['branch_id'].'">Edit</a>
-                                            <a href="branches.php?delete='.$row['branch_id'].'">Delete</a>
-                                        </div>
-                                    </div>
-                                    <p id="branch-est">
-                                        
-                                        '.date('M j<\s\up>S</\s\up> Y', strtotime($row['date_established'])).'
-                                    </p>
-                
-                                    <p id="branch-location">
-                                        <img src="../../images/pin.png" alt="">
-                                        '.$row['district'].'
-                                    </p>
-                                </div>
-                            </label>';
-                }
-            }
-            ?>
+                <a href="staffs.php" class="top-menu-item">
+                    <div class="top-link-box">
+                        <p>Staffs</p>
+                        <img src="../../images/staff.png" alt="" id="item-icon">
+                    </div>
+                </a>
+
+                <a href="pastors.php" class="top-menu-item">
+                    <div class="top-link-box">
+                        <p>Pastors</p>
+                        <img src="../../images/pastor.png" alt="" id="item-icon">
+                    </div>
+                </a>
+            </div>
+
+            <div class="break"></div>
+
+            <div class="menu-category">
+                <a href="branches.php" class="top-menu-item">
+                    <div class="top-link-box">
+                        <p>Branches</p>
+                        <img src="../../images/branch.png" alt="" id="item-icon">
+                    </div>
+                </a>
+            </div>
 
         </div>
+
+    </div>
+        
+        <div class="content-box" id = "main-content">
+
+            <div class="side-menu" id="side-menu">
+
+                <div class="branding">
+                    <img id = "brand-logo" src="../../images/logo_clear.png" alt="CESCON logo">
+                    <p id="brand-name">CESCON</p>
+                </div>
+
+                <div class="menu-list">
+
+                    <a href="audit.php" class="menu-link" id="menu-link">
+                        <div class="link-box event-menu-item">
+                            <img src="../../images/audit.png" alt="" id="item-icon">
+                            <p>Audit</p>
+                        </div>
+                    </a>
+
+                    <a href="events.php" class="menu-link" id="menu-link">
+                        <div class="link-box event-menu-item">
+                            <img src="../../images/events.png" alt="" id="item-icon">
+                            <p>Events</p>
+                        </div>
+                    </a>
+
+                    <a href="reservations.php" class="menu-link" id="menu-link">
+                        <div class="link-box event-menu-item">
+                            <img src="../../images/registrants.png" alt="" id="item-icon">
+                            <p>Reservations</p>
+                        </div>
+                    </a>
+
+                    <div class="break"></div>
+
+                    <a href="members.php" class="menu-link" id="menu-link">
+                        <div class="link-box affiliate-item">
+                            <img src="../../images/member.png" alt="" id="item-icon">
+                            <p>Members</p>
+                        </div>
+                    </a>
+
+                    <a href="staffs.php" class="menu-link" id="menu-link">
+                        <div class="link-box affiliate-item">
+                            <img src="../../images/staff.png" alt="" id="item-icon">
+                            <p>Staffs</p>
+                        </div>
+                    </a>
+
+                    <a href="pastors.php" class="menu-link" id="menu-link">
+                        <div class="link-box affiliate-item">
+                            <img src="../../images/pastor.png" alt="" id="item-icon">
+                            <p>Pastors</p>
+                        </div>
+                    </a>
+
+                    <div class="break"></div>
+
+                    <a href="branches.php" class="menu-link" id="menu-link">
+                        <div class="link-box branch-item" id = "active-item">
+                            <img src="../../images/branch.png" alt="" id="item-icon">
+                            <p>Branches</p>
+                        </div>
+                    </a>
+
+                </div>
+
+                <div class="bottom-items">
+                    <p id = "username-area"><?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?></p>
+
+                    <button id="input-toggle">
+                        <img id = "action-icon" src="../../images/dark_outline.png" alt="" onclick="darkMode()">
+                    </button>
+
+                    <a href="../../includes/actions/logout.php" class="logout-button">
+                        <div class="logout-box">
+                            <span class="out-context">logout</span>
+                            <img src="../../images/logout.png" alt="" id="action-icon">
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="item-screen" id="item-screen">
+
+                <div class="detail-box">
+
+                    <div class="toolbar">
+
+                        <a href="../forms/add/branch-add.php" id = "add-button">
+                            <div class="link-box-add branch-add-bt">
+                                <img src="../../images/add.png" alt="" class="tool-icon" id="add-icon">
+                                <span>ADD NEW</span>
+                            </div>
+                        </a>
+
+                        <div class="searchbar branch-search">
+                            <input type="text" name="" id="search" placeholder = "Search">
+                            <button id = "search-bt" type="submit">
+                                <img src="../../images/search.png" alt="" class="tool-icon">
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="item-list">
+
+                        <?php 
+                        if (isset($_SESSION['branch_error'])) {
+                            echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['branch_error'] . '</span>';
+                            unset($_SESSION['branch_error']);
+                        }
+                        ?>
+
+                        <!-- <div class="list-item">
+                            <div id="member-placeholder">
+                                <a id = "edit-button" href="../forms/edit/branch-edit.php">
+                                    <img src="../../images/edit.png" alt="" class="edit-icon">
+                                </a>
+                                <p>Branch name</p>
+                            </div>
+
+                            <p id="event-details">ifhoerqboerbqoueyrctniyrngcirgiregirgxiwbexiug bergiwyrexniyniyviriv yrivu irvbciyerciyreicybewxbxbbiyur browugfxnigfiuygrfixurenxfigwnrgzgvuryengvyrengvzxi vir iufvreivziercgbdcygedbciyreicbei7ybcebciueb]yubciueycbiwbciydebbviry bviwue bzz iuwervirev weyrviur</p>
+
+                            <div class="bottom-details">
+                                <img src="../../images/pin_small.png" alt="" id = "loc-img">
+                                <p id="loc-detail">Branch location</p>
+                            </div>
+
+                        </div> -->
+
+                        <?php 
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo   '<div class="list-item">
+                                            <div id="member-placeholder">
+                                                <a id = "edit-button" href="../forms/edit/branch-edit.php?edit='.$row['branch_id'].'">
+                                                    <img src="../../images/edit.png" alt="" class="edit-icon">
+                                                </a>
+                                                <p>'.$row['name'].'</p>
+                                            </div>
+                
+                                            <p id="event-details">'.$row['description'].'</p>
+                
+                                            <div class="bottom-details">
+                                                <img src="../../images/pin_small.png" alt="" id = "loc-img">
+                                                <p id="loc-detail">'.$row['district'].'</p>
+                                            </div>
+                
+                                        </div>';
+                            }
+                        }
+                        ?>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src = "../../scripts/main.js"></script>
 
     </body>
+
 </html>

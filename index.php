@@ -5,52 +5,69 @@ if (isset($_SESSION['staff_session'])) {
     header('location: staff_management/navigation/index.php');
 }
 ?>
+
 <!DOCTYPE html>
-<meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 <html>
+
     <head>
-        <title>Login to your account</title>
+        <title>Account login</title>
+
         <link rel="stylesheet" type = "text/css" media = "all" href="styles/style.css">
-        <link rel="shortcut icon" href="images/logo.jpeg" type="image/x-icon">
+        <link rel="shortcut icon" href="images/logo_clear.png" type="image/x-icon">
     </head>
+
     <body>
+        
+        <div class="content-box, login-box">
+        
+            <div class="input-form" id="login">
+            
+                <img id = "cescon-logo" src="images/logo_clear.png" alt="CESCON logo">
+                <p id="login-prompt">Login to your account</p>
 
-        <div class="adding-fields">
-
-            <div class="floating-form" id = "login-form">
-
-                <img id = "logo" src="images/logo.jpeg" alt="Logo">
-
-                <h3>Account login</h3>
+                <!-- <div class="error-msg">
+                    <img id = "err-sign" src="images/error.png" alt="Error">
+                    <p id="err-txt">Try again</p>
+                </div> -->
 
                 <?php 
                 if (isset($_SESSION['login_msg'])) {
                     foreach($_SESSION['login_msg'] as $error) {
-                        echo   '<p class = "prompt" id = "error">
-                                    <img src="images/error.png" alt="Error">'
-                                    . $error .
-                                '</p>';
+                        echo   '<div class="error-msg">
+                                    <img id = "err-sign" src="images/error.png" alt="Error">
+                                    <p id="err-txt">'. $error .'</p>
+                                </div>';
                     }
                     unset($_SESSION['login_msg']);
                 }
                 ?>
 
-                <form action="includes/actions/login.php" method="POST">
+                <div class="form-fields">
 
-                    <p class="form-indicator">Username</p>
-                    <input type="text" name="username" required autofocus>
+                    <form action="includes/actions/login.php" method="POST">
 
-                    <p class="form-indicator">Password</p>
-                    <input type="password" name="password" required>
+                        <input type="text" name="username" id="username" placeholder="Username" autofocus>
 
-                    <button type="submit" name="login" value="login">Login</button>
+                        <input type="password" name="password" id="password" placeholder="Password">
 
-                </form>
+                        <button type="submit" name="login" value="login">Login</button>
 
+                        <!-- <select name="" id="">
+                            <option value="Light">Light</option>
+                            <option value="Dark">Dark</option>
+                        </select> -->
+
+                    </form>
+
+                </div>
+            
             </div>
-
+        
         </div>
 
+        <script src = "scripts/main.js"></script>
+
     </body>
+
 </html>

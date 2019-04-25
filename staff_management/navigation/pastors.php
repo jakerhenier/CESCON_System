@@ -3,7 +3,6 @@ session_start();
 require_once('../../includes/config/db.php');
 
 $staffData = '';
-$total_earnings = '';
 
 if (!isset($_SESSION['staff_session'])) {
     header('location: ../../index.php');
@@ -12,21 +11,28 @@ else {
     $staffData = $_SESSION['staff_session'];
 }
 
-$query = "CALL getAudit";
-$result = $conn->query($query);
+if (isset($_GET['delete'])) {
+    $pastor_number = $_GET['delete'];
 
-$conn->next_result(); // To close previous connection held by stored procedure.
-
-// query to get total amount
-
-$query0 = "CALL getTotalEarned";
-$result0 = $conn->query($query0);
-var_dump($result0);
-if ($result0->num_rows > 0) {
-    while ($row = $result0->fetch_assoc()) {
-        $total_earnings = $row['total_earnings'];
+    $query = "DELETE FROM pastor WHERE pastor_number = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $pastor_number);
+    if ($stmt->execute()) {
+        $up_query = "UPDATE pastor_delete_logs SET deleted_by_user = {$staffData[0]['staff_number']} WHERE pastor_number = {$pastor_number}";
+        if ($conn->query($up_query)) {
+            header('location: pastors-list.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
+    }
+    else {
+        $_SESSION['pastor_error'] = "Pastor removal failed: Must remove first all members that affect this pastor's data.";
     }
 }
+
+$query = "SELECT * FROM pastor";
+$result = $conn->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +41,7 @@ if ($result0->num_rows > 0) {
 <html>
 
     <head>
-        <title>Audit</title>
+        <title>Pastors</title>
 
         <link rel="stylesheet" type = "text/css" media = "all" href="../../styles/style.css">
         <link rel="shortcut icon" href="../../images/logo_clear.png" type="image/x-icon">
@@ -54,7 +60,7 @@ if ($result0->num_rows > 0) {
                 <div class="menu-button" id ="menu-button">
                     <img src="../../images/menu.png" alt="" id="menu-icon" onclick="expandMenu()">
                 </div>
-                <p class="page-label">Audit</p>
+                <p class="page-label">Pastors</p>
             </div>
         </div>
 
@@ -64,9 +70,7 @@ if ($result0->num_rows > 0) {
                     logout
                 </div>
             </a>
-            <p id = "username">
-                <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
-            </p>
+            <p id = "username"><?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?></p>
         </div>
 
         <div class="top-menu-list">
@@ -146,7 +150,7 @@ if ($result0->num_rows > 0) {
                 <div class="menu-list">
 
                     <a href="audit.php" class="menu-link" id="menu-link">
-                        <div class="link-box event-menu-item" id = "active-item">
+                        <div class="link-box event-menu-item">
                             <img src="../../images/audit.png" alt="" id="item-icon">
                             <p>Audit</p>
                         </div>
@@ -183,7 +187,7 @@ if ($result0->num_rows > 0) {
                     </a>
 
                     <a href="pastors.php" class="menu-link" id="menu-link">
-                        <div class="link-box affiliate-item">
+                        <div class="link-box affiliate-item aff-avt" id = "active-item">
                             <img src="../../images/pastor.png" alt="" id="item-icon">
                             <p>Pastors</p>
                         </div>
@@ -201,9 +205,7 @@ if ($result0->num_rows > 0) {
                 </div>
 
                 <div class="bottom-items">
-                    <p id = "username-area">
-                        <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
-                    </p>
+                    <p id = "username-area"><?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?></p>
 
                     <button id="input-toggle">
                         <img id = "action-icon" src="../../images/dark_outline.png" alt="" onclick="darkMode()">
@@ -223,76 +225,64 @@ if ($result0->num_rows > 0) {
 
                 <div class="detail-box">
 
-                    <!-- <div class="toolbar">
+                    <div class="toolbar">
 
-                        <a href="" id = "add-button">
-                            <div class="link-box-add">
+                        <a href="../forms/add/pastor-add.php" id = "add-button">
+                            <div class="link-box-add aff-add-bt">
                                 <img src="../../images/add.png" alt="" class="tool-icon" id="add-icon">
                                 <span>ADD NEW</span>
                             </div>
                         </a>
 
-                        <div class="searchbar">
+                        <div class="searchbar aff-search">
                             <input type="text" name="" id="search" placeholder = "Search">
                             <button id = "search-bt" type="submit">
                                 <img src="../../images/search.png" alt="" class="tool-icon">
                             </button>
                         </div>
 
-                    </div> -->
+                    </div>
 
                     <div class="item-list">
 
-                        <div id="audit-summary">
-
-                            <div id="summary-item">
-                                <p>Total earnings:</p>
-                                <span id="total">₱ <?php echo $total_earnings ?>.00</span>
-                            </div>
-
-                        </div>
+                        <?php 
+                        if (isset($_SESSION['pastor_error'])) {
+                            echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['pastor_error'] . '</span>';
+                            unset($_SESSION['pastor_error']);
+                        }
+                        ?>
 
                         <!-- <div class="list-item">
                             <div id="member-placeholder">
-                                <span id="event-total">10000</span>
-                                <p id="event-name">Event name</p>
+                                <a id = "edit-button" href="../forms/edit/pastor-edit.php">
+                                    <img src="../../images/edit.png" alt="" class="edit-icon">
+                                </a>
+                                <p>Pastor name</p>
                             </div>
-
-                            <div id="member-details">
-                                <div class="audit-spec" id="spec-item">
-                                    <img src="../../images/fee.png" id="spec-img" alt="">
-                                    <p id="spec-detail">90.00</p>
-                                </div>
-                                <div class="audit-spec reg-count" id="spec-item">
-                                    <img src="../../images/registrant.png" id="spec-img" alt="">
-                                    <p id="spec-detail">12</p>
-                                </div>
+                            <div id="spec-item">
+                                <img src="../../images/staffcontact.png" id="spec-img" alt="">
+                                <p id="spec-detail">Contact number</p>
                             </div>
                         </div> -->
 
                         <?php 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo   '<div class="list-item">
-                                                <div id="member-placeholder">
-                                                    <span id="event-total">'.$row['event_earning'].'</span>
-                                                    <p id="event-name">'.$row['event_name'].'</p>
-                                                </div>
-                    
-                                                <div id="member-details">
-                                                    <div class="audit-spec" id="spec-item">
-                                                        <img src="../../images/fee.png" id="spec-img" alt="">
-                                                        <p id="spec-detail">'.$row['event_fee'].'</p>
-                                                    </div>
-                                                    <div class="audit-spec reg-count" id="spec-item">
-                                                        <img src="../../images/registrant.png" id="spec-img" alt="">
-                                                        <p id="spec-detail">'.$row['event_registrants_count'].'</p>
-                                                    </div>
-                                                </div>
-                                            </div>';
-                                }
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo   '<div class="list-item">
+                                            <div id="member-placeholder">
+                                                <a id = "edit-button" href="../forms/edit/pastor-edit.php?edit='.$row['pastor_number'].'">
+                                                    <img src="../../images/edit.png" alt="" class="edit-icon">
+                                                </a>
+                                                <p>'.$row['first_name'].' '.$row['last_name'].'</p>
+                                            </div>
+                                            <div id="spec-item">
+                                                <img src="../../images/staffcontact.png" id="spec-img" alt="">
+                                                <p id="spec-detail">'.$row['contact_number'].'</p>
+                                            </div>
+                                        </div>';
                             }
-                            ?>
+                        }
+                        ?>
 
                     </div>
 

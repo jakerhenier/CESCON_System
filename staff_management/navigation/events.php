@@ -3,7 +3,6 @@ session_start();
 require_once('../../includes/config/db.php');
 
 $staffData = '';
-$total_earnings = '';
 
 if (!isset($_SESSION['staff_session'])) {
     header('location: ../../index.php');
@@ -12,21 +11,29 @@ else {
     $staffData = $_SESSION['staff_session'];
 }
 
-$query = "CALL getAudit";
-$result = $conn->query($query);
+if (isset($_GET['delete'])) {
+    $event_id = $conn->real_escape_string($_GET['delete']);
 
-$conn->next_result(); // To close previous connection held by stored procedure.
-
-// query to get total amount
-
-$query0 = "CALL getTotalEarned";
-$result0 = $conn->query($query0);
-var_dump($result0);
-if ($result0->num_rows > 0) {
-    while ($row = $result0->fetch_assoc()) {
-        $total_earnings = $row['total_earnings'];
+    $query = "DELETE FROM event WHERE event_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('i', $event_id);
+    if ($stmt->execute()) {
+        $up_query = "UPDATE event_delete_logs SET deleted_by_user = {$staffData[0]['staff_number']} WHERE event_id = {$event_id}";
+        if ($conn->query($up_query)) {
+            header('location: events-manage.php');
+        }
+        else {
+            echo $conn->error . '<br>' . $up_query;
+        }
+    }
+    else {
+        $_SESSION['event_error'] = "Event removal failed: Must remove first all properties that affect this event's data.";
     }
 }
+
+$query = "SELECT * FROM event WHERE branch_id = {$staffData[0]['branch_id']}";
+$result = $conn->query($query);
+
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +42,7 @@ if ($result0->num_rows > 0) {
 <html>
 
     <head>
-        <title>Audit</title>
+        <title>Events</title>
 
         <link rel="stylesheet" type = "text/css" media = "all" href="../../styles/style.css">
         <link rel="shortcut icon" href="../../images/logo_clear.png" type="image/x-icon">
@@ -54,7 +61,7 @@ if ($result0->num_rows > 0) {
                 <div class="menu-button" id ="menu-button">
                     <img src="../../images/menu.png" alt="" id="menu-icon" onclick="expandMenu()">
                 </div>
-                <p class="page-label">Audit</p>
+                <p class="page-label">Events</p>
             </div>
         </div>
 
@@ -64,9 +71,7 @@ if ($result0->num_rows > 0) {
                     logout
                 </div>
             </a>
-            <p id = "username">
-                <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
-            </p>
+            <p id = "username"><?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?></p>
         </div>
 
         <div class="top-menu-list">
@@ -146,14 +151,14 @@ if ($result0->num_rows > 0) {
                 <div class="menu-list">
 
                     <a href="audit.php" class="menu-link" id="menu-link">
-                        <div class="link-box event-menu-item" id = "active-item">
+                        <div class="link-box event-menu-item">
                             <img src="../../images/audit.png" alt="" id="item-icon">
                             <p>Audit</p>
                         </div>
                     </a>
 
                     <a href="events.php" class="menu-link" id="menu-link">
-                        <div class="link-box event-menu-item">
+                        <div class="link-box event-menu-item" id = "active-item">
                             <img src="../../images/events.png" alt="" id="item-icon">
                             <p>Events</p>
                         </div>
@@ -201,9 +206,7 @@ if ($result0->num_rows > 0) {
                 </div>
 
                 <div class="bottom-items">
-                    <p id = "username-area">
-                        <?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?>
-                    </p>
+                    <p id = "username-area"><?php echo $staffData[0]['first_name'].' '.$staffData[0]['last_name']; ?></p>
 
                     <button id="input-toggle">
                         <img id = "action-icon" src="../../images/dark_outline.png" alt="" onclick="darkMode()">
@@ -223,9 +226,9 @@ if ($result0->num_rows > 0) {
 
                 <div class="detail-box">
 
-                    <!-- <div class="toolbar">
+                    <div class="toolbar">
 
-                        <a href="" id = "add-button">
+                        <a href="../forms/add/event-add.php" id = "add-button">
                             <div class="link-box-add">
                                 <img src="../../images/add.png" alt="" class="tool-icon" id="add-icon">
                                 <span>ADD NEW</span>
@@ -239,60 +242,90 @@ if ($result0->num_rows > 0) {
                             </button>
                         </div>
 
-                    </div> -->
+                    </div>
 
                     <div class="item-list">
 
-                        <div id="audit-summary">
+                        <?php 
+                        if (isset($_SESSION['event_error'])) {
+                            echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['event_error'] . '</span>';
+                            unset($_SESSION['event_error']);
+                        }
+                        ?>
 
-                            <div id="summary-item">
-                                <p>Total earnings:</p>
-                                <span id="total">₱ <?php echo $total_earnings ?>.00</span>
+                        <!-- <div class="list-item" id="list-item">
+
+                            <div class="top-placeholder">
+                                <a id = "edit-button" href="../forms/edit/event-edit.php">
+                                    <img src="../../images/edit.png" alt="" class="edit-icon">
+                                </a>
+                                <p id = "event-name">Event name displayed here</p>
                             </div>
 
-                        </div>
-
-                        <!-- <div class="list-item">
-                            <div id="member-placeholder">
-                                <span id="event-total">10000</span>
-                                <p id="event-name">Event name</p>
-                            </div>
-
-                            <div id="member-details">
-                                <div class="audit-spec" id="spec-item">
-                                    <img src="../../images/fee.png" id="spec-img" alt="">
-                                    <p id="spec-detail">90.00</p>
+                            <div class="event-spec">
+                                <div class="spec-item">
+                                    <img src="../../images/date.png" alt="" id = "spec-img">
+                                    <p id="spec-detail">January 1, 2019</p>
                                 </div>
-                                <div class="audit-spec reg-count" id="spec-item">
-                                    <img src="../../images/registrant.png" id="spec-img" alt="">
-                                    <p id="spec-detail">12</p>
+                                <div class="spec-item" id = "venue">
+                                    <img src="../../images/venue.png" alt="" id = "spec-img">
+                                    <p id="spec-detail">Location hdfhgljsdfasutiyowuey</p>
+                                </div>
+                                <div class="spec-item">
+                                    <img src="../../images/fee.png" alt="" id = "spec-img">
+                                    <p id="spec-detail">P90.00</p>
                                 </div>
                             </div>
+
+                            <p id="event-details">wiuytiiqhiuorehiwrvobeovhreohforwehfourewhfouhrefu wrguihreiouhiurehioerwhrwehgiurehgiuhevioufwhiuvhwiuovhiuewhviuewhviufehwviouhfwiovuhewuiofhvfiouhviuofhviouwfviouhfoviuhdfuihvuiwhfvuiwefhviouhewovihfewiouvhoiuefwhviuowehfvoiuhewvoiuhefiouvhfewiouhvouifehviufwvhiofewh vfev.</p>
+                            
+                            <div class="registration-strip">
+                                <img src="../../images/registrant.png" alt="" id = "spec-img">
+                                <p id="spec-detail">121</p>
+                                <a href="" id="reg-link">See registrants</a>
+                            </div>
+
                         </div> -->
 
                         <?php 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo   '<div class="list-item">
-                                                <div id="member-placeholder">
-                                                    <span id="event-total">'.$row['event_earning'].'</span>
-                                                    <p id="event-name">'.$row['event_name'].'</p>
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo   '<div class="list-item" id="list-item">
+
+                                            <div class="top-placeholder">
+                                                <a id = "edit-button" href="../forms/edit/event-edit.php?edit='.$row['event_id'].'">
+                                                    <img src="../../images/edit.png" alt="" class="edit-icon">
+                                                </a>
+                                                <p id = "event-name">'.$row['title'].'</p>
+                                            </div>
+                
+                                            <div class="event-spec">
+                                                <div class="spec-item">
+                                                    <img src="../../images/date.png" alt="" id = "spec-img">
+                                                    <p id="spec-detail">'.date('M j<\s\up>S</\s\up> Y', strtotime($row['date'])).'</p>
                                                 </div>
-                    
-                                                <div id="member-details">
-                                                    <div class="audit-spec" id="spec-item">
-                                                        <img src="../../images/fee.png" id="spec-img" alt="">
-                                                        <p id="spec-detail">'.$row['event_fee'].'</p>
-                                                    </div>
-                                                    <div class="audit-spec reg-count" id="spec-item">
-                                                        <img src="../../images/registrant.png" id="spec-img" alt="">
-                                                        <p id="spec-detail">'.$row['event_registrants_count'].'</p>
-                                                    </div>
+                                                <div class="spec-item" id = "venue">
+                                                    <img src="../../images/venue.png" alt="" id = "spec-img">
+                                                    <p id="spec-detail">Location hdfhgljsdfasutiyowuey</p>
                                                 </div>
-                                            </div>';
-                                }
+                                                <div class="spec-item">
+                                                    <img src="../../images/fee.png" alt="" id = "spec-img">
+                                                    <p id="spec-detail">P90.00</p>
+                                                </div>
+                                            </div>
+                
+                                            <p id="event-details">wiuytiiqhiuorehiwrvobeovhreohforwehfourewhfouhrefu wrguihreiouhiurehioerwhrwehgiurehgiuhevioufwhiuvhwiuovhiuewhviuewhviufehwviouhfwiovuhewuiofhvfiouhviuofhviouwfviouhfoviuhdfuihvuiwhfvuiwefhviouhewovihfewiouvhoiuefwhviuowehfvoiuhewvoiuhefiouvhfewiouhvouifehviufwvhiofewh vfev.</p>
+                                            
+                                            <div class="registration-strip">
+                                                <img src="../../images/registrant.png" alt="" id = "spec-img">
+                                                <p id="spec-detail">121</p>
+                                                <a href="registrants.php?event_id='.$row['event_id'].'" id="reg-link">See registrants</a>
+                                            </div>
+                
+                                        </div>';
                             }
-                            ?>
+                        }
+                        ?>
 
                     </div>
 
