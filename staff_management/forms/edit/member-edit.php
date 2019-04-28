@@ -113,10 +113,11 @@ if (isset($_GET['edit'])) {
                 <form action="../../../includes/actions/member_edit.php" method="POST">
 
                     <p>First name</p>
-                    <input type="text" name = "first_name" value="<?php echo $first_name ?>" required autofocus>
+                    <input type="text" name = "first_name" id="first-name" value="<?php echo $first_name ?>" required autofocus>
+                    <span class="invalid" id="invalid-fn">Invalid value</span>
 
                     <p>Last name</p>
-                    <input type="text" name = "last_name" value="<?php echo $last_name ?>" required>
+                    <input type="text" name = "last_name" id="last-name" value="<?php echo $last_name ?>" required>
 
                     <div class="half-field-box">
 

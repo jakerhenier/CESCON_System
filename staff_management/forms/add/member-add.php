@@ -36,10 +36,12 @@ $result = $conn->query($query);
                 <form name="member-form" action="../../../includes/actions/member_add.php" method="POST">
 
                     <p>First name</p>
-                    <input type="text" name = "first_name" required autofocus onkeypress="formValidate()">
+                    <input type="text" name = "first_name" id="first-name" required autofocus>
+                    <span class="invalid" id="invalid-fn">Invalid value</span>
 
                     <p>Last name</p>
-                    <input type="text" name = "last_name" required>
+                    <input type="text" name = "last_name" id="last-name" required>
+                    <span class="invalid" id="invalid-ln">Invalid value</span>
 
                     <div class="half-field-box">
 
@@ -54,18 +56,21 @@ $result = $conn->query($query);
 
                         <div class="half-field">
                             <p>Date of birth</p>
-                            <input type="date" name="dob" id="" required>
+                            <input type="date" name="dob" id="birth" required>
                         </div>
 
                         <div class="half-field contact-no">
                             <p>Contact number</p>
+                            <input type="text" name = "contact_number" id="contact">
                             <span>+63</span>
-                            <input type="number" name = "contact_number">
+                            <span class="invalid" id="invalid-num">Invalid value</span>
+                            <span class="invalid" id="invalid-form">Invalid format</span>
                         </div>
 
                         <div class="half-field email">
                             <p>Email</p>
-                            <input type="email" name="email" id="">
+                            <input type="email" name="email" id="email">
+                            <span class="invalid" id="invalid-email">Invalid format</span>
                         </div>
 
                     </div>
@@ -89,13 +94,13 @@ $result = $conn->query($query);
                     </label>
                     
                     <p>Church name</p>
-                    <input type="text" name="church_name" id="">
+                    <input type="text" name="church_name" id="church-name" required>
 
                     <p>Church address</p>
-                    <input type="text" name="church_address" id="">
+                    <input type="text" name="church_address" id="church-address" required>
 
                     <p>Church district</p>
-                    <select name="church_district" id="">
+                    <select name="church_district" id="" required>
                         <option value="" selected disabled>Select District</option>
                         <option value="Agusan District">Agusan District</option>
                         <option value="Bukidnon">Bukidnon</option>
@@ -133,7 +138,7 @@ $result = $conn->query($query);
 
                     <input type="text" name="allergies" id="allergy" hidden>
 
-                    <button type="submit" name="submit" value="submit">Register</button>
+                    <button type="submit" name="submit" value="submit" id="submit" disabled>Register</button>
 
                     <a id="go-back" href="../../navigation/members-list.php">Go back</a>
                     

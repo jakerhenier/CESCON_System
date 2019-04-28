@@ -197,6 +197,11 @@ div#contact-field > input {
     width: 93%;
 }
 
+input[name=contact_number] {
+    width: 85%;
+    float: right;
+}
+
 div#contact-field > span {
     color: #555555;
     line-height: 1.5rem;
@@ -918,6 +923,18 @@ p#allergy-other {
 
 form > span {
     display: inline;
+}
+
+button[type=submit]:disabled {
+    background-color: #929292;
+    color: #ffffff;
+    cursor: default;
+}
+
+.invalid {
+    display: none;
+    margin-top: 0;
+    color: red;
 }
 
 /*
