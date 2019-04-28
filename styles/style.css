@@ -1,19 +1,43 @@
-html, body {
+html {
     font-family: 'Segoe UI', sans-serif;
     font-size: 100%;
     
-    width: 100%;
-    height: 100%;
+    height: fit-content;
+
+    color: #333333;
+}
+
+body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    background: rgb(199, 199, 199);
+    height: fit-content;
+    
+    display: grid;
+    align-content: center;
 
-    background-color: rgb(240, 240, 240); 
-    color: #333333;
+    position: relative;
 }
 
 * {
     box-sizing: border-box;
+}
+
+h2, h3, h4 {
+    border-left: .1em solid rgb(25, 146, 62);
+    padding: .5rem 0 .5rem 1rem;
+    margin: 0;
+}   
+
+h2 {
+    color: #555555;
+}
+
+h2 > img {
+    width: 2em;
+    margin-left: .5em;
+    vertical-align: middle;
 }
 
 a {
@@ -21,1375 +45,1232 @@ a {
     color: #333333;
 }
 
-button:hover {
-    cursor: pointer;
-}
-
-.content-box {
-    width: 100%;
-    height: 100%;
-
+div.content-container {
+    width: 900px;
     position: relative;
-}
-
-.top-menu {
-    display: none;
-
-    position: fixed;
-    z-index: 3;
-
-    width: 100%;
-    height: 50px;
-    /* padding: 0 .25rem; */
-    overflow: hidden;
-
-    background-color: #ffffff;
-    box-shadow: 0 0 .2rem .1rem rgba(0,0,0,.2);
-
-    transition: height .25s ease-out;
-}
-
-.top-menu-expanded {
-    height: 100%;
-
-    position: fixed;
-    z-index: 3;
-
-    width: 100%;
-    
-    /* padding: 0 .25rem; */
-    overflow: hidden;
-
-    background-color: #ffffff;
-    box-shadow: 0 0 .2rem .1rem rgba(0,0,0,.2);
-
-    transition: height .25s ease-in-out;
-}
-
-.top-init {
-    width: 100%;
-    height: 50px;
+    margin: auto;
+    padding: 5rem 0 3rem;
 
     display: flex;
-    flex-direction: row;
-
-    z-index: 5;
+    flex-direction: column;
 }
 
-.icon-box {
-    width: 50px;
-    height: 50px;
-    margin-right: .5rem;
+div.adding-fields {
+    width: 100%;
+    height: 100%;
 
     display: grid;
     align-content: center;
-    justify-content: center;
+
+    margin: auto;
+    padding: 2rem 0;
 }
 
-/* .context-box {
-    
-} */
-
-.menu-button {
-    position: absolute;
-    right: .25rem;
-
-    width: 50px;
-    height: 50px;
-
-    display: grid;
-
-    z-index: 10;
-}
-#menu-icon {
-    width: 2rem;
+div.floating-form {
+    width: 550px;
+    height: fit-content;
     align-self: center;
-    justify-self: center;
-}
-
-.top-actions {
-    width: 100%;
     position: relative;
 
-    padding: 1rem;
+    margin: auto;
+    padding: 2rem;
+
+
+    border-radius: .15rem;
+    box-shadow: 0 0 .5rem .1rem rgba(0, 0, 0, .2);
+    background: #FFFFFF;
 }
 
-p#username {
-    margin: 0;
+div.floating-form form p {
+    margin-top: 2rem;
+    margin-bottom: .25rem;
 }
 
-.logout-button {
-    text-decoration: none;
-    text-align: right;  
-    color: rgb(46, 131, 241);
-}
-
-.logout-button-box {   
-    position: absolute;
-    right: 1rem;
-}
-
-
-#top-logo {
-    height: 40px;
-}
-
-.page-label {
-    width: fit-content;
-    margin-top: .8rem;
-
-    font-weight: 700;
-}
-
-.top-menu-list {
-    width: 100%;
-    height: max-content;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    display: flex;
-    
-    /* position: relative; */
-}
-
-.menu-category {
-    width: 30%;
-    justify-self: center;
-}
-
-.top-menu-item {
+div.content-container > a {
     text-decoration: none;
     color: #333333;
 }
 
-.top-link-box {
-    width: 100%;
-    padding: 1rem;
-
+h2 {
     position: relative;
-
-    display: inline-block;
+    margin-bottom: 2rem;
 }
 
-.top-link-box:hover {
-    background-color: rgba(46, 131, 241, 0.5);
-}
-
-.top-link-box > p {
+h2 > a {
+    float: right;
     position: absolute;
-    left: 0;
-    width: 100%;
-    text-align: left;
+    bottom: .2rem;
+    right: 0;
 
-    padding-left: 5rem;
-    margin: .7rem;
+    font-size: 1rem;
+    font-weight: 400;
+
+    color: #FFFFFF;
+    padding: .5rem 1rem;
+    border-radius: 2rem;
+    background: rgb(25, 146, 62);
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-    outline: none;
+h2 a img {
+    width: 1.5rem;
+    vertical-align: middle;
+    margin-right: .25rem;
 }
 
-.login-box {
-    height: 100%;
-
-    display: grid;
-    justify-content: center;
-    align-content: center;
-}
-
-.input-form {
-    padding: 2rem;
-
-    background-color: #ffffff;
-    box-shadow: 0 0 .2rem .1rem rgba(0,0,0,.2);
-    border-radius: .5rem;
-
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-}
-
-#login {
-    width: 500px;
-    height: fit-content;
-    
-    justify-content: center;
-}
-
-#cescon-logo {
-    width: 175px;
-    height: 175px;
-
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1rem;
-}
-
-#login-prompt {
-    font-size: 1.25rem;
-    font-weight: bold;
-    text-align: center;
-
-    display: none;
-}
-
-.error-msg {
+div.list-item, p.list-item { /* For items on pages */
     width: 100%;
     padding: .75rem;
-    margin-bottom: 1rem;
+    background: rgb(230, 230, 230);
+    box-shadow: 0 .1rem .2rem .1rem rgba(0, 0, 0, .1);
 
-    background-color: rgb(255, 237, 160);
-
-    border-radius: .25rem;
     position: relative;
 
-    /* display: none; */
+    transition: all .07s linear;
 }
 
-#err-sign {
-    width: 2rem;
-    float: left;
+div.list-item:hover {
+    transform: scale(1.01);
+    background: #FFFFFF;
 }
 
-#err-txt {
+div.list-item p > img {
+    width: 1.5rem;
+    margin-right: .25rem;
+    vertical-align: middle;
+}
+
+/************************************
+--------- TEXT FIELDS SKIN
+************************************/
+
+form {
     width: 100%;
-    margin-top: .3rem;
-    margin-bottom: 0;
-
-    float: unset;
-
-    text-align: center;
+    overflow: hidden;
 }
 
-.form-fields {
+input[type=text],
+select,
+input[type=date],
+input[type=email],
+input[type=number],
+input[type=password] {
+    font-family: 'Segoe UI', sans-serif;
     width: 100%;
-    margin-top: 1rem;
-}
-
-.form-fields > form {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-}
-
-.form-fields > form > input[type=text], input[type=password] {
-    width: 100%;
-
-    padding: .5rem;
-    margin-bottom: 2rem;
+    padding: 0 .25rem .25rem;
+    line-height: 1.5rem;
+    outline: none;
 
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: .1rem solid rgb(212, 212, 212);
-    border-radius: .25rem;
-    background-color: rgba(0,0,0,0);
+    border-bottom: .1rem solid #CCCCCC;
 
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 1rem;
+    color: #666666;
+    background: none;
 }
 
-.form-fields > form > input:focus {
+textarea {
+    font-family: 'Segoe UI', sans-serif;
+    width: 100%;
+
+    margin-top: .5rem;
+    padding: .5rem;
+
+    border-top: 1px solid #CCCCCC;
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    border-bottom: .1rem solid #CCCCCC;
+
+    border-radius: .2rem;
     outline: none;
-    border-bottom: .1rem solid rgb(46, 131, 241);
+    resize: none;
 }
 
-.form-fields > form > button {
-    background-color: rgb(46, 131, 241);
-    color: #ffffff;
-    margin-top: 1rem;
-    padding: 1rem;
-    border: none;
-    border-radius: .25rem;
+div#contact-field {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
 
+div#contact-field > input {
+    float: right;
+    width: 93%;
+}
+
+div#contact-field > span {
+    color: #555555;
+    line-height: 1.5rem;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-bottom: .1rem solid rgb(25, 146, 62);
+}
+
+textarea:focus {
+    border-color: rgb(25, 146, 62);
+}
+
+button {
     font-family: 'Segoe UI', sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
+    margin: 2rem auto auto;
+    padding: .75rem 2rem;
+    background: rgb(25, 146, 62);
+    color: #FFFFFF;
+    float: right;
+
+    border: 0;
+    border-radius: 2rem;
 
     cursor: pointer;
-}
-
-button:focus {
-    outline: none;
-}
-
-/*-------------- EVENTS MANAGEMENT --------------*/
-
-#main-content {
-    display: flex;
-    flex-direction: row;
-}
-
-/*------- side menu */
-
-.side-menu {
-    width: 350px;
-    height: 100%;
-
-    position: relative;
-}
-
-.branding {
-    width: 100%;
-    padding: .5rem;
-    margin-bottom: 2rem;
-
-    position: relative;
-}
-
-#brand-logo {
-    width: 3rem;
-    float: left;
-}
-
-#brand-name {
-    width: 100%;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-    float: unset;
-
-    margin-top: .25rem;
-    margin-left: -2rem;
-    margin-bottom: 0;
-}
-
-.menu-list {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-}
-
-.menu-link {
-    text-decoration: none;
-    color: #333333;
-
-    font-size: 1.25rem;
-}
-
-.break {
-    content: '';
-    height: 1px;
-    background-color: rgba(0,0,0,.1);
-
-    margin: 1rem;
-}
-
-#item-icon {
-    margin-top: .25rem;
-    width: 2.25rem;
-}
-
-.menu-link p {
-    margin-top: .25rem;
-    margin-bottom: 0;
-
-    float: right;
-    text-align: justify;
-    padding-left: 6rem;
-    padding-top: .2rem;
-}
-
-.link-box {
-    padding: .25rem 2rem .25rem 1.5rem;
-    margin-left: 1rem;
-    border-radius: 1.75rem 0 0 1.75rem;
-}
-
-.event-menu-item:hover {
-    background-color: rgba(46, 131, 241, .2);
-}
-
-.affiliate-item:hover {
-    background-color: rgba(232, 77, 76, .2);
-}
-
-.branch-item:hover {
-    background-color: rgba(103,182,19,.2);
-}
-
-#active-item {
-    background-color: rgb(255, 255, 255);
-    /* border-left: .3rem solid rgb(46, 131, 241); */
-    /* color: rgb(46, 131, 241); */
-
-    padding: .5rem 2rem .5rem 1.5rem;
-    box-shadow: -.2rem 0 .1rem .05rem rgba(0,0,0,.2);
-    cursor: default;
-
     font-weight: 700;
 }
 
-/* .aff-active {
-    color: rgba(232, 77, 76, 1);
-} */
+p#staff-username::before {
+    content: '';
+    display: block;
 
-.bottom-items {
-    width: 100%;
+    height: 1px;
+    width: 95%;
+    margin: 3rem auto;
+    border-radius: 2px;
 
-    padding-left: .75rem;
-    padding-right: .5rem;
-    padding-bottom: .5rem;
-
-    position: absolute;
-    bottom: 0;
+    background: rgb(25, 146, 62);
 }
 
-#username-area {
+/* FOR SEARCH BAR */
+
+div.search-bar {
     width: 100%;
-    padding-bottom: 1rem;
-    margin: 0 0 .5rem;
-    border-bottom: 1px solid rgba(0,0,0,.2);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-weight: 600;
+    padding: 0 0 0 1rem;
+    margin-bottom: 1rem;    
+    background: #EEEEEE;
+    box-shadow: 0 .1rem .1rem .05rem rgba(0, 0, 0, .1);
+    border-radius: 1.25rem;
+
+    position: relative;
 }
 
-#input-toggle {
+div.search-bar form {
+    display: flex;
+    flex-direction: row;
+}
+
+div.search-bar input {
     border: none;
-    margin: 0;
     padding: 0;
-    background: rgba(0,0,0,0);
+    margin-top: 0;
+    width: 89%;
+}
 
+div.search-bar input:focus ~ span {
+    display: none;
+}
+
+div.search-bar span {
+    position: absolute;
+    pointer-events: none;
+
+    color: #777777;
+    top: .3rem;
+    left: 1rem;
+}
+
+div.search-bar button {
+    margin: 0;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+/***************************************
+-----------TABLE PROPERTIES
+***************************************/
+
+table {
+    width: 100%;
+    background: rgb(230, 230, 230);
+    border: none;
+    border-collapse: collapse;
+    box-shadow: 0 .2rem .3rem .1rem rgba(0, 0, 0, .05);
+}
+
+table tr:nth-child(odd) {
+    background: rgb(240, 240, 240);
+}
+
+table tr:hover {
+    background: rgba(25, 146, 62, .1);
+}
+   
+table tr td {
+    padding: 1rem;
+    border: none;
+}
+
+/* RESERVATION TABLE EXCLUSIVES */
+
+table#reservations tr td {
+    padding: .5rem 1rem;
+    border: none;
+}
+
+table#reservations tr td:first-child {
+    width: 80%;
+}
+
+table p {
+    margin: 0;
+}
+
+p#date-reserved {
+    font-size: .8rem;  
+}
+
+table#reservations a {
+    width: 100%;
+    padding: .5rem 2rem;
+    float: right;
+
+    border-radius: 2rem;
+
+    text-decoration: none;
+    text-align: center;
+    color: #FFFFFF;
+    background: rgb(25, 146, 62);
+    outline: none;
+
+    opacity: 0;
     cursor: pointer;
+}
+
+table#reservations tr:hover td a {
+    opacity: 1;
+}
+
+div.confirm-dialog {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, .5);
+
+    display: none; /*set display as grid*/
+    align-content: center;
+
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+div.confirm-box {
+    width: 300px;
+    height: fit-content;
+    margin: auto;
+    padding: 1rem;
+
+    border-radius: .2rem;
+    background-color: rgb(230, 230, 230);
+}
+
+div.confirm-box > p {
+    margin-top: 0;
+}
+
+div.confirm-box > div {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.confirm-box div button {
+    font-family: 'Segoe UI', sans-serif;
+    width: 49%;
+    border: 1px solid rgb(25, 146, 62);
+    padding: .5rem 1rem;
+    margin: 0;
+
+    border-radius: 1rem;
+
+    outline: none;
+    cursor: pointer;
+}
+
+div.confirm-box div button:first-child {
+    background: rgb(25, 146, 62);
+    color: #FFFFFF;
+}
+
+div.confirm-box div button:last-child {
+    background: none;
+    color: #333333;
+}
+
+
+/* SUCCESS PROMPT */
+
+p#success {
+    text-align: center;
+    font-size: 1.25rem;
+    margin-top: 0;
 
     display: none;
 }
 
-.bottom-items a {
-    position: relative;
-    right: 0;
+p#success > img {
+    width: 2rem;
+    margin-right: .5rem;
+    vertical-align: middle;
+}
 
+/***************************************
+-----------TOP BAR PROPERTIES
+***************************************/
+
+
+div.top-bar{
+    width: 100%;
+    position: fixed;
+    background: rgb(25, 146, 62);
+    color: #FFFFFF;
+
+    padding: .5rem 2rem;
+    z-index: 5;
+
+    box-shadow: 0 0 .3rem .1rem rgba(0, 0, 0, .2);
+}
+
+div.top-bar::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+div.label-box {
+    position: absolute;
+    margin: auto;
+    width: fit-content;
+    margin-left: 2.5rem;
+    /*max-width: 5rem;*/
+}
+
+p.page-label {
+    vertical-align: middle;
+    margin: 0;
+
+    line-height: 1.4rem;
+    font-size: 1.3rem;
+}
+
+div.top-bar input {
+    display: none;
+}
+
+/* FOR USER ACC MENU */
+
+label.account-menu {
+    float: right;
+    margin-right: 0;
+}
+
+div.menu-button {
+    width: 10px;
+    height: 10px;
+    margin: 7px 0;
+    background: url("../images/arrow.png");
+    background-size: cover;
+
+    float: right;
+
+    transition: all .25s linear;
+}
+
+label.account-menu input:checked ~ div.menu-button {
+    transform: rotateX(180deg);
+}
+
+
+div.menu {
+    position: absolute;
+    display: grid;
+    flex-direction: column;
+    background: #EEEEEE;
+    border-radius: .2rem;
+
+    top: 2.7rem;
+    right: 2rem;
+
+    max-height: 0px;
+    overflow: hidden;
+
+    transition: all .25s ease;
+}
+
+label.account-menu input:checked + div.menu {
+    max-height: 4rem;
+    padding: .25rem 0;
+    box-shadow: 0 0 .5rem .05rem rgba(0, 0, 0, .1);
+}
+
+div.menu a {
+    padding: .75rem 2.1rem;
     text-decoration: none;
     color: #333333;
 }
 
-.logout-box {
-    width: fit-content;
-    height: inherit;
-
-    float: right;
+div.menu a:hover {
+    background-color: rgba(0, 0, 0, .1);
 }
 
-.out-context {
-    float: left;
-
-    /* display: none; */
-
-    padding: .3rem .1rem;
-
-    color: rgb(46, 131, 241);
-}
-
-#action-icon {
-    width: 2rem;
-
-    float: left;
-}
-
-/*------- main content */
-
-.item-screen {
-    width: 81vw;
-    height: 100%;
-
-    padding: 3rem 0;
-
-    overflow-y: auto;
-    box-shadow: 0 0 .2rem .1rem rgba(0,0,0,.2);
-    background-color: #ffffff;
-}
-
-.detail-box {
-    width: 1000px;
-
-    margin: auto;
-}
-
-/*------- event management */
-
-.toolbar {
-    width: 100%;
-}
-
-.searchbar {
-    width: fit-content;
-    height: 3rem;
-    margin: 0 1rem 0 0;
-
-    border: 2px solid rgb(46, 131, 241);
-    /* box-shadow: 0 0 .2rem .05rem rgba(0,0,0,.2); */
-
-    border-radius: .5rem;
-    overflow: hidden;
-
-    position: relative;
-}
-
-.tool-icon {
-    width: 1.25rem;
-}
-
-#search {
-    margin: auto;
-    width: 500px;
-    height: inherit;
-    border: none;
-    background-color: rgba(0,0,0,0);
-    
-    top: -.25rem;
-    padding-left: 1rem;
-
-    font-family: 'Segoe UI', sans-serif;
+p.username {
+    display: inline;
+    vertical-align: middle;
     font-size: 1rem;
+    margin-right: .5rem;
+    border-radius: 2rem;
+    padding: .15rem 0 .25rem .5rem;
 
-    position: relative;
+    transition: all .1s ease;
 }
 
-#search-bt {
-    width: 50px;
-    height: inherit;
-    margin: 0;
-    border: none;
-    border-radius: 0 .5rem .5rem 0;
-    background-color: rgba(0,0,0,0);
-    color: #ffffff;
-
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 1rem;
-
-    cursor: pointer;
+/*label.account-menu:hover p.username,*/
+label.account-menu > input:checked ~ p.username {
+    color: rgb(25, 146, 62);
+    background: #FFFFFF;
+    padding-right: .5rem;
 }
 
-#add-button {
-    text-decoration: none;
-    color: #ffffff;
-    text-align: center;
-}
+/*--------------
+NAVIGATION MENU
+--------------*/
 
-.link-box-add {
-    width: 140px;
-    height: 3rem;
-    padding: 0 1rem;
-    /* border: 1px solid rgb(46, 131, 241); */
-    border-radius: .5rem;
-    background-color: rgb(46, 131, 241);
+/* hamburger icon look */
 
-    float: right;
-
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
-
+div.hamburger-menu {
     display: grid;
-    position: relative;
-
-    /* box-shadow: 0 .15rem .2rem .05rem rgba(0,0,0,.2); */
-}
-
-#add-icon {
+    align-self: auto;
     float: left;
-    align-self: center;
+    width: 25px;
+    height: 25px;
+    margin-top: 0;
+    cursor: pointer;
+
+    background: url("../images/hamburger.png");
+    background-size: cover;
+
+    transition: all .15s .15s ease;
 }
 
-.link-box-add span {
+label.navigation-menu input:checked ~ div.hamburger-menu {
+    background: url("../images/close.png");
+    background-size: cover;
+}
+
+/* hamburger menu look */
+
+div.navigation-items {
+    background: rgb(25, 146, 62);
     position: absolute;
+    border-radius: .2rem;
+    top: 2.3rem;
+    left: 2.7rem;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    max-height: 0;
+    max-width: 0;
+    overflow: hidden;
+    
+    z-index: 1;
+
+    transition: all .25s ease;
+}
+
+div.navigation-items a {
+    color: #FFFFFF;
+    padding: .75rem 0;
+
+    transition: padding .25s ease;
+}
+
+div.navigation-items a:hover {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+label.navigation-menu input:checked ~ div.navigation-items a {
+    padding-left: 2rem;
+    padding-right: 5rem;
+}
+
+label.navigation-menu input:checked ~ div.navigation-items {
+    padding: .25rem 0;
+    top: 2.7rem;
+    left: .2rem;
+    max-width: 190px;
+    max-height: 258px;
+    box-shadow: 0 .3rem 1rem .05rem rgba(0, 0, 0, .1);
+}
+
+/********************************
+----- LOGIN PAGE PROPERTIES
+********************************/
+
+div#login-form {
+    width: 500px;
+}
+
+div.floating-form img#logo {
+    width: 150px;
+    display: grid;
     align-self: center;
-    right: 1rem;
-    line-height: 1rem;
+    margin: 0 auto 1rem;
 }
 
-.item-list {
+p.prompt {
     width: 100%;
-    height: 100%;
-
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+    padding: .75rem;
 }
 
-.top-placeholder {
-    margin-bottom: .5rem;
-}
-
-.list-item {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1rem;
-
-    overflow-wrap: break-word;
-
-    background-color: #ffffff;
-    box-shadow: 0 0 .2rem .1rem rgba(0,0,0,.2);
-    border-radius: .5rem;
-}
-
-#edit-button {
-    float: right;
-
-    display: none;
-}
-
-/* .list-item:hover {
-    background-color: rgba(46, 131, 241, .1);
-} */
-
-.list-item:hover #edit-button,
-.list-item:hover #reg-link {
+p#error {
+    background: rgba(255, 97, 97, 0.5);
     display: block;
 }
 
-.edit-icon {
-    width: 1.15rem;
+p#reserve-success {
+    background: rgba(0, 166, 81, .5);
+    display: block;
 }
 
-#event-name {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: bold;
+div.floating-form p.prompt img {
+    float: left;
+    width: 1.5rem;
+    margin-right: .75rem;
 }
 
-.event-spec {
+div.floating-form a {
+    position: absolute;
+    bottom: 2rem;
+    color: #666666;
+}
+
+div.floating-form a:hover {
+    color: rgb(25, 146, 62);
+}
+
+/***********************************
+--- EVENT SELECT PAGE PROPERTIES
+***********************************/
+
+p.event-title {
     width: 100%;
-    display: flex;
-    flex-direction: row;
-
-    margin-top: 1rem;
-}
-
-.spec-item {
-    position: relative;
-    display: grid;
-    /* flex-direction: row; */
-
-    width: 50%;
-    margin-right: 2rem;
-
-    align-content: center;
-}
-
-.spec-item:last-child {
-    margin-right: 0;
-}
-
-#venue {
-    max-width: 72%;
-    overflow: hidden;
-}
-
-#venue > #spec-detail {
+    margin: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-#spec-img {
-    width: 1.25rem;
-    height: 1.25rem;
 
-    position: absolute;
+/***********************************
+ EVENT MANAGEMENT PAGE PROPERTIES
+***********************************/
+/*
+div.event-main {
+    width: 5rem;
+} */
+
+p#event-title {
+    font-size: 1.15rem;
+    margin: 0;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-#spec-detail {
-    margin-top: -.1rem;
-    margin-left: 1.5rem;
-    margin-bottom: .25rem;
-}
-
-#event-details {
+p#event-date {
+    font-size: .9rem;
     margin-bottom: 0;
 }
 
-.registration-strip {
-    width: 100%;
-    position: relative;
+/***********************************
+--- EVENT ADDING PAGE PROPERTIES
+***********************************/
 
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-
-    margin-top: 1.5rem;
-    color: rgb(46, 131, 241);
-    
-    font-weight: bold;
+div.event-add {
+    width: 600px;
+    margin: auto;
+    height: fit-content;
 }
 
-.registration-strip > #spec-detail {
-    margin-left: 1.75rem;
-}
+/***********************************
+-----BRANCHES PAGE PROPERTIES
+***********************************/
 
-#reg-link {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-
-    text-decoration: none;
-    color: rgb(46, 131, 241);
-    
-    font-size: .95rem;
-    font-weight: 400;
-
-    display: none;
-}
-
-#reg-link:hover {
-    text-decoration: underline;
-}
-
-/***************************************************************
-                    RESERVATION PROPERTIES
-***************************************************************/
-
-#reserve-list {
-    margin-top: 2rem;
-    border-bottom: none;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table tr:hover {
-    background-color: rgba(46, 131, 241, 0.2);
-}
-
-table td {
-    padding: .5rem;
-    /* border-bottom: 1px solid rgba(0,0,0,.2); */
-}
-
-/* table {
-    border-bottom: none;
-} */
-
-table td:first-child {
-    width: 87vw;
-}
-
-td > p {
+p#branch-name {
     margin: 0;
+    font-size: 1.15rem;
+
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-#reserve-event-name {
-    font-weight: 500;
+p#branch-location {
+    margin-bottom: 0;
+    font-size: .9rem;
 }
 
-#confirm-box {
-    width: fit-content;
-    background-color: rgb(46, 131, 241);
-    padding: .5rem 1rem;
-    color: #ffffff;
-    border-radius: .5rem;
+p#branch-est {
+    float: right;
+    margin-right: 2.5rem;
+    margin-bottom: 0;
+
+    transition: all .5s ease;
+}
+
+label.list-item input:checked ~ p#branch-est {
+    margin-right: .5rem;
+    margin-top: .25rem;
 }
 
 
-/***************************************************************
-                    MEMBERS PAGE PROPERTIES
-***************************************************************/
+/***********************************
+-----MEMBERS PAGE PROPERTIES
+***********************************/
 
-#member-placeholder {
+h2.church-affiliates {
+    margin-bottom: 3rem;
+}
+
+div.church-affiliates a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 1.5rem;
+
     margin-bottom: 1rem;
+    padding: 1rem 5rem;
+    position: relative;
+
+    width: 100%;
+    background: rgb(230, 230, 230);
+    box-shadow: 0 .1rem .2rem .1rem rgba(0, 0, 0, .1);
+    transition: all .07s linear;
 }
 
-#member-placeholder p {
-    margin: 0;
-    font-weight: 500;
+div.church-affiliates a:hover {
+    transform: scale(1.01);
+    background: #FFFFFF;
 }
 
-#member-details {
+div.church-affiliates a img {
+    width: 5rem;
+    margin-right: 15rem;
+
+    position: relative;
+    left: 0;
+    vertical-align: middle;
+}
+
+/*************************************
+------- MEMBERS ADD PROPERTIES
+*************************************/
+
+div.info-fields {
+    width: 600px;
+    margin: auto;
+    padding: 2rem;
+
+    position: relative;
+
+    background: #FFFFFF;
+
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+    border-radius: .15rem;
+    box-shadow: 0 0 .5rem .1rem rgba(0, 0, 0, .2);
 }
 
-#member-details > #spec-item {
-    width: 50%;
+div.info-fields > h3 {
+    margin: 0;
+    border-left: 2px solid rgb(25, 146, 62);
+    padding: .5rem 1rem;
+}
+
+div.info-fields p {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+p#allergies {
     margin-bottom: .5rem;
 }
 
-
-.aff-add-bt {
-    background-color: rgb(232, 77, 76);
-}
-
-.aff-search {
-    border: 2px solid rgb(232, 77, 76);
-}
-
-/***************************************************************
-                    STAFF PAGE PROPERTIES
-***************************************************************/
-
-#access-lvl {
-    float: right;
-    position: relative;
-}
-
-/***************************************************************
-                    BRANCH PAGE PROPERTIES
-***************************************************************/
-
-.branch-search {
-    border: 2px solid rgb(103, 182, 19);
-}
-
-.branch-add-bt {
-    background-color: rgb(103, 182, 19);
-}
-
-.bottom-details {
-    margin-top: 1rem;
-}
-
-#loc-img {
-    width: 1.25rem;
-    position: absolute;
-}
-
-#loc-detail {
-    margin: 0 0 0 1.75rem;
-    align-self: center;
-}
-
-/***************************************************************
-                    AUDIT PAGE PROPERTIES
-***************************************************************/
-
-#audit-summary {
-    margin-bottom: 2rem;
-}
-
-#summary-item {
-    color: rgb(46, 131, 241);
-    font-weight: 500;
-}
-
-#summary-item p {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-#total {
-    font-size: 3rem;
-    line-height: 3rem;
-}
-
-#member-placeholder p {
-    width: fit-content;
-}
-
-#event-total {
-    float: right;
-}
-
-.audit-spec {
-    margin-bottom: 0;
-}
-
-.audit-reg-count {
-    float: right;
-    width: fit-content;
-}
-
-/***************************************************************
-                    FORM PAGES PROPERTIES
-***************************************************************/
-
-.form-box {
-    width: 800px;
-    padding: 2rem;
-    margin: auto;
-
-    overflow-wrap: break-word;
-
-    background-color: #ffffff;
-    box-shadow: 0 0 .2rem .1rem rgba(0,0,0,.2);
-    border-radius: .5rem;
-
-    position: relative;
-}
-
-.form-box > form {
+div.half-field-box {
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.field-box {
+div.half-field {
+    display: inline-block;
+    justify-content: space-between;
     width: 49%;
 }
 
-.form-box p {
-    margin-bottom: 0;
+div.contact-no {
+    width: 40%;
 }
 
-.form-box input[type=text],
-.form-box input[type=date],
-.form-box input[type=password],
-.form-box textarea,
-.form-box select,
-.form-box input[type=email] {
-    border: none;
-    border-bottom: .1rem solid rgb(212, 212, 212);
-    border-radius: .25rem;
-    padding: .5rem .75rem;
-    width: 100%;
-    
-    font-size: 100%;
-    color: #666666;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+div.floating-form span {
+    font-size: .85rem;
 }
 
+div.email {
+    width: 58%;
+}
+/*
+input[type=text],
+select,
 input[type=date] {
-    font-size: 100%;
-}
-
-input[type=date]::-webkit-calendar-picker-indicator,
-input[type=date]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    display: none;
-}
-
-textarea {
-    resize: none;
+    font-family: 'Segoe UI', sans-serif;
     width: 100%;
-    height: 10rem;
-    white-space: pre-wrap;
+    padding: 0 .25rem .25rem;
+    line-height: 1.5rem;
+
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: .1rem solid #CCCCCC;
+
+    color: #666666;
+} */
+
+select {
+    font-family: 'Segoe UI', sans-serif;
+    padding: .36rem;
 }
 
-.form-box input:focus,
-textarea:focus,
+select[name=sex] option {
+    border: 1px solid rgb(25, 146, 62);
+}
+
+div.info-fields span {
+    line-height: 1.4rem;
+    font-size: .8rem;
+    color: #999999;
+}
+
+input[name=contact-number] {
+    font-family: 'Segoe UI', sans-serif;
+    width: 85%;
+    float: right;
+}
+
+input:focus,
 select:focus {
-    border-bottom: .1rem solid rgb(46, 131, 241);
+    border-bottom: .1rem solid rgb(25, 146, 62);
 }
 
-.full-width {
-    width: 100%;
+label {
+    margin-right: 2rem;
+    cursor: pointer;
+
+    font-size: .85rem;
 }
 
-h2 {
-    margin-top: 0;
-    color: rgb(46, 131, 241);
-}
-
-#aff-head {
-    color: rgb(232, 77, 76);
-}
-
-#branch-head {
-    color: rgb(103, 182, 19);
-}
-
-.form-box button[type=submit] {
-    border: none;
-    border-radius: .25rem;
-    background-color: rgb(46, 131, 241);
-    margin-top: 1rem;
-    position: relative;
-    padding: .75rem 2rem;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 100%;
-    line-height: 100%;
-    text-align: right;
-    text-transform: capitalize;
-}
-
-.form-box button[type=submit]:disabled {
-    background-color: #aaaaaa;
-}
-
-#aff-field:focus {
-    border-bottom: .1rem solid rgb(232, 77, 76);
-}
-
-#branch-field:focus {
-    border-bottom: .1rem solid rgb(103, 182, 19);
-}
-
-#aff-bt {
-    background-color: rgb(232, 77, 76); 
-}
-
-#branch-bt {
-    background-color: rgb(103, 182, 19);
-}
-
-.max-width {
-    width: 100%;
+div.info-fields label:nth-child(1) {
+    margin-left: 5rem;
 }
 
 input[type=checkbox] {
     display: none;
 }
 
-.allergy-sec {
-    padding: .25rem 0;
+span.check {
+    width: 1rem;
+    height: 1rem;
+    top: -.1rem;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: .25rem;
+    border: .1rem solid rgb(25, 146, 62);
 }
 
-.allergy-sec p {
-    margin-bottom: .5rem;
+input[type=checkbox]:checked + span.check {
+    background-image: url("../images/success.png");
+    background-size: cover;
 }
 
-label {
-    margin-right: 6rem;
+p#allergy-other {
+    font-size: .85rem;
+    margin: .5rem 0 0;
 }
 
-.check {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 50%;
-    border: 2px solid rgb(232, 77, 76);
-    position: absolute;
-    margin-top: .15rem;
+form > span {
+    display: inline;
 }
 
-input[type=checkbox]:checked + .check {
-    background-color: rgb(232, 77, 76);
-}
+/*
+button[type=submit] {
+    position: relative;
+    float: right;
+    background: rgb(25, 146, 62);
+    padding: 1rem 5rem;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 2rem;
+    margin-top: 2rem;
+    color: #FFFFFF;
+    cursor: pointer;
+} */
 
-.cancel-bt {
-    position: absolute;
-    padding: .5rem 1.49rem;
-    border-radius: .25rem;
-    left: 8.75rem;
-    bottom: 2rem;
-}
+/*
 
-#branch-cancel {
-    border: 1px solid rgb(103, 182, 19);
-    color: rgb(103, 182, 19);
-}
-
-#aff-cancel {
-    border: 1px solid rgb(232, 77, 76);
-    color: rgb(232, 77, 76);
-}
-
-#event-cancel {
-    border: 1px solid rgb(46, 131, 241);
-    color: rgb(46, 131, 241);
-}
-
-.delete-bt {
-    text-transform: capitalize;
+a#go-back {
     position: absolute;
     bottom: 2rem;
-    right: 2rem;
+
+    text-decoration: none;
     color: #777777;
 }
 
-.delete-bt:hover {
-    text-decoration: underline;
+a#go-back:hover {
+    color: rgb(25, 146, 62);
+} */
+
+/************************************
+------BRANCHES LIST PROPERTIES
+************************************/
+
+div#branch-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: all .5s ease;
+    position: relative;
 }
 
-#form-break {
-    width: 100%;
-    height: .1rem;
-    margin: 3rem 1rem;
-    background-color: rgba(0, 0, 0, 0.1);
+label.list-item input:checked ~ div#branch-details {
+    margin: .5rem 0;
+    max-height: 15rem;
+    overflow-y: auto;
 }
 
-/***************************************************************
-                    DARK MODE PROPERTIES
-***************************************************************/
+/************************************
+------MEMBERS LIST PROPERTIES
+************************************/
 
-.darkMode-item {
+label.list-item {
+    margin-right: 0;
+    margin-bottom: .25rem;
+}
+
+label.list-item > div.list-item:hover {
+    transform: none;
+    background: rgb(230, 230, 230);
+}
+
+p.name {
+    margin: 0;
+    font-size: 1.25rem;
+
+    transition: all .15s .15s ease;
+}
+
+p.name > img {
+    width: 1.5rem;
+    float: right;
+    vertical-align: middle;
+    transform: rotate(-90deg);
+
+    transition: all .3s .2s ease;
+}
+
+div.expanded-details {
+    position: relative;
+    max-height: 0;
+    overflow: hidden;
+
+    transition: all .5s ease;
+}
+
+label.list-item input:checked ~ p {
+    color: rgb(25, 146, 62);
+}
+
+label.list-item input:checked ~ p.name > img {
+    transform: rotate(180deg);
+}
+
+label.list-item input:checked ~ div.expanded-details {
+    max-height: 22rem;
+}
+
+div.options {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-height: 5rem;
+    overflow: hidden;
+}
+
+div#event-option {
+    bottom: 1rem;
+    right: 6px;
+}
+
+div.options a {
+    color: #777777;
+    margin-right: 10px;
+
+    font-weight: 600;
+}
+
+div.options a:hover {
+    color: rgb(25, 146, 62);
+}
+
+div#out-opt {
+    bottom: 1rem;
+    right: 1rem;
+}
+
+/************************************
+------ STAFF LIST PROPERTIES
+************************************/
+
+p.list-item {
+    margin: 0 0 .3rem 0;
+    position: relative;
+    padding-top: .65rem;
+    padding-bottom: .65rem;
+}
+
+span.last-name {
+    font-weight: bold;
+}
+
+span.last-name,
+span.first-name {
+    font-size: 1.25rem;
+}
+
+span.contact-number::before {
+    content: '';
+    display: block;
+    height: .5rem;
     width: 100%;
-    padding: 1rem;
+}
+
+span.contact-number {
+    font-size: .9rem;
+}
+
+span.contact-number img {
+    width: 1.5rem;
+    vertical-align: middle;
+}
+
+
+/************************************
+------ USER FEED PROPERTIES
+************************************/
+
+h3#feed-header {
+    width: 100%;
+    border: 0;
+    padding: 1rem 5rem;
+    margin: 0;
+
+    position: fixed;
+    z-index: 99;
+
+    background: rgb(25, 146, 62);
+    box-shadow: 0 .1rem .1rem .05rem rgba(0, 0, 0, .1); 
+    color: white;
+}
+
+h3#feed-header > img {
+    width: 3em;
+    margin-right: .5rem;
+    vertical-align: middle;
+}
+
+h3#feed-header > span {
+    float: right;
+    line-height: 2.5em;
+}
+
+div#member-feed {
+    padding-top: 7rem;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+div#member-feed > a {
+    width: fit-content;
+    height: fit-content;
     margin-bottom: 1rem;
+}
 
-    overflow-wrap: break-word;
+div#feed-item {
+    width: 440px;
+    height: 300px;
+    padding: 1rem;
+    overflow: hidden;
+    margin-bottom: .5rem;
+    outline: none;
 
-    background-color: #333333;
-    box-shadow: 0 0 .2rem .1rem rgba(0,0,0,.2);
-    border-radius: .5rem;
+    background: rgb(252, 252, 252);
+    box-shadow: 0 .1rem .1rem .05rem rgba(0, 0, 0, .1);
 }
 
 
-
-/* Repsonsive design breakpoints */
-
-@media screen and (max-width: 1420px) {
-    .side-menu {
-        width: 300px;
-    }
-
-    .link-box {
-        padding: .25rem 1.5rem .25rem 1rem;
-    }
-
-    #active-item {
-        padding-left: 1rem;
-        padding-right: 1.5rem;
-    }
-
-    .link-box {
-        margin-left: .5rem;
-    }
-
-    .link-box > p {
-        padding-left: 0;
-    }
-
+div#feed-item:hover {
+    transform: none;
 }
 
-@media screen and (max-width: 1320px) {
-    .item-screen {
-        padding: 1rem;
+h2#title {
+    margin: 0;
+    line-height: 1.75rem;
 
-        overflow-x: hidden;
-    }
+    border: none;
+    padding: 0;
+    color: rgb(25, 146, 62);
 
-    .detail-box {
-        width: 100%;
-    }
-
-    .bottom-items p {
-        width: 200px;
-    }
-
-    .event-spec {
-        flex-direction: column;
-    }
-
-    .spec-item {
-        width: 100%;
-        margin-bottom: .25rem;
-    }
-
-    #venue {
-        max-width: 100%;
-    }
+    max-height: 7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-line;
 }
 
-@media screen and (max-width: 1200px) {
-    #login {
-        width: 500px;
-    }
+p#date,
+p#location {
+    font-size: .9rem;
 
-    #search {
-        width: 400px;
-    }
-
-    #member-details > #spec-item {
-        width: 100%;
-    }
-
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-@media screen and (max-width: 960px) {
-    #search {
-        width: 250px;
-    }
-
-    .bottom-items p {
-        width: 175px;
-    }
+p#date {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 1rem;
 }
 
-@media screen and (max-width: 768px) {
-    .top-menu {
-        display: block;
-    }
+p#location {
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
 
-    /* .top-link-box {
-        padding: .5rem 1rem;
-
-        display: grid;
-        align-content: center;
-    }
-
-    #item-icon {
-        margin-top: 0;
-        width: 1.75rem;
-
-        float: left;
-    }
-
-    .top-link-box > p {
-        font-size: 1rem;
-        margin: 0;
-
-        align-self: center;
-        justify-self: center;
-    }
-
-    .break {
-        margin: .5rem 1rem;
-    } */
-
-    .side-menu {
-        display: none;
-    }
-
-    .item-screen {
-        width: 100%;
-        padding-top: 65px;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-
-    #search {
-        width: 55vw;
-    }
-
-    .item-list {
-        margin-top: 1rem;
-    }
-
-    #edit-button {
-        display: block;
-    }
+    max-width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-@media screen and (max-width: 600px) {
-    body {
-        overflow-y: auto;
-    }
+/************************************
+------EVENT DETAILS PROPERTIES
+************************************/
 
-    .login-box {
-        display: block;
-    }
+div.event-details {
+    width: inherit;
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: .2rem;
+    box-shadow: 0 .1rem .1rem .05rem rgba(0, 0, 0, .1);
+    background: rgb(240, 240, 240);
 
-    #login {
-        width: 100%;
-        height: 100%;
-
-        border-radius: 0;
-    }
-
-    .error-msg {
-        margin-left: auto;
-        margin-right: auto;
-        width: 400px;
-    }
-
-    .form-fields {
-        margin-left: auto;
-        margin-right: auto;
-        width: 400px;
-    }
-
-    .top-link-box {
-        padding: 1rem;
-
-        display: grid;
-        align-content: center;
-    }
-
-    .top-menu-list {
-        flex-direction: column;
-    }
-
-    .menu-category {
-        width: fit-content;
-    }
-
-    #item-icon {
-        margin-top: 0;
-        /* width: 1.75rem; */
-
-        float: left;
-    }
-
-    .top-link-box > p {
-        font-size: 1rem;
-        margin: 0;
-
-        align-self: center;
-        /* justify-self: center; */
-        text-align: left;
-    }
-
-    .break {
-        margin: .5rem 1rem;
-    }
-
-    .item-screen {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .toolbar {
-        padding-left: .5rem;
-        padding-right: .5rem;
-    }
-
-    .link-box-add {
-        width: 50px;
-        padding: 0;
-    }
-
-    #add-icon {
-        justify-self: center;
-    }
-
-    .link-box-add span {
-        display: none;
-    }
-
-    .list-item {
-        margin-bottom: 3px;
-
-        border-radius: 0;
-        box-shadow: none;
-
-        /* border-top: 1px solid rgba(0,0,0,.2); */
-        border-bottom: 1px solid rgba(0,0,0,.2);
-
-        padding: .5rem;
-    }
-
-    .edit-icon, #reg-link {
-        display: block;
-    }
+    position: relative;
 }
 
-@media screen and (max-width: 460px) {
-    #cescon-logo {
-        width: 150px;
-        height: 150px;
-    }
+div.content-container h1 {
+    margin-top: 0;
+    color: rgb(25, 146, 62);
+}
 
-    #login-prompt {
-        font-size: 1.25rem;
-    }
+p.detail-main {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
 
-    .error-msg {
-        width: 100%;
+p.detail-main img {
+    width: 2rem;
+    margin-right: .5rem;
+    vertical-align: middle;
+}
 
-        padding: .5rem;
-    }
+div.event-buttons {
+    margin-top: 3rem;
+}
 
-    #err-sign {
-        width: 1.5rem;
-    }
+a#return-button {
+    position: absolute;
 
-    #err-txt {
-        margin-top: 0;
-    }
+    right: 2rem;
+    bottom: 2rem;
+}
 
-    .form-fields {
-        width: 100%;
-    }
+a#return-button:hover {
+    color: rgb(25, 146, 62);
+}
 
-    .form-fields > form > button {
-        padding: .75rem;
-    }
-} 
+a#reserve-button {
+    padding: .5rem 1.75rem;
+    margin-top: 2rem;
 
-@media screen and (max-width: 400px) {
-    .top-link-box {
-        padding: .5rem 1rem;
-    }
+    color: #FFFFFF;
+    background: rgb(25, 146, 62);
+    border-radius: 2rem;
+}
+
+/************************************
+----MEMBER RESERVATION PROPERTIES
+************************************/
+
+div#member-reserve {
+    margin-top: 7rem;
+}
+
+/************************************
+--------AUDIT PAGE PROPERTIES
+************************************/
+
+h2.audit {
+    
+}
+
+h3.audit {
+    border: none;
+    padding: 0;
+    margin-bottom: .75rem;
+}
+
+h3.audit span {
+    float: right;
+}
+
+div#audit p {
+    font-size: 1rem;
+}
+
+div#audit p:last-child {
+    margin-bottom: 0;
+}
+
+div#audit span {
+    float: right;
 }
