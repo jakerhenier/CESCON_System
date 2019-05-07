@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require_once('../../includes/config/session.php');
 
 $staffData = '';
 
@@ -36,6 +37,7 @@ else {
                 <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
 
                 <div class="menu">
+                    <?php echo '<a href="../forms/edit/password-change.php?edit='.$staffData[0]['staff_number'].'">Change password</a>' ?>
                     <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 

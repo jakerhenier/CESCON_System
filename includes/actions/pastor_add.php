@@ -1,13 +1,13 @@
 <?php 
 require_once('../config/db.php');
-require_once('../function/pastor_validation.php');
+require_once('../function/form_validation.php');
 
 if (isset($_POST['submit'])) {
     $last_name = $_POST['last_name'];
     $first_name = $_POST['first_name'];
     $contact_number = $_POST['contact_number'];
 
-    if(validate_number($contact_number)) {
+    if(true) {
         $query = "INSERT INTO pastor (last_name, first_name, contact_number) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('sss', $last_name, $first_name, $contact_number);

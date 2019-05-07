@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    require_once('../../../includes/config/session.php');
+?>
+
 <!DOCTYPE html>
 <meta lang="utf-8">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
@@ -14,6 +19,17 @@
             <div class = "floating-form">
 
                 <h3>Add event registrant's information</h3>
+
+                <?php 
+                    if (isset($_SESSION['reg_msg'])) {
+                        foreach($_SESSION['reg_msg'] as $errors) {
+                            echo   '<div id = "val-err">
+                                        <p>'. $errors .'</p>
+                                    </div>';
+                        }
+                        unset($_SESSION['reg_msg']);
+                    }
+                ?>
 
                 <form action = "">
 

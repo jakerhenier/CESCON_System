@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require_once('../../../includes/config/session.php');
 
 $staffData = array();
 
@@ -31,18 +32,34 @@ if ($staffData[0]['access_level'] == 0) {
 
                 <h3>Add new staff's information</h3>
 
+                <?php 
+                    if (isset($_SESSION['reg_msg'])) {
+                        foreach($_SESSION['reg_msg'] as $errors) {
+                            echo   '<div id = "val-err">
+                                        <p>'. $errors .'</p>
+                                    </div>';
+                        }
+                        unset($_SESSION['reg_msg']);
+                    }
+                ?>
+
                 <form action = "../../../includes/actions/staff_add.php" method="POST">
 
                     <p>First name</p>
-                    <input type = "text" name = "first_name" required>
+                    <input type = "text" name = "first_name" id="first-name" required autofocus>
+                    <span class="invalid" id="invalid-fn">Invalid value</span>
 
                     <p>Last name</p>
-                    <input type = "text" name = "last_name" required>
+                    <input type = "text" name = "last_name" id="last-name" required>
+                    <span class="invalid" id="invalid-ln">Invalid value</span>
 
                     <p>Contact number</p>
                     <div id = "contact-field">
-                        <input type = "number" min=0 name = "contact_number" required>
+                        <input type = "number" min=0 name = "contact_number" id="contact" required>
                         <span>+63</span>
+
+                        <span class="invalid" id="invalid-num">Invalid value</span>
+                        <span class="invalid" id="invalid-form">Invalid format</span>
                     </div>
 
                     <p>Branch</p>
@@ -86,7 +103,7 @@ if ($staffData[0]['access_level'] == 0) {
                     <!-- <p>Confirm password</p>
                     <input type = "password" name = "password-confirm"> -->
 
-                    <button type = "submit" name="submit" value="submit">Add</button>
+                    <button type = "submit" name="submit" id="submit" value="submit">Add</button>
                     <a href = "../../navigation/staffs-list.php">Go back</a>
 
                 </form>
@@ -94,6 +111,8 @@ if ($staffData[0]['access_level'] == 0) {
             </div>
 
         </div>
+
+        <script src="../../../scripts/main.js"></script>
 
     </body>
 </html>

@@ -1,5 +1,6 @@
 <?php 
 require_once('../../../includes/config/db.php');
+require_once('../../../includes/config/session.php');
 
 $member_id = '';
 $first_name = '';
@@ -110,6 +111,17 @@ if (isset($_GET['edit'])) {
 
                 <h3>Edit member's information</h3>
 
+                <?php 
+                    if (isset($_SESSION['reg_msg'])) {
+                        foreach($_SESSION['reg_msg'] as $errors) {
+                            echo   '<div>
+                                        <p>'. $errors .'</p>
+                                    </div>';
+                        }
+                        unset($_SESSION['reg_msg']);
+                    }
+                ?>
+
                 <form action="../../../includes/actions/member_edit.php" method="POST">
 
                     <p>First name</p>
@@ -118,13 +130,14 @@ if (isset($_GET['edit'])) {
 
                     <p>Last name</p>
                     <input type="text" name = "last_name" id="last-name" value="<?php echo $last_name ?>" required>
+                    <span class="invalid" id="invalid-ln">Invalid value</span>
 
                     <div class="half-field-box">
 
                         <div class="half-field">
                             <p>Sex</p>
                             <select name="sex" required>
-                                <option value="<?php echo $sex; ?>" selected disabled><?php echo $sex; ?></option>
+                                <option value="<?php echo $sex; ?>" selected><?php echo $sex; ?></option>
                                 <?php 
                                 foreach ($newArr1 as $list) {
                                     echo '<option value="'.$list.'">'.$list.'</option>';
@@ -133,7 +146,7 @@ if (isset($_GET['edit'])) {
                             </select>
                         </div>
 
-                        <div class="half-field">
+                        <div class="half-field contact-no">
                             <p>Date of birth</p>
                             <input type="date" name="dob" value="<?php echo $dob ?>" id="" required>
                         </div>
@@ -141,12 +154,15 @@ if (isset($_GET['edit'])) {
                         <div class="half-field contact-no">
                             <p>Contact number</p>
                             <span>+63</span>
-                            <input type="number" name = "contact_number" value="<?php echo $contact_number ?>" >
+                            <input type="number" name = "contact_number" id="contact" value="<?php echo $contact_number ?>" >
+                            <span class="invalid" id="invalid-num">Invalid value</span>
+                            <span class="invalid" id="invalid-form">Invalid format</span>
                         </div>
 
                         <div class="half-field email">
                             <p>Email</p>
-                            <input type="email" name="email" value="<?php echo $email ?>" id="">
+                            <input type="email" name="email" id="email" value="<?php echo $email ?>" id="">
+                            <span class="invalid" id="invalid-email">Invalid format</span>
                         </div>
 
                     </div>
@@ -219,7 +235,7 @@ if (isset($_GET['edit'])) {
 
                     <input type="text" name="allergies" id="allergy" hidden>
 
-                    <button type="submit" name="submit" value="<?php echo $member_id ?>">Save Changes</button>
+                    <button type="submit" name="submit" id="submit" value="<?php echo $member_id ?>">Save Changes</button>
 
                     <a id="go-back" href="../../navigation/members-list.php">Go back</a>
                     
@@ -229,6 +245,7 @@ if (isset($_GET['edit'])) {
 
         </div>
         <script src="../../../scripts/jquery.js"></script>
+        <script src="../../../scripts/main.js"></script>
         <script>
             $(document).ready(function () {
                 var allergies = '';

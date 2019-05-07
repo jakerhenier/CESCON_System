@@ -1,5 +1,6 @@
 <?php 
 session_start();
+// require_once('includ­es/config/­session.php');
 
 if (isset($_SESSION['staff_session'])) {
     header('location: staff_management/navigation/index.php');

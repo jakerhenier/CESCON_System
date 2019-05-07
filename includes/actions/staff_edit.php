@@ -1,7 +1,7 @@
 <?php 
 require_once('../config/db.php');
 require_once('../function/crypt.php');
-require_once('../function/staff_validation_edit.php');
+require_once('../function/form_validation.php');
 
 if (isset($_POST['submit'])) {
     $pastor_number = $_POST['submit'];
@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $password = encrypt_decrypt($_POST['password'], "encrypt");
     $access_level = $_POST['access_level'];
 
-    if(validate_number($contact_number)) {
+    if(true) {
         $query = "UPDATE staff SET last_name = ?, first_name = ?, contact_number = ?, username = ?, password = ?, access_level = ? WHERE staff_number = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('sssssii', $last_name, $first_name, $contact_number, $username, $password, $access_level, $pastor_number);

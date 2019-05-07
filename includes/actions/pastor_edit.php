@@ -1,7 +1,7 @@
 <?php 
 session_start();
 require_once('../config/db.php');
-require_once('../function/pastor_validation_edit.php');
+require_once('../function/form_validation.php');
 
 $staffData = array();
 if (isset($_SESSION['staff_session'])) {
@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     $first_name = $_POST['first_name'];
     $contact_number = $_POST['contact_number'];
 
-    if(validate_number($contact_number)) {
+    if(true) {
         $query = "UPDATE pastor SET last_name = ?, first_name = ?, contact_number = ? WHERE pastor_number = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('sssi', $last_name, $first_name, $contact_number, $pastor_number);
@@ -24,7 +24,8 @@ if (isset($_POST['submit'])) {
                 header('location: ../../staff_management/navigation/pastors-list.php');
             }
             else {
-                echo $conn->error . '<br>' . $up_query;
+                // echo $conn->error . '<br>' . $up_query;
+                echo $stmt->error;
             }
         }
     }

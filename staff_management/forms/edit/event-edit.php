@@ -1,5 +1,6 @@
 <?php
 require_once('../../../includes/config/db.php');
+require_once('../../../includes/config/session.php');
 
 $event_id = '';
 $title = '';
@@ -44,6 +45,17 @@ if (isset($_GET['edit'])) {
             <div class = "floating-form">
 
                 <h3>Edit event information</h3>
+
+                <?php 
+                    if (isset($_SESSION['reg_msg'])) {
+                        foreach($_SESSION['reg_msg'] as $errors) {
+                            echo   '<div id = "val-err">
+                                        <p>'. $errors .'</p>
+                                    </div>';
+                        }
+                        unset($_SESSION['reg_msg']);
+                    }
+                ?>
 
                 <form action="../../../includes/actions/event_edit.php" method = "POST">
 

@@ -1,5 +1,6 @@
 <?php 
 require_once('../../../includes/config/db.php');
+require_once('../../../includes/config/session.php');
 
 $pastor_number = '';
 $first_name = '';
@@ -41,21 +42,37 @@ if (isset($_GET['edit'])) {
 
                 <h3>Edit pastor's information</h3>
 
+                <?php 
+                    if (isset($_SESSION['reg_msg'])) {
+                        foreach($_SESSION['reg_msg'] as $errors) {
+                            echo   '<div id = "val-err">
+                                        <p>'. $errors .'</p>
+                                    </div>';
+                        }
+                        unset($_SESSION['reg_msg']);
+                    }
+                ?>
+
                 <form action = "../../../includes/actions/pastor_edit.php" method="POST">
 
                     <p>First name</p>
-                    <input type = "text" name = "first_name" value="<?php echo $first_name ?>" required autofocus>
+                    <input type = "text" name = "first_name" id="first-name" value="<?php echo $first_name ?>" required autofocus>
+                    <span class="invalid" id="invalid-fn">Invalid value</span>
 
                     <p>Last name</p>
-                    <input type = "text" name = "last_name" value="<?php echo $last_name ?>" required>
+                    <input type = "text" name = "last_name" id="last-name" value="<?php echo $last_name ?>" required>
+                    <span class="invalid" id="invalid-ln">Invalid value</span>
 
                     <p>Contact number</p>
                     <div id = "contact-field">
-                        <input type = "number" min=0 name = "contact_number" value="<?php echo $contact_number ?>">
+                        <input type = "number" min=0 name = "contact_number" id="contact" value="<?php echo $contact_number ?>">
                         <span>+63</span>
+
+                        <span class="invalid" id="invalid-num">Invalid value</span>
+                        <span class="invalid" id="invalid-form">Invalid format</span>
                     </div>
 
-                    <button type = "submit" name="submit" value="<?php echo $pastor_number   ?>">Save</button>
+                    <button type = "submit" name="submit" id="submit" value="<?php echo $pastor_number   ?>">Save</button>
                     <a href = "../../navigation/pastors-list.php">Go back</a>
 
                 </form>
@@ -63,6 +80,8 @@ if (isset($_GET['edit'])) {
             </div>
 
         </div>
+
+        <script src="../../../scripts/main.js"></script>
 
     </body>
 </html>

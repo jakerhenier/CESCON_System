@@ -2,6 +2,7 @@
 session_start();
 require_once('../../../includes/config/db.php');
 require_once('../../../includes/function/crypt.php');
+require_once('../../../includes/config/session.php');
 
 function getAccessLevel($access_level) {
     $keypair = array(
@@ -71,28 +72,44 @@ if (isset($_GET['edit'])) {
 
                 <h3>Edit staff information</h3>
 
+                <?php 
+                    if (isset($_SESSION['reg_msg'])) {
+                        foreach($_SESSION['reg_msg'] as $errors) {
+                            echo   '<div>
+                                        <p>'. $errors .'</p>
+                                    </div>';
+                        }
+                        unset($_SESSION['reg_msg']);
+                    }
+                ?>
+
                 <form action = "../../../includes/actions/staff_edit.php" method="POST">
 
                     <p>First name</p>
-                    <input type = "text" name = "first_name" value="<?php echo $first_name ?>" required>
+                    <input type = "text" name = "first_name" id="first-name" value="<?php echo $first_name ?>" required>
+                    <span class="invalid" id="invalid-fn">Invalid value</span>
 
                     <p>Last name</p>
-                    <input type = "text" name = "last_name" value="<?php echo $last_name ?>" required>
+                    <input type = "text" name = "last_name" id="last-name" value="<?php echo $last_name ?>" required>
+                    <span class="invalid" id="invalid-ln">Invalid value</span>
 
                     <p>Contact number</p>
                     <div id = "contact-field">
-                        <input type = "number" min=0 name = "contact_number" value="<?php echo $contact_number ?>" required>
+                        <input type = "number" min=0 name = "contact_number" id="contact" value="<?php echo $contact_number ?>" required>
                         <span>+63</span>
+
+                        <span class="invalid" id="invalid-num">Invalid value</span>
+                        <span class="invalid" id="invalid-form">Invalid format</span>
                     </div>
 
                     <p id = "staff-username">Username</p>
-                    <input type = "text" name = "username" value="<?php echo $username ?>" required>
+                    <input type = "text" name = "username" value="<?php echo $username ?>" disabled required>
 
                     <p>Password</p>
-                    <input type = "text" name = "password" value="<?php echo encrypt_decrypt($password, "decrypt"); ?>" required>
+                    <input type = "password" name = "password" value="<?php echo encrypt_decrypt($password, "decrypt"); ?>" disabled required>
 
                     <p>Access Level</p>
-                    <select name="access_level" required>
+                    <select name="access_level" disabled required>
                         <option value="<?php echo $access_level ?>" selected><?php echo getAccessLevel($access_level) ?></option>
                     <?php 
                     if ($access_level == 0) { 
@@ -107,7 +124,7 @@ if (isset($_GET['edit'])) {
                     <!-- <p>Confirm password</p>
                     <input type = "password" name = "password-confirm"> -->
 
-                    <button type = "submit" name="submit" value="<?php echo $staff_number ?>">Save changes</button>
+                    <button type = "submit" name="submit" id="submit" value="<?php echo $staff_number ?>">Save changes</button>
                     <a href = "../../navigation/staffs-list.php">Go back</a>
 
                 </form>
@@ -115,6 +132,8 @@ if (isset($_GET['edit'])) {
             </div>
 
         </div>
+
+        <script src="../../../scripts/main.js"></script>
 
     </body>
 </html>

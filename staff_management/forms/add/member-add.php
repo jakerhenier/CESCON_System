@@ -1,5 +1,6 @@
 <?php 
 require_once('../../../includes/config/db.php');
+require_once('../../../includes/config/session.php');
 
 $query = "SELECT * FROM pastor";
 $result = $conn->query($query);
@@ -47,7 +48,7 @@ $result = $conn->query($query);
 
                         <div class="half-field">
                             <p>Sex</p>
-                            <select name="sex" id="" required>
+                            <select name="sex" id="sex" required>
                                 <option value="" selected disabled>Select...</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -138,7 +139,7 @@ $result = $conn->query($query);
 
                     <input type="text" name="allergies" id="allergy" hidden>
 
-                    <button type="submit" name="submit" value="submit" id="submit" disabled>Register</button>
+                    <button type="submit" name="submit" value="submit" id="submit">Register</button>
 
                     <a id="go-back" href="../../navigation/members-list.php">Go back</a>
                     

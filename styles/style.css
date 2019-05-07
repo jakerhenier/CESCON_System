@@ -169,6 +169,12 @@ input[type=password] {
     background: none;
 }
 
+input:disabled,
+select:disabled {
+    color: #aaaaaa;
+    border-bottom-color: #eeeeee;
+}
+
 textarea {
     font-family: 'Segoe UI', sans-serif;
     width: 100%;
@@ -514,7 +520,7 @@ div.menu {
 }
 
 label.account-menu input:checked + div.menu {
-    max-height: 4rem;
+    max-height: fit-content;
     padding: .25rem 0;
     box-shadow: 0 0 .5rem .05rem rgba(0, 0, 0, .1);
 }
@@ -1097,6 +1103,10 @@ span.contact-number img {
     vertical-align: middle;
 }
 
+#curr-pass-field {
+    display: none;
+}
+
 
 /************************************
 ------ USER FEED PROPERTIES
@@ -1266,9 +1276,9 @@ div#member-reserve {
 --------AUDIT PAGE PROPERTIES
 ************************************/
 
-h2.audit {
+/* h2.audit {
     
-}
+} */
 
 h3.audit {
     border: none;
