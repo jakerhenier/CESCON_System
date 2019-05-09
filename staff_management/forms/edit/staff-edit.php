@@ -75,7 +75,7 @@ if (isset($_GET['edit'])) {
                 <?php 
                     if (isset($_SESSION['reg_msg'])) {
                         foreach($_SESSION['reg_msg'] as $errors) {
-                            echo   '<div>
+                            echo   '<div id = "val-err">
                                         <p>'. $errors .'</p>
                                     </div>';
                         }
@@ -124,7 +124,7 @@ if (isset($_GET['edit'])) {
                     <!-- <p>Confirm password</p>
                     <input type = "password" name = "password-confirm"> -->
 
-                    <button type = "submit" name="submit" id="submit" value="<?php echo $staff_number ?>">Save changes</button>
+                    <button type = "submit" name="submit" id="submit" onmouseover="saveValues()" value="<?php echo $staff_number ?>">Save changes</button>
                     <a href = "../../navigation/staffs-list.php">Go back</a>
 
                 </form>

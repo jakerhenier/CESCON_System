@@ -114,7 +114,7 @@ if (isset($_GET['edit'])) {
                 <?php 
                     if (isset($_SESSION['reg_msg'])) {
                         foreach($_SESSION['reg_msg'] as $errors) {
-                            echo   '<div>
+                            echo   '<div id = "val-err">
                                         <p>'. $errors .'</p>
                                     </div>';
                         }

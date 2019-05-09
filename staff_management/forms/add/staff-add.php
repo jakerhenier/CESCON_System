@@ -43,19 +43,19 @@ if ($staffData[0]['access_level'] == 0) {
                     }
                 ?>
 
-                <form action = "../../../includes/actions/staff_add.php" method="POST">
+                <form action = "../../../includes/actions/staff_add.php" id="form" method="POST">
 
                     <p>First name</p>
-                    <input type = "text" name = "first_name" id="first-name" required autofocus>
+                    <input type = "text" name = "first_name" id="first-name" onblur="firstNameVal()" required autofocus>
                     <span class="invalid" id="invalid-fn">Invalid value</span>
 
                     <p>Last name</p>
-                    <input type = "text" name = "last_name" id="last-name" required>
+                    <input type = "text" name = "last_name" id="last-name" onblur="lastNameVal()" required>
                     <span class="invalid" id="invalid-ln">Invalid value</span>
 
                     <p>Contact number</p>
                     <div id = "contact-field">
-                        <input type = "number" min=0 name = "contact_number" id="contact" required>
+                        <input type = "number" name = "contact_number" id="contact" required>
                         <span>+63</span>
 
                         <span class="invalid" id="invalid-num">Invalid value</span>
@@ -63,7 +63,7 @@ if ($staffData[0]['access_level'] == 0) {
                     </div>
 
                     <p>Branch</p>
-                    <select name="branch_id" required>
+                    <select name="branch_id" id="branch" onblur="branchVal()" required>
                     <option value="" selected disabled>Select District</option>
                         <option value="Agusan District">Agusan District</option>
                         <option value="Bukidnon">Bukidnon</option>
@@ -88,13 +88,13 @@ if ($staffData[0]['access_level'] == 0) {
                     </select>
 
                     <p id = "staff-username">Username</p>
-                    <input type = "text" name = "username" required>
+                    <input type = "text" name = "username" id="username" onblur="usernameVal()" required>
 
                     <p>Password</p>
                     <input type = "password" name = "password" required>
 
                     <p>Access Level</p>
-                    <select name="access_level" required>
+                    <select name="access_level" id="access" onmouseout="accessVal()" required>
                     <option value="" selected disabled>Select Level</option>
                         <option value="0">Normal User</option>
                         <option value="1">Administrator</option>
@@ -113,6 +113,7 @@ if ($staffData[0]['access_level'] == 0) {
         </div>
 
         <script src="../../../scripts/main.js"></script>
+        <script src="../../../scripts/persistent.js"></script>
 
     </body>
 </html>

@@ -12,15 +12,12 @@ if (isset($_POST['submit'])) {
     $password = encrypt_decrypt($_POST['password'], "encrypt");
     $access_level = $_POST['access_level'];
 
-    if(true) {
+    if(validate_staff($first_name, $last_name, $contact_number)) {
         $query = "UPDATE staff SET last_name = ?, first_name = ?, contact_number = ?, username = ?, password = ?, access_level = ? WHERE staff_number = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('sssssii', $last_name, $first_name, $contact_number, $username, $password, $access_level, $pastor_number);
         if ($stmt->execute()) {
             header('location: ../../staff_management/navigation/staffs-list.php');
-        }
-        else {
-            echo $stmt->error;
         }
     }
 }

@@ -1,4 +1,5 @@
 <?php
+session_start();
 $errors = array();
 
 function resetSession($new_errors) {
@@ -66,7 +67,7 @@ function validate_number($contact_number) {
     global $errors;
 
     if (!preg_match('/^9\d{9}$/', $contact_number)) {
-        array_push($errors, "Invalid format");
+        array_push($errors, "Invalid format on contact number");
         resetSession($errors);
         header('Location: ?');
     }
@@ -78,8 +79,8 @@ function validate_number($contact_number) {
 function validate_email($email) {
     global $errors;
 
-    if (!preg_match('[A-Za-z0-9]*@[\w]*.com', $email)) {
-        array_push($errors, "Invalid email.");
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        array_push($errors, "Invalid email format");
         resetSession($errors);
         header('Location: ?');
     }
@@ -98,11 +99,6 @@ function validate_member($first_name, $last_name, $contact_number, $email) {
     if ($first && $second && $third && $fourth) {
         return true;
     }
-    // else {
-    //     array_push($errors, "Invalid format");
-    //     resetSession($errors);
-    //     header('Location: ?');
-    // }
 }
 
 //STAFF FORM VALIDATION
@@ -114,11 +110,6 @@ function validate_staff($first_name, $last_name, $contact_number) {
     if ($first && $second && $third) {
         return true;
     }
-    else {
-        array_push($errors, "Invalid format");
-        resetSession($errors);
-        header('Location: ?');
-    }
 }
 
 //PASTOR FORM VALIDATION
@@ -129,11 +120,6 @@ function validate_pastor($first_name, $last_name, $contact_number) {
 
     if ($first && $second && $third) {
         return true;
-    }
-    else {
-        array_push($errors, "Invalid format");
-        resetSession($errors);
-        header('Location: ?');
     }
 }
 

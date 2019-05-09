@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require_once('../../../includes/config/db.php');
 require_once('../../../includes/config/session.php');
 
@@ -26,7 +27,7 @@ $result = $conn->query($query);
                 <?php 
                     if (isset($_SESSION['reg_msg'])) {
                         foreach($_SESSION['reg_msg'] as $errors) {
-                            echo   '<div>
+                            echo   '<div id = "val-err">
                                         <p>'. $errors .'</p>
                                     </div>';
                         }

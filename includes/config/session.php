@@ -2,7 +2,7 @@
 
 $time = $_SERVER['REQUEST_TIME'];
 
-$timeout_duration = 900; 
+$timeout_duration = 1800; 
 
 // after 30 min has passed of inactivity, session will be destroyed and start a new one
 

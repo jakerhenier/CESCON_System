@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
     $password = encrypt_decrypt($_POST['password'], "encrypt");
     $access_level = $_POST['access_level'];
 
-    if(true) {
+    if(validate_staff($first_name, $last_name, $contact_number)) {
         $query = "INSERT INTO staff (last_name, first_name, contact_number, username, password, access_level, branch_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('sssssii', $last_name, $first_name, $contact_number, $username, $password, $access_level, $branch_id);

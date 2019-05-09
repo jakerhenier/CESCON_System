@@ -32,6 +32,8 @@ if (isset($_GET['delete'])) {
     }
 }
 
+
+
 $query = "SELECT * FROM event WHERE branch_id = {$staffData[0]['branch_id']}";
 $result = $conn->query($query);
 
@@ -58,7 +60,7 @@ $result = $conn->query($query);
                 <input type="checkbox" name="" id=""> <!-- For the onclick menu -->
 
                 <div class="menu">
-                    <?php echo '<a href="../forms/edit/password-change.php?edit='.$staffData[0]['staff_number'].'">Change password</a>' ?>
+                    <?php echo '<a href="../forms/edit/password-change.php">Change password</a>' ?>
                     <a href="../../includes/actions/logout.php">Logout</a>
                 </div>
 
@@ -100,11 +102,28 @@ $result = $conn->query($query);
         <div class="content-container">
 
             <?php 
+                if (isset($_SESSION['reg_msg'])) {
+                    foreach($_SESSION['reg_msg'] as $errors) {
+                        echo   '<div id = "val-err">
+                                    <p>'. $errors .'</p>
+                                </div>';
+                    }
+                    unset($_SESSION['reg_msg']);
+                }
+            ?>
+
+            <?php 
             if (isset($_SESSION['event_error'])) {
                 echo '<span style="text-align: center; color: red; padding: 20px;">'. $_SESSION['event_error'] . '</span>';
-                unset($_SESSION['event_error']);
+               
             }
+            unset($_SESSION['event_error']);
+
+            
+            
             ?>
+
+            
 
             <h2>
                 Events
@@ -113,6 +132,26 @@ $result = $conn->query($query);
                     Add event
                 </a>
             </h2>
+
+            <div class="modal" id="password_warning­" tabindex="-1" role="dialog">
+                <div class="modal-dialog"­ role="document">
+                    <div class="modal-content­">
+                        <div class="modal-body">
+                            <span id="warning">
+                                <h4 style="line-height: 25px;" class="text-center">
+                                    <?php 
+                                    if (isset($_SESSION['pa­ssword_warning'])) {
+                                    echo $_SESSION['password_­warning'];
+                                    }
+                                    ?>
+                                </h4>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
             <!-- <div class="search-bar">
             

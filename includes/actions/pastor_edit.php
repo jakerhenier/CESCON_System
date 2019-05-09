@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     $first_name = $_POST['first_name'];
     $contact_number = $_POST['contact_number'];
 
-    if(true) {
+    if(validate_pastor($first_name, $last_name, $contact_number)) {
         $query = "UPDATE pastor SET last_name = ?, first_name = ?, contact_number = ? WHERE pastor_number = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('sssi', $last_name, $first_name, $contact_number, $pastor_number);
@@ -22,10 +22,6 @@ if (isset($_POST['submit'])) {
             $up_query = "UPDATE pastor_edit_logs SET edit_by_user = {$staffData[0]['staff_number']} WHERE pastor_number = {$pastor_number}";
             if ($conn->query($up_query)) {
                 header('location: ../../staff_management/navigation/pastors-list.php');
-            }
-            else {
-                // echo $conn->error . '<br>' . $up_query;
-                echo $stmt->error;
             }
         }
     }

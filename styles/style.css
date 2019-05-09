@@ -686,6 +686,18 @@ p.event-title {
     text-overflow: ellipsis;
 }
 
+#val-err {
+    width: 100%;
+    text-align: center;
+    background-color: rgb(235, 227, 114);
+    padding: .5rem;
+    margin: 1rem 0; 
+}
+
+#val-err p {
+    margin: 0;
+}
+
 
 /***********************************
  EVENT MANAGEMENT PAGE PROPERTIES

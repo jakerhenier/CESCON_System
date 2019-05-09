@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
     $first_name = $_POST['first_name'];
     $contact_number = $_POST['contact_number'];
 
-    if(true) {
+    if(validate_pastor($first_name, $last_name, $contact_number)) {
         $query = "INSERT INTO pastor (last_name, first_name, contact_number) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->bind_param('sss', $last_name, $first_name, $contact_number);
